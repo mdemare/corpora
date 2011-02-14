@@ -1,0 +1,20 @@
+# remove all abnormal punctuation.
+
+# step 1: merge-ff, wiki: clean up mark-up
+# step 2: cleanup: remove empty lines                    grep -P \S
+#                  replace ucode punct by normal punct   tr '’«»‹›“”„‘,‒–—―⁓' \''"""""""""-----' | sed 's:…:...:g'
+#                  remove abnormal punct/letters         tr -cs '0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-z'äëïöüáéíóúàèìòùâèìòùñçß\n .?¿!¡;,()"&$%'\'-    ' '
+#                  trim                                  sed 's/^ *//;s/ *$//'
+# save
+
+# step 3: groom: remove words in parens,                 sed 's:([[:blank:]\{0,\}[:alnum:]\{1,\}[:blank:]]\{0,\})::g'
+#                squeeze space and periods,              tr -s ' .'
+#                remove single quote pairs,              -e "s:'\([^']\{1,\}\)':\1:g"
+#                remove trailing quotes,                 -e 's:\([.?![:alnum:]]\)'\'':\1:g'
+#                remove space before period.             -e 's: [.]:.:g'
+#                split into sentences                    ruby lib/one-sentence.rb
+# save
+
+# step 4:        remove remaining punct: .?!;,()"&$%     tr '.?¿!¡;,()"&$%' ' '
+#                remove leading and trailing hyphens,    sed 's:^-::g;s:-$::g;s: -::g;s:- ::g'
+#                process

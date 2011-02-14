@@ -1,0 +1,21 @@
+grammar MyLang
+  rule expression
+    atom "(" (expression " "*)* ")" / atom / "(" expression* ")"
+  end
+
+  rule string
+    '"' (!'"' . / '\"')* '"'
+  end
+
+  rule identifier
+    [A-Za-z]+
+  end
+
+  rule atom
+    string / identifier / [^() ]+
+  end
+
+  rule function
+    "[" (identifier " "*)+ "|" " "* (expression " "*)+ "]"  /  "[" (expression " "*)+ "]"
+  end
+end

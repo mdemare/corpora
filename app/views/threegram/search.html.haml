@@ -1,0 +1,4 @@
+- if @threegrams.empty?
+  %h2 No results
+- @threegrams.sort_by(&:first).reverse.each do |freq,words,g3_id|
+  %h3= link_to "#{words}(#{freq})", "/threegram/g3/#{g3_id}"

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  word: MyString
+  frequency: 1
+  twogram_id: 1
+
+two:
+  word: MyString
+  frequency: 1
+  twogram_id: 1
