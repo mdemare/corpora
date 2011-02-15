@@ -1,3 +1,4 @@
-%h2= @g3.words.join(" ")
+%h2== 3-gram (#{@g3.frequency})
+%h3= @g3.words.map {|w| link_to(w,"/token/#{w}") }.join(" ").html_safe
 - @g3.seqs.each do |sentence|
   .sentence= sentence

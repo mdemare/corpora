@@ -15,9 +15,9 @@ def save(html, story, chapter)
   end
   if %w(dutch english spanish french italian german).include?(lang)
     dir = if lang == 'english'
-      FileUtils.mkdir_p("/Users/mdemare/corpora/#{lang}/fanfiction.net/#{1+story/100000}00k")
+      FileUtils.mkdir_p("/Users/mdemare/proj/datacorp/#{lang}/fanfiction.net/#{1+story/100000}00k")
     else
-      FileUtils.mkdir_p("/Users/mdemare/corpora/#{lang}/fanfiction.net")
+      FileUtils.mkdir_p("/Users/mdemare/proj/datacorp/#{lang}/fanfiction.net")
     end
     html =~ /storytext>/
     html = $'

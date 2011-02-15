@@ -10,19 +10,18 @@ development:
   encoding: utf8
   collation: utf8_bin
   reconnect: false
-  database: corpora_development
+  database: corpora
   pool: 5
   username: root
   password:
   socket: /tmp/mysql.sock
 
 production:
-  adapter: mysql2
+  adapter: jdbcmysql
+  reconnect: true
+  database: corpora
+  username: root
+  password: 
+  host: localhost
   encoding: utf8
   collation: utf8_bin
-  reconnect: false
-  database: corpora_production
-  pool: 5
-  username: root
-  password:
-  socket: /tmp/mysql.sock

@@ -28,10 +28,6 @@ class Ngram
     "NGram object."
   end
 
-  def most_frequent_2grams(top)
-    ag2d.sort_by {|x| -x[3]}[0,top].map(&:first)
-  end
-
   def frequent_2grams(freq)
     ag2d.reject{|x| x[3] < freq}.sort_by {|x| -x[3]}.map(&:first)
   end
@@ -49,23 +45,6 @@ class Ngram
     y.reject{|g2| ag2d[g2][3] < min_freq}.sort_by {|g2| -ag2d[g2][3]}
   end
 
-  def words_for_2gram(g2)
-    ag2d[g2][1].map {|x| x && word_for_token(x)}
-  end
-
-  def string_for_2gram(g2)
-    x,y = ag2d[g2][2],ag2d[g2][3]
-    x &&= word_for_token(x)
-    y &&= word_for_token(y)
-    !x ? y.capitalize : !y ? "#{x}." : "#{x} #{y}"
-  end
-
-  def add_words_for_token(t, arr)
-    w = word_for_token(t)
-    x = String === w ? w : string_for_2gram(w)
-    arr << x
-  end
-
   def word_for_token(token)
     @atd2[token][1]
   end
@@ -74,83 +53,76 @@ class Ngram
     Numeric === token ? @atd2[token][2] : 1
   end
   
-  ARR62 = []
-  BASE62 = [*'0'..'9']+[*'a'..'z']+[*'A'..'Z']
-  RBASE62 = Hash[*BASE62.zip(0..62).flatten]
-  def to_62(k)
-    k or return "#"
-    k = k.to_i
-    x = ARR62[k] and return x
-    n = k
-    s = ''
-    loop do
-      s = BASE62[n%62] + s
-      if (n/=62) == 0
-        ARR62[k] = s
-        return s 
-      end
-    end
-  end
-
-  def from_62(n)
-    n && !n.empty? && n != "#" or return nil
-    (1..n.size).inject(0) do |acc,i|
-      acc += RBASE62[n[-i]] * 62 ** (i-1)
-    end
-  end
-
   def process_file
     puts "process_file"
     count = 0
     @tf = Tempfile.new("ss")
     @tf.open
     atd1 = []
+    hw_tmp = {}
+    @tf_length = 0
     
+    start = Time.now
+    jstart = 1
     while not STDIN.eof?
       x = STDIN.gets
       count += 1
-      STDERR.puts(count / 1000_000) if count % 1000_000 == 0
+      if Time.now-start > 60
+        start = Time.now
+        STDERR.puts "speed: #{count-jstart} per minute"
+        jstart = count
+      end
+
   
       ws = x.split
       ws.map!.with_index do |w,i|
         
         canonical_word = UnicodeUtils.downcase(w)
         
-        if t = @hw_tokens[canonical_word]
-          atd1[t][1] += 1
+        tdata = false
+        
+        if tdata = @hw_tokens[canonical_word]
+          tdata[1] += 1
+        elsif t = hw_tmp[canonical_word]
+          tdata = @hw_tokens[canonical_word] = [t,2,0,0,0]
+          hw_tmp.delete(canonical_word)
         else
-          t = atd1.size
-          @hw_tokens[canonical_word] = t
-          atd1 << [canonical_word,1] # token, word, occurrences
+          hw_tmp[canonical_word] = hw_tmp.size + @hw_tokens.size + 1
+        end
+        if tdata
+          if i == 0 or w.size == 1 or w == canonical_word
+            tdata[4] += 1
+          elsif w == UnicodeUtils.upcase(w)
+            tdata[2] += 1
+          else 
+            tdata[3] += 1
+          end
+          if tdata[1] < 25 and (canonical_word == 'harry' or canonical_word == 'hermine' or canonical_word == 'diese' or canonical_word == 'mrs' or canonical_word == 'usa')
+            STDERR.puts "word: #{w}, canonical_word: #{canonical_word}, frequencies: #{tdata[2,3]}"
+          end
         end
         
-        # if w.size > 1 and w == UnicodeUtils.upcase(w)
-        #   found_occurrence(t, :uppercase)
-        # elsif i > 0 and w == UnicodeUtils.titlecase(w)
-        #   found_occurrence(t, :titlecase)
-        # end
-        
+
         canonical_word
-        
       end
       @tf.print(",")
       ws.each {|x| @tf.print(x,",")}
+      @tf_length += 1
       @tf.puts
     end
     @tf.close
-    atd1.reject! {|x| x[1] == 1 }
-    frequent_first = atd1.sort_by {|x| -x[1] }
-    @two_percent_fq = frequent_first[atd1.size/50][1]
+    frequent_first = @hw_tokens.sort_by {|x| -x[1][1] }
+    @two_percent_fq = frequent_first[@hw_tokens.size/50][1][1]
     puts "two_percent_fq: #{@two_percent_fq}"
     
     @atd2 = [nil]
     @hw_tokens = {}
     (1..frequent_first.size).each do |i|
-      w = frequent_first[i-1][0]
-      unless w =~ /[0-9]/
-        @atd2 << [i, w, 0]
-        @hw_tokens[w] = [i]
-      end
+      ff = frequent_first[i-1]
+      w = ff[0]
+      # freq_upper,freq_title,freq_expected = freq_title[i-1][1][2..4]
+      @atd2 << [i, w, 0, *ff[1][2..4]] # special frequencies here
+      @hw_tokens[w] = [i]
     end
     self
   end
@@ -163,9 +135,17 @@ class Ngram
     @tf2.open
     count = 0
 
+    start = Time.now
+    jstart = 1
     while line = @tf.gets
       count += 1
-      STDERR.puts(count / 1000_000) if count % 1000_000 == 0
+      if Time.now-start > 60
+        start = Time.now
+        speed = count-jstart
+        remaining = @tf_length - count
+        STDERR.puts "speed: #{speed} per minute, remaining time: #{remaining/speed} minutes"
+        jstart = count
+      end
 
       line.chomp!
       ws = line.split(",",-1)
@@ -226,7 +206,7 @@ class Ngram
       token1 and @hw_tokens[word_for_token(token1)] << new_token
       token2 and @hw_tokens[word_for_token(token2)] << new_token
       (h2gram12[token1] ||= {})[token2] = i
-      @atd2 << [new_token,i,0]
+      @atd2 << [new_token,i,0] # no special frequencies for 2-grams
     end
     @ag2d = ag2d_new
     @hw_tokens = nil
@@ -255,6 +235,7 @@ class Ngram
           token_seen(t)
           g3 << t
           if seen3 == 2
+            # choose space efficient keys to store in g3s_seen
             key = g3[0]*@atd2.size**2 + g3[1]*@atd2.size + g3[2]
             gid = gid_for_key[key,g3]
             f4.print(count-1,";",gid,"\n")
@@ -264,9 +245,20 @@ class Ngram
           end
         end
         
+        start = Time.now
+        jstart = 1
+        
         while line = @tf2.gets
+
+          if Time.now-start > 60
+            start = Time.now
+            speed = count-jstart
+            remaining = @tf_length - count
+            STDERR.puts "speed: #{speed} per minute, remaining time: #{remaining/speed} minutes"
+            jstart = count
+          end
           count += 1
-          STDERR.puts(count / 1000_000) if count % 1000_000 == 0
+
           ts = line.chomp.split(",",-1)
           ts.map! {|x| x.empty? ? nil : x }
           g3.clear
@@ -291,22 +283,33 @@ class Ngram
         @tf2.close
       end
     end
-    puts "seen #{g3s_seen.size} unique 3-grams"
+    STDERR.puts "seen #{g3s_seen.size} unique 3-grams"
     g3s_seen = nil
     File.open("process/tokens","w") do |f|
       start = Time.now
       jstart = 1
       (1...@atd2.size).each do |j| 
-        _,w,fq = @atd2[j]
+        _,w,fq,fqu,fqc,fqx = @atd2[j]
+        
         if String === w
-          f.puts("#{j},#{w},\\N,\\N,#{fq}")
+          sum = fqu+fqc+fqx
+          rfqu = 15 * fqu / sum
+          rfqc = 15 * fqc / sum
+          fqall = rfqc + (rfqu << 4)
+          f.puts("#{j},#{w},0,0,#{fq},#{fqall}")
+          
+          # "upper: #{(fqall >> 4)}"
+          # "capitalized: #{(fqall & 15)}"
+          # "expected: #{15 - (fqall & 15) - (fqall >> 4)}"
         else
-          wt1,wt2 = ag2d[w][2,2].map{|x|x || "\\N"}
-          f.puts("#{j},\\N,#{wt1},#{wt2},#{fq}")
+          wt1,wt2 = ag2d[w][2,2].map{|x|x || 0}
+          f.puts("#{j},\\N,#{wt1},#{wt2},#{fq},0")
         end
         if Time.now-start > 60
           start = Time.now
-          puts "speed: #{j-jstart} per minute"
+          speed = j-jstart
+          remaining = @atd2 - j
+          STDERR.puts "speed: #{speed} per minute, remaining time: #{remaining/speed} minutes"
           jstart = j
         end
       end

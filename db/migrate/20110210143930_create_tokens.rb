@@ -6,8 +6,7 @@ class CreateTokens < ActiveRecord::Migration
       t.column :wtoken1_id, "integer unsigned", :null => false
       t.column :wtoken2_id, "integer unsigned", :null => false
       t.column :frequency, "integer unsigned", :null => false
-      t.column :frequency_title, "integer unsigned", :null => false
-      t.column :frequency_upper, "integer unsigned", :null => false
+      t.column :frequency_special, "tinyint unsigned", :null => false
     end
     add_index :tokens_01, [:id], :unique => true
     add_index :tokens_01, [:word]
@@ -21,6 +20,7 @@ class CreateTokens < ActiveRecord::Migration
       t.column :wtoken1_id, "mediumint unsigned", :null => false
       t.column :wtoken2_id, "mediumint unsigned", :null => false
       t.column :wtoken3_id, "mediumint unsigned", :null => false
+      t.column :frequency, "smallint unsigned", :null => false
     end
     add_index :g3_01, [:id], :unique => true
     add_index :g3_01, [:wtoken1_id, :wtoken2_id, :wtoken3_id], :name => :g3_tokens123
@@ -35,11 +35,18 @@ class CreateTokens < ActiveRecord::Migration
       t.integer :sequence, :null => false
     end
     add_index :s3g_01, :three_gram_id
+
+    create_table :seq_01, :options => "ENGINE=MyISAM", :id => false do |t|
+      t.column :id, "integer unsigned", :null => false
+      t.binary :compressed_sentences, :null => false
+    end
+    add_index :seq_01, [:id], :unique => true
+
   end
 
   def self.down
     drop_table :tokens_01
     drop_table :g3_01
-    drop_table :sg3_01
+    drop_table :s3g_01
   end
 end

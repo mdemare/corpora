@@ -1,0 +1,59 @@
+%h2== Token: #{@token.word}
+.freq== Frequency: #{@token.frequency}
+.freq== Token spelled with capital: #{(100*@token.title_expected_ratio).to_i}%
+.freq== Token spelled in upper case: #{(100*@token.upper_expected_ratio).to_i}%
+- fq = G3_01.tokens(Token_01.definite_article_tokens,[@token.id],nil).inject(0) {|sum,x| sum+x.frequency}
+.freq== Preceded by definite article: #{fq} (#{(100*fq)/@g3ss[1].size}%)
+- fq = G3_01.tokens(Token_01.indefinite_article_tokens,[@token.id],nil).inject(0) {|sum,x| sum+x.frequency}
+.freq== Preceded by indefinite article: #{fq} (#{(100*fq)/@g3ss[1].size}%)
+
+- if @token.twograms.inject(0) {|sum,x|sum+x.size} == 0
+  %h3 No 2-grams found
+- else
+  .jump
+    %a(href="#2pos")== Jump to 2-grams with #{@token.word} in second position
+  .jump
+    %a(href="#3gram") Jump to 3-grams
+  %h3 2-grams
+  %table
+    %tr
+      %th 2-gram
+      %th frequency
+    - @token.twograms[0].sort_by(&:frequency).reverse.each do |g2|
+      %tr
+        - wt = g2.wtoken2_id
+        - if wt == 0
+          - w = "<start of sentence>"
+        - else
+          - w = @token.class.find(wt).word
+          - w = link_to(w,"/token/#{w}").html_safe
+        %td
+          = @token.word
+          = w
+        %td= "Frequency: #{g2.frequency}"
+  
+  %a(name="2pos")
+  %table
+    %tr
+      %th 2-gram
+      %th frequency
+    - @token.twograms[1].sort_by(&:frequency).reverse.each do |g2|
+      %tr
+        - wt = g2.wtoken1_id
+        - if wt == 0
+          - w = "<end of sentence>"
+        - else
+          - w = @token.class.find(wt).word
+          - w = link_to(w,"/token/#{w}").html_safe
+        %td
+          = w
+          = @token.word
+        %td= "Frequency: #{g2.frequency}"
+
+%a(name="3gram")
+%h3 3-grams
+- @g3ss.each do |g3s|
+  - g3s.sort_by(&:frequency).reverse.each do |g3|
+    %h4
+      = link_to "3-gram(#{g3.frequency})", "/3gram/g3/#{g3.id}"
+      = g3.words(@token_map).map {|w| link_to(w,"/token/#{w}") }.join(" ").html_safe
