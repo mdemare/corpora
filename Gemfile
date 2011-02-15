@@ -7,6 +7,7 @@ gem 'rails', '3.0.4'
 
 gem 'haml'
 gem 'formtastic', '~> 1.2.0'
+gem 'mysql2'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -22,10 +23,3 @@ gem 'formtastic', '~> 1.2.0'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 
-group :development do
-  gem 'mysql2'
-end
-
-group :production do
-  gem 'mysql2'
-end

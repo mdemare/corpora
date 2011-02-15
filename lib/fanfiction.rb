@@ -35,9 +35,13 @@ loop do
   u = "/s/#{story}/#{chapter}"
   begin
     h = http.get(u).body
-  rescue
-    http.close rescue nil
-    sleep 30
+  rescue Exception
+    begin
+      http.close
+    rescue Exception
+    end
+    `say network error, resuming in 5 minutes`
+    sleep 300
     http = Net::HTTP.start "www.fanfiction.net"
     retry
   end

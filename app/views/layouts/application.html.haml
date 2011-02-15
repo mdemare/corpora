@@ -1,0 +1,13 @@
+!!! Strict
+%html
+  %head
+    %title Corpora</title>
+    %link(href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css" media="screen" rel="stylesheet" type="text/css")
+    %link(href="http://yui.yahooapis.com/3.2.0/build/cssbase/base-min.css" media="screen" rel="stylesheet" type="text/css")
+    %link(href="http://yui.yahooapis.com/3.2.0/build/cssfonts/fonts-min.css" media="screen" rel="stylesheet" type="text/css")
+    = formtastic_stylesheet_link_tag
+    = csrf_meta_tag
+
+  %body
+    .container(style="margin-left: 1em;")
+      = yield

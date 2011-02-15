@@ -17,7 +17,7 @@ development:
   socket: /tmp/mysql.sock
 
 production:
-  adapter: jdbcmysql
+  adapter: mysql2
   reconnect: true
   database: corpora
   username: root

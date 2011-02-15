@@ -2,7 +2,7 @@ class TokenController < ApplicationController
   def token
     w = params[:id]
     @token = Token_01.where(word: w).first
-    @g3ss = G3_01.for_tokens([@token])
+    @g3ss = G3_01.for_tokens([@token]).map {|x| x[0,100] }
     wtokens = @g3ss.flatten.map {|x| [x.wtoken1_id,x.wtoken2_id,x.wtoken3_id]}.flatten.uniq
     ws = Token_01.where(id: wtokens).all
     @token_map = ws.select(&:word).inject({}) { |memo,t| memo[t.id]=t.word ; memo }
