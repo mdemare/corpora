@@ -1,13 +1,46 @@
-%h2== Token: #{@token.word}
-.freq== Frequency: #{@token.frequency}
-.freq== Token spelled with capital: #{(100*@token.title_expected_ratio).to_i}%
-.freq== Token spelled in upper case: #{(100*@token.upper_expected_ratio).to_i}%
-- fq = G3_01.tokens(Token_01.definite_article_tokens,[@token.id],nil).inject(0) {|sum,x| sum+x.frequency}
-.freq== Preceded by definite article: #{fq} (#{(100*fq)/@g3ss[1].size}%)
-- fq = G3_01.tokens(Token_01.indefinite_article_tokens,[@token.id],nil).inject(0) {|sum,x| sum+x.frequency}
-.freq== Preceded by indefinite article: #{fq} (#{(100*fq)/@g3ss[1].size}%)
+%h2== Word: #{@token.word}
+- fq_total = @twograms.flatten.inject(@token.frequency) {|sum,g2| sum+g2.frequency}
+- fqq = -> kind,position { @token.class.adjacent_words(@token, kind, position) }
 
-- if @token.twograms.inject(0) {|sum,x|sum+x.size} == 0
+- title_ratio = @token.title_expected_ratio
+- upper_ratio = @token.upper_expected_ratio
+%p== `#{@token.word}` occurs #{fq_total} times in #{100 * @token.sequence_class.count} sentences. It is spelled like `#{UnicodeUtils.titlecase(@token.word)}` #{(100*title_ratio).to_i}% of the time (not counting when it's at the first position of a sentence.) #{likelihood(title_ratio, 0.40, "a (proper) noun")}
+%p== It is spelled like `#{UnicodeUtils.upcase(@token.word)}` #{(100*upper_ratio).to_i}% of the time. #{likelihood(upper_ratio, 0.20, "an abbreviation or acronym")}
+%table
+  %tr
+    %td Preceded by definite article
+    - fq = fqq[:definite_articles, :preceding]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Followed by definite article
+    - fq = fqq[:definite_articles, :following]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Preceded by indefinite article
+    - fq = fqq[:indefinite_articles, :preceding]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Followed by indefinite article
+    - fq = fqq[:indefinite_articles, :following]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Preceded by nominative pronoun
+    - fq = fqq[:nominative_pronouns, :preceding]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Followed by nominative pronoun
+    - fq = fqq[:nominative_pronouns, :following]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Preceded by preposition
+    - fq = fqq[:prepositions, :preceding]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+  %tr
+    %td Followed by preposition
+    - fq = fqq[:prepositions, :following]
+    %td== #{fq} (#{(100*fq)/fq_total}%)
+
+- if @twograms.inject(0) {|sum,x|sum+x.size} == 0
   %h3 No 2-grams found
 - else
   .jump
@@ -19,32 +52,31 @@
     %tr
       %th 2-gram
       %th frequency
-    - @token.twograms[0].sort_by(&:frequency).reverse.each do |g2|
+    - @twograms[0].sort_by(&:frequency).reverse.each do |g2|
       %tr
         - wt = g2.wtoken2_id
-        - if wt == 0
-          - w = "<start of sentence>"
-        - else
-          - w = @token.class.find(wt).word
-          - w = link_to(w,"/token/#{w}").html_safe
-        %td
-          = @token.word
-          = w
-        %td= g2.frequency
-  
-  %a(name="2pos")
-  %table
-    %tr
-      %th 2-gram
-      %th frequency
-    - @token.twograms[1].sort_by(&:frequency).reverse.each do |g2|
-      %tr
-        - wt = g2.wtoken1_id
         - if wt == 0
           - w = "<end of sentence>"
         - else
           - w = @token.class.find(wt).word
-          - w = link_to(w,"/token/#{w}").html_safe
+          - w = link_to(w,token_url(id: w, source: 'de')).html_safe
+        %td
+          = @token.word
+          = w
+        %td= g2.frequency
+
+    %tr
+      %td
+        %a(name="2pos")
+
+    - @twograms[1].sort_by(&:frequency).reverse.each do |g2|
+      %tr
+        - wt = g2.wtoken1_id
+        - if wt == 0
+          - w = "<start of sentence>"
+        - else
+          - w = @token.class.find(wt).word
+          - w = link_to(w,token_url(id: w, source: 'de')).html_safe
         %td
           = w
           = @token.word
@@ -52,8 +84,8 @@
 
 %a(name="3gram")
 %h3 3-grams
-- @g3ss.each do |g3s|
+- @g3ss_reduced.each do |g3s|
   - g3s.sort_by(&:frequency).reverse.each do |g3|
     %h4
-      = link_to "3-gram(#{g3.frequency})", "/3gram/g3/#{g3.id}"
-      = g3.words(@token_map).map {|w| link_to(w,"/token/#{w}") }.join(" ").html_safe
+      = link_to "3-gram(#{g3.frequency})", g3_url(id: g3.id, source: 'de')
+      = g3.words(@token_map).map {|w| link_to(w,token_url(id: w, source: 'de')) }.join(" ").html_safe

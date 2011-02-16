@@ -69,6 +69,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    unicode_utils (1.0.0)
 
 PLATFORMS
   ruby
@@ -78,3 +79,4 @@ DEPENDENCIES
   haml
   mysql2
   rails (= 3.0.4)
+  unicode_utils

@@ -1,4 +1,13 @@
 %h2== 3-gram (#{@g3.frequency})
-%h3= @g3.words.map {|w| link_to(w,"/token/#{w}") }.join(" ").html_safe
-- @g3.seqs.each do |sentence|
-  .sentence= sentence
+%h3= @g3.words.map {|w| link_to(w,token_url(id: w, source: 'de')) }.join(" ").html_safe
+- ws = @g3.words
+%pre
+  &nbsp;
+  - @g3.seqs.each do |sentence|
+    - pos = sentence =~ %r(#{ws[0]}[, ]+#{ws[1]}[, ]+#{ws[2]})i
+    - if pos > 50
+      - short_sentence = sentence[pos-50 .. -1]
+      - pos = 50
+      %span(title=sentence)~ short_sentence.rjust(50 + short_sentence.size - pos, " ")
+    - else
+      ~ sentence.rjust(50 + sentence.size - pos, " ")

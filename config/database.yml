@@ -10,7 +10,7 @@ development:
   encoding: utf8
   collation: utf8_bin
   reconnect: false
-  database: corpora
+  database: corpora_development
   pool: 5
   username: root
   password:

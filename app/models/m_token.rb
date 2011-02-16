@@ -12,33 +12,49 @@ module MToken
   end
    
   module ClassMethods
-    def definite_article_tokens(position = :preceding)
-      # TODO also add 3-grams with token as first or last item
-#      x = @definite_article_tokens and return x
-      logger.info("DEFINITE TOKENS")
-      @definite_article_tokens = where(word: definite_articles)
-      if position == :preceding
-        @definite_article_tokens += where(wtoken2_id: @definite_article_tokens.map(&:id)).all
-      end
-      @definite_article_tokens.map!(&:id)
-      logger.info("END DEFINITE TOKENS")
-      @definite_article_tokens
+    def adjacent_words(token, kind, position)
+      list, token_list = adjacent_tokens(kind, position)
+      args = [list,[token.id],nil]
+      args.reverse! if position == :following
+      
+      g3_sum = G3_01.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
+      
+      # where both are part of 2-gram
+      column1 = position == :preceding ? :wtoken2_id : :wtoken1_id
+      column2 = position != :preceding ? :wtoken2_id : :wtoken1_id
+      where(column1 => token.id, column2 => token_list).inject(g3_sum) {|sum,x|sum+x.frequency}
     end
-    
-    def indefinite_article_tokens
-      # TODO also add 3-grams with token as first or last item
- #     x = @indefinite_article_tokens and return x
-      logger.info("INDEFINITE TOKENS")
-      @indefinite_article_tokens = where(word: indefinite_articles).all
-      @indefinite_article_tokens.map!(&:id)
-      logger.info("END INDEFINITE TOKENS")
-      @indefinite_article_tokens
+
+    # e.g. pronouns, preceding:
+    # ich /token/
+    # du /token/
+    # but also
+    # <*, ich> /token/
+    # and
+    # <ich /token/>
+    def adjacent_tokens(kind, position)
+      ia = ((@cache ||= {})[kind] ||= {})
+      r = ia[position] and return r
+      
+      # word tokens for kind
+      token_list = where(word: send(kind)).map(&:id)
+      
+      column = position == :preceding ? :wtoken2_id : :wtoken1_id
+      # when word in list is part of 2-gram
+      rvalue = token_list + where(column => token_list).map(&:id)
+      
+      ia[position] = [rvalue,token_list]
     end
   end
   
   # two grams
   def words
     [word, word_for(wtoken1_id), word_for(wtoken2_id)].compact
+  end
+  
+  def word
+    w = attributes["word"]
+    w ? w.force_encoding("utf-8") : nil
   end
   
   def word_for(wt)

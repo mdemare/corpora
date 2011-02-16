@@ -1,4 +1,4 @@
 Corpora::Application.routes.draw do
-  match '3gram/:action(/:id)', :controller => 'threegram'
-  match 'token/:id', :controller => 'token', :action => 'token'
+  match 'lex/:source/3gram/:id', controller: 'threegram', action: 'g3', as: 'g3'
+  match 'lex/:source(/:id)', controller: 'token', action: 'token', as: 'token'
 end

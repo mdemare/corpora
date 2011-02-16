@@ -2,8 +2,15 @@ class TokenController < ApplicationController
   def token
     w = params[:id]
     @token = Token_01.where(word: w).first
-    @g3ss = G3_01.for_tokens([@token]).map {|x| x[0,100] }
-    wtokens = @g3ss.flatten.map {|x| [x.wtoken1_id,x.wtoken2_id,x.wtoken3_id]}.flatten.uniq
+    unless @token
+      flash[:search] = "Word #{w} not found."
+      render :index
+      return
+    end
+    @twograms = @token.twograms
+    @g3ss = G3_01.for_tokens([@token])
+    @g3ss_reduced = @g3ss.map {|x| x[0,50] }
+    wtokens = @g3ss_reduced.flatten.map {|x| [x.wtoken1_id,x.wtoken2_id,x.wtoken3_id]}.flatten.uniq
     ws = Token_01.where(id: wtokens).all
     @token_map = ws.select(&:word).inject({}) { |memo,t| memo[t.id]=t.word ; memo }
     ws = ws.reject(&:word).inject({}) {|memo,x| memo[x.id] = [x.wtoken1_id,x.wtoken2_id];memo}
