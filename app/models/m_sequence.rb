@@ -3,18 +3,12 @@ module MSequence
   
   def self.included(klass)
     klass.extend(ClassMethods)
+    klass.instance_eval do
+      set_table_name "seq_#{source}"
+    end
   end
    
   module ClassMethods
-    BASE62 = [*'0'..'9']+[*'a'..'z']+[*'A'..'Z']
-    RBASE62 = Hash[*BASE62.zip(0..62).flatten]
-    def from_62(n)
-      n && !n.empty? && n != "#" or return nil
-      (1..n.size).inject(0) do |acc,i|
-        acc += RBASE62[n[-i]] * 62 ** (i-1)
-      end
-    end
-
     def for_3gram(g3_id)
       sql = <<-SQL
         SELECT `s3g_#{source}`.sequence,UNCOMPRESS(`seq_#{source}`.compressed_sentences) sentence FROM `seq_#{source}` 

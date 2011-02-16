@@ -1,5 +1,5 @@
 %h2== Word: #{@token.word}
-- fq_total = @twograms.flatten.inject(@token.frequency) {|sum,g2| sum+g2.frequency}
+- fq_total = @twograms.flatten(1).inject(@token.frequency) {|sum,g2| sum+g2.second}
 - fqq = -> kind,position { @token.class.adjacent_words(@token, kind, position) }
 
 - title_ratio = @token.title_expected_ratio
@@ -52,40 +52,40 @@
     %tr
       %th 2-gram
       %th frequency
-    - @twograms[0].sort_by(&:frequency).reverse.each do |g2|
+    - @twograms[0].sort_by(&:second).reverse.each do |g2|
       %tr
-        - wt = g2.wtoken2_id
-        - if wt == 0
-          - w = "<end of sentence>"
+        - wt = g2.first
+        - if wt.nil?
+          - w = "#"
         - else
-          - w = @token.class.find(wt).word
-          - w = link_to(w,token_url(id: w, source: 'de')).html_safe
+          - w = wt
+          - w = link_to(w,token_url(id: w, source: params[:source])).html_safe
         %td
           = @token.word
           = w
-        %td= g2.frequency
+        %td= g2.second
 
     %tr
       %td
         %a(name="2pos")
 
-    - @twograms[1].sort_by(&:frequency).reverse.each do |g2|
+    - @twograms[1].sort_by(&:second).reverse.each do |g2|
       %tr
-        - wt = g2.wtoken1_id
-        - if wt == 0
-          - w = "<start of sentence>"
+        - wt = g2.first
+        - if wt.nil?
+          - w = "#"
         - else
-          - w = @token.class.find(wt).word
-          - w = link_to(w,token_url(id: w, source: 'de')).html_safe
+          - w = wt
+          - w = link_to(w,token_url(id: w, source: params[:source])).html_safe
         %td
           = w
           = @token.word
-        %td= g2.frequency
+        %td= g2.second
 
 %a(name="3gram")
 %h3 3-grams
 - @g3ss_reduced.each do |g3s|
   - g3s.sort_by(&:frequency).reverse.each do |g3|
     %h4
-      = link_to "3-gram(#{g3.frequency})", g3_url(id: g3.id, source: 'de')
-      = g3.words(@token_map).map {|w| link_to(w,token_url(id: w, source: 'de')) }.join(" ").html_safe
+      = link_to "3-gram(#{g3.frequency})", g3_url(id: g3.id, source: params[:source])
+      = g3.words(@token_map).map {|w| link_to(w,token_url(id: w, source: params[:source])) }.join(" ").html_safe

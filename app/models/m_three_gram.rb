@@ -3,6 +3,9 @@ module MThreeGram
   
   def self.included(klass)
     klass.extend(ClassMethods)
+    klass.instance_eval do
+      set_table_name "g3_#{source}"
+    end
   end
    
   module ClassMethods

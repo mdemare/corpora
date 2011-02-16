@@ -97,11 +97,7 @@ class Ngram
           else 
             tdata[3] += 1
           end
-          if tdata[1] < 25 and (canonical_word == 'harry' or canonical_word == 'hermine' or canonical_word == 'diese' or canonical_word == 'mrs' or canonical_word == 'usa')
-            STDERR.puts "word: #{w}, canonical_word: #{canonical_word}, frequencies: #{tdata[2,3]}"
-          end
         end
-        
 
         canonical_word
       end
@@ -190,7 +186,7 @@ class Ngram
   def replace_tokens_by_2grams
     puts "replace_tokens_by_2grams"
     
-    f2g = @atd2[1,100].map(&:first).inject([]) do |memo,t|
+    f2g = @atd2[1,200].map(&:first).inject([]) do |memo,t|
       memo += frequent_2grams_for_token(t,@two_percent_fq)
     end.uniq
     STDERR.puts "#{@atd2.size} words found"
@@ -199,6 +195,7 @@ class Ngram
     @h2gram21 = nil
     ag2d_new = []
     f2g.each_with_index do |g2,i|
+      STDERR.print "." if i % 1000000 == 0
       token1 = ag2d[g2][1]
       token2 = ag2d[g2][2]
       new_token = @atd2.size
@@ -208,6 +205,7 @@ class Ngram
       (h2gram12[token1] ||= {})[token2] = i
       @atd2 << [new_token,i,0] # no special frequencies for 2-grams
     end
+    STDERR.puts
     @ag2d = ag2d_new
     @hw_tokens = nil
 
@@ -219,8 +217,8 @@ class Ngram
     count = 0
     puts "#{@atd2.size} tokens"
     g3s_seen = {}
-    File.open("process/3-grams", "w") do |f3|
-      File.open("process/3-grams-sequences", "w") do |f4|
+    File.open("#{ARGV[0]}/process/3-grams", "w") do |f3|
+      File.open("#{ARGV[0]}/process/3-grams-sequences", "w") do |f4|
         
         gid_for_key = -> key,g3 do
           x = g3s_seen[key] and return x
@@ -285,7 +283,7 @@ class Ngram
     end
     STDERR.puts "seen #{g3s_seen.size} unique 3-grams"
     g3s_seen = nil
-    File.open("process/tokens","w") do |f|
+    File.open("#{ARGV[0]}/process/tokens","w") do |f|
       start = Time.now
       jstart = 1
       (1...@atd2.size).each do |j| 

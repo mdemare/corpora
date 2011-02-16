@@ -9,6 +9,9 @@ module MToken
   
   def self.included(klass)
     klass.extend(ClassMethods)
+    klass.instance_eval do
+      set_table_name "tokens_#{source}"
+    end
   end
    
   module ClassMethods
@@ -17,7 +20,7 @@ module MToken
       args = [list,[token.id],nil]
       args.reverse! if position == :following
       
-      g3_sum = G3_01.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
+      g3_sum = token.g3_class.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
       
       # where both are part of 2-gram
       column1 = position == :preceding ? :wtoken2_id : :wtoken1_id
@@ -33,7 +36,7 @@ module MToken
     # and
     # <ich /token/>
     def adjacent_tokens(kind, position)
-      ia = ((@cache ||= {})[kind] ||= {})
+      ia = (($token_cache ||= {})[kind] ||= {})
       r = ia[position] and return r
       
       # word tokens for kind
@@ -64,8 +67,18 @@ module MToken
   end
   
   def twograms
-    sql = "select wtoken1_id,wtoken2_id,frequency from `tokens_#{source}` where wtoken%d_id = ?"
-    [1,2].map {|i| self.class.find_by_sql([sprintf(sql,i),id]) }
+    list,wt1map,wt2map = (($twograms ||= {})[source] ||= [])
+    unless list
+      sql = "select wtoken1_id,wtoken2_id,frequency from `tokens_#{source}`"
+      list,idmap,wt1map,wt2map = [],{},{},{}
+      self.class.find_by_sql(sql).each do |t|
+        (wt1map[t.wtoken1_id] ||= []) << list.size
+        (wt2map[t.wtoken2_id] ||= []) << list.size
+        list << [t.wtoken1_id,t.wtoken2_id,t.frequency]
+      end
+      $twograms[source] = [list,wt1map,wt2map]
+    end
+    [(wt1map[id] || []).map{|x| [list[x][1], list[x][2]] },(wt2map[id] || []).map{|x| [list[x][0], list[x][2]] } ]
   end
   
   def upper_expected_ratio
