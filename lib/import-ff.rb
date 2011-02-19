@@ -1,13 +1,13 @@
 require 'tempfile'
 
-GITREPOS="/Volumes/HFS+/corpora/raw-data"
+GITREPOS="/home/mdemare/corpora/raw-data"
 
-glob = Dir.glob(ARGV[0])
 start = Time.now
 jstart = 1
 tf = Tempfile.new("ss")
 tf.open
 tf.chmod(0644)
+glob = Dir.glob(ARGV[0])
 glob.each_with_index do |filename,j|
   git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{filename}"
   IO.popen(git_cmd) do |output|

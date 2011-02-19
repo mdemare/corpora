@@ -18,8 +18,7 @@ rescue
   raise s
 end
 to_unix_time("2-16-10")
-tf = File.open("search-results.sql","w")
-tf.open
+tf = File.open("/home/mdemare/corpora/search-results.sql","w")
 tf.chmod(0644)
 
 while line=gets
@@ -103,4 +102,4 @@ raise unless tail.size == 3
 end
 tf.close
 puts "load into db"
-%x! echo 'LOAD DATA INFILE "#{tf.path}" INTO TABLE fanfiction_stories FIELDS TERMINATED BY ";" (medium,work,id,title,author_id,author_name,rating,language,genre,chapters,words,reviews,@up,@pd,character_a,character_b,completed) set update_date = date(@ud),publish_date = date(@pd)' | mysql -u root #{DATABASE} !
+%x! echo 'LOAD DATA INFILE "/home/mdemare/corpora/search-results.sql" INTO TABLE fanfiction_stories FIELDS TERMINATED BY ";" (medium,work,id,title,author_id,author_name,rating,language,genre,chapters,words,reviews,@up,@pd,character_a,character_b,completed) set update_date = date(@ud),publish_date = date(@pd)' | mysql -u root #{DATABASE} !

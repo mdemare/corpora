@@ -1,3 +1,4 @@
+# LOAD DATA INFILE "/home/mdemare/corpora/ingredients/chapters.txt" INTO TABLE fanfiction_chapters FIELDS TERMINATED BY "," (story,chapter,githash);
 class CreateFanfictionChapters < ActiveRecord::Migration
   def self.up
     create_table :fanfiction_chapters, :options => "ENGINE=MyISAM" do |t|
@@ -13,3 +14,4 @@ class CreateFanfictionChapters < ActiveRecord::Migration
     drop_table :fanfiction_chapters
   end
 end
+
