@@ -21,18 +21,15 @@ tf.chmod(0644)
 
 while line=gets
   medium,work,url,rest = line.chomp.gsub("&amp;","&").gsub("&gt;",">").gsub("&lt;","<").split(?;,4)
-  title,rest2 = rest.split(";/",2)
-  if not rest2
+  if not rest
     STDERR.puts line
     next
   end
-  title.gsub!(?;, ?,)
-  url2,fields = rest2.split(";",2)
-  if not fields
-    STDERR.puts line
-    next
-  end
-  fields = fields.split(" - ")
+  pos = rest =~ /;[;/]/
+  title = $`.gsub(?;, ?,)
+  rest =~ /;([^;]*);/
+  url2 = $1
+  fields = $'.split(" - ")
   
   if fields[-1] != "Complete"
     fields << "N"
