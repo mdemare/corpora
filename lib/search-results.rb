@@ -26,8 +26,13 @@ while line=gets
     next
   end
   pos = rest =~ %r{;[;/]}
-  title = $`.gsub(?;, ?,)
-  rest =~ /;([^;]*);/
+  title = $`
+  if title.nil?
+    STDERR.puts line
+    next
+  end
+  title.gsub!(?;, ?,)
+  rest[pos..-1] =~ /;([^;]*);/
   url2 = $1
   fields = $'.split(" - ")
   
@@ -40,16 +45,19 @@ while line=gets
   if head[2] =~ /Chapters: /
     head = [*head[0,2],"",*head[2,2]]
   end
+raise unless head.size == 5
   if fields[-2] =~ /Published/
     tail = [fields[-2],"",fields[-1]]
   else
     tail = fields[-3,3]
   end
+raise unless tail.size == 3
   reviews = fields[4,2].grep(/Reviews/)[0]
-  updated = fields[5,2].grep(/Updated/)[0] || ""
+  updated = fields[4,3].grep(/Updated/)[0] || ""
   fields = [*head,reviews,updated,*tail]
   if fields.size != 10
-    STDERR.puts fields.to_s
+    STDERR.puts line
+    STDERR.puts fields.inspect
   else
     rating,lang,genre,chapters,words,reviews,updated,published,characters,status = fields
     if chapters !~ /Chapters: /
@@ -59,7 +67,6 @@ while line=gets
     elsif published !~ /Published: /
       STDERR.puts fields.join ?;
       STDERR.puts line
-      
     else
       chapters = chapters.delete "^0-9"
       words = words.delete "^0-9"
@@ -67,12 +74,11 @@ while line=gets
 
       updated = to_unix_time(updated)
       published = to_unix_time(published)
-      if url2 =~ %r{s/}
+      if url2 =~ %r{/s/}
         url2,author = "",""
-      elsif url2 =~ %r{u/.}
-        url2,author = url2[2..-1].split(?/)
+      elsif url2 =~ %r{/u/.}
+        url2,author = url2[3..-1].split(?/)
       else
-        STDERR.puts url2
         url2,author = "",""
       end
       url = url[3..-1].split(?/)[0]
@@ -87,7 +93,5 @@ while line=gets
 end
 tf.close
 puts "load into db"
-
-
 %x@ echo 'LOAD DATA INFILE "#{tf.path}" INTO TABLE fanfiction_stories FIELDS TERMINATED BY ";" (medium,work,story_id,title,author_id,author_name,rating,language,genre,chapters,words,reviews,update_date,publish_date,character_a,character_b,completed)' | mysql -u root #{DATABASE} @
 tf.unlink

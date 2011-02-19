@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
     t.string  "githash"
   end
 
+  add_index "fanfiction_chapters", ["story"], :name => "index_fanfiction_chapters_on_story"
+
   create_table "fanfiction_stories", :force => true do |t|
     t.string   "language"
     t.string   "medium"
@@ -37,6 +39,11 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
     t.integer  "chapters"
     t.integer  "reviews"
   end
+
+  add_index "fanfiction_stories", ["language"], :name => "index_fanfiction_stories_on_language"
+  add_index "fanfiction_stories", ["reviews"], :name => "index_fanfiction_stories_on_reviews"
+  add_index "fanfiction_stories", ["story_id"], :name => "index_fanfiction_stories_on_story_id"
+  add_index "fanfiction_stories", ["words"], :name => "index_fanfiction_stories_on_words"
 
   create_table "g3_01", :force => true do |t|
     t.integer "wtoken1_id", :limit => 3, :null => false
@@ -302,10 +309,11 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
   add_index "tokens_06", ["wtoken2_id"], :name => "index_tokens_06_on_wtoken2_id"
 
   create_table "wikipedia_articles", :force => true do |t|
-    t.string   "title"
-    t.string   "language"
-    t.datetime "updated_at"
-    t.string   "githash"
+    t.string "title"
+    t.string "language"
+    t.string "githash"
   end
+
+  add_index "wikipedia_articles", ["title"], :name => "index_wikipedia_articles_on_title"
 
 end
