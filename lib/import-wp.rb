@@ -8,6 +8,7 @@ class PostCallbacks
   include XML::SaxParser::Callbacks
 
   def on_start_element(element, attributes)
+    STDERR.puts element
     case element
     when 'title'
       $yes = true
@@ -17,6 +18,7 @@ class PostCallbacks
   end
   
   def on_characters(chars)
+    STDERR.puts "on_characters"
     if $yes
       $current = chars
       $yes = false
@@ -30,14 +32,14 @@ class PostCallbacks
   end
   
   def on_end_element(element)
+    STDERR.puts "on_end_element"
     case element
     when 'text'
-      $file.close
       if $article.size > 500
         tf = Tempfile.new("ss")
         tf.open
         tf.chmod(0644)
-        tf.write ...
+        tf.write $article
         tf.close
         git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{tf.path}"
         IO.popen(git_cmd) do |output|
@@ -56,6 +58,7 @@ jstart = 1
 glob = Dir.glob(ARGV[1])
 glob.each_with_index do |filename,j|
   $data = []
+    
   parser = XML::SaxParser.file(filename)
   parser.callbacks = PostCallbacks.new
   parser.parse
