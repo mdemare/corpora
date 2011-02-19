@@ -25,7 +25,7 @@ while line=gets
     STDERR.puts line
     next
   end
-  pos = rest =~ /;[;/]/
+  pos = rest =~ %r{;[;/]}
   title = $`.gsub(?;, ?,)
   rest =~ /;([^;]*);/
   url2 = $1
