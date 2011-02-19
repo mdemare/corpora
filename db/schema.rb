@@ -10,7 +10,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110216134529) do
+ActiveRecord::Schema.define(:version => 20110217141329) do
+
+  create_table "fanfiction_chapters", :force => true do |t|
+    t.integer "story"
+    t.integer "chapter"
+    t.string  "githash"
+  end
+
+  create_table "fanfiction_stories", :force => true do |t|
+    t.string   "language"
+    t.string   "medium"
+    t.string   "work"
+    t.integer  "story_id"
+    t.string   "title"
+    t.integer  "author_id"
+    t.string   "author_name"
+    t.datetime "publish_date"
+    t.datetime "update_date"
+    t.string   "rating"
+    t.string   "genre"
+    t.string   "character_a"
+    t.string   "character_b"
+    t.boolean  "completed"
+    t.integer  "words"
+    t.integer  "chapters"
+    t.integer  "reviews"
+  end
 
   create_table "g3_01", :force => true do |t|
     t.integer "wtoken1_id", :limit => 3, :null => false
@@ -274,5 +300,12 @@ ActiveRecord::Schema.define(:version => 20110216134529) do
   add_index "tokens_06", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_06_on_wtoken1_id_and_wtoken2_id"
   add_index "tokens_06", ["wtoken1_id"], :name => "index_tokens_06_on_wtoken1_id"
   add_index "tokens_06", ["wtoken2_id"], :name => "index_tokens_06_on_wtoken2_id"
+
+  create_table "wikipedia_articles", :force => true do |t|
+    t.string   "title"
+    t.string   "language"
+    t.datetime "updated_at"
+    t.string   "githash"
+  end
 
 end

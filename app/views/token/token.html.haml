@@ -41,16 +41,16 @@
     %td== #{fq} (#{(100*fq)/fq_total}%)
 
 - if @twograms.inject(0) {|sum,x|sum+x.size} == 0
-  %h3 No 2-grams found
+  %h3 No bi-grams found
 - else
   .jump
-    %a(href="#2pos")== Jump to 2-grams with #{@token.word} in second position
+    %a(href="#2pos")== Jump to bi-grams with #{@token.word} in second position
   .jump
-    %a(href="#3gram") Jump to 3-grams
-  %h3 2-grams
+    %a(href="#3gram") Jump to tri-grams
+  %h3 bi-grams
   %table
     %tr
-      %th 2-gram
+      %th bi-gram
       %th frequency
     - @twograms[0].sort_by(&:second).reverse.each do |g2|
       %tr
@@ -83,9 +83,9 @@
         %td= g2.second
 
 %a(name="3gram")
-%h3 3-grams
+%h3 tri-grams
 - @g3ss_reduced.each do |g3s|
   - g3s.sort_by(&:frequency).reverse.each do |g3|
     %h4
-      = link_to "3-gram(#{g3.frequency})", g3_url(id: g3.id, source: params[:source])
+      = link_to "tri-gram(#{g3.frequency})", g3_url(id: g3.id, source: params[:source])
       = g3.words(@token_map).map {|w| link_to(w,token_url(id: w, source: params[:source])) }.join(" ").html_safe

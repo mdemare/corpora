@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'><html><head>
+		<META HTTP-EQUIV='Content-Type' CONTENT='text/html; charset=UTF-8'>
+		<META NAME='ROBOTS' CONTENT='NOARCHIVE'>
+		<META http-equiv='X-UA-Compatible' content='IE=EmulateIE7'>
+		
+		<meta name="description" content="Books: Harry Potter fanfiction archive with over 503,078 stories. Come in to read, write, review, and interact with other fans.">
+<title>Harry Potter FanFiction Archive - FanFiction.Net</title>
+<link rel=StyleSheet href='http://b.fanfiction.net/static/styles/fanfiction38.css' type='text/css' media='all'>
+
+		<script type='text/javascript' src='http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.4.min.js'></script>
+		<script type='text/javascript' src='http://b.fanfiction.net/static/scripts/_master180_min.js'></script>
+		
+
+					<script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+						document.write("<scr" + "ipt type='text/javascript' src='http://partner.googleadservices.com/gampad/google_service.js'></scr" + "ipt>");
+					}
+					</script>
+
+					<script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+					  GS_googleAddAdSenseService("ca-pub-1402966127069733");
+					  GS_googleEnableAllServices();
+					}
+					</script><script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+					  GA_googleAddSlot("ca-pub-1402966127069733", "ff_safe_banner_728x90");
+					  GA_googleAddSlot("ca-pub-1402966127069733", "ff_rectangle_300x250");
+					  GA_googleAddSlot("ca-pub-1402966127069733", "ff_text_728x90");
+					  GA_googleAddSlot("ca-pub-1402966127069733", "ff_tower_160x600");
+					  GA_googleAddSlot("ca-pub-1402966127069733", "ff_text_160x600");
+					}
+					</script><script type="text/javascript">
+					if(getCookie('adblocker') < 1) {
+					  GA_googleFetchAds();
+					}
+					</script><link rel='alternate' type='application/atom+xml' href='http://b.fanfiction.net/atom/l/224/10/0/0/2/1/0/0/0/0/' />
+		<link rel='shortcut icon'  href='http://b.fanfiction.net/static/images/favicon_2010_site.ico'>
+		<link rel='icon' type='image/png' href='http://b.fanfiction.net/static/images/favicon_2010_site.png'>
+		<link rel='apple-touch-icon' href='http://b.fanfiction.net/static/images/favicon_2010_iphone.png'>
+		</head><body style='background-color:#ffffff;margin-top:0px;'  > <a name=top></a>
+
+<div style='background-color: #333399; height:2em; padding-top:0.5em; vertical-align:middle;' class='myborder menulinks'>
+<span style='float:right;'>
+<span id=xmark_links></span>
+<a href='http://login.fanfiction.net/login.php' style='color:white;'>Sign In</a> .
+<a href='http://login.fanfiction.net/registration.php' style='color:white;'>Sign Up</a> .&nbsp;&nbsp;
+</span><img src='http://b.fanfiction.net/static/images/favicon_2010_site.png' width=16 height=16 style='vertical-align:middle'> <a href='http://www.fanfiction.net/' style='font-weight:bold;'>FanFiction.Net</a> - unleash your imagination <img src='http://b.fanfiction.net/static/ficons/phone.png' width=16 height=16 style='vertical-align:middle'><a href='http://m.fanfiction.net/m/yes_mobile.php'>mobile edition</a></div><div id=bookmarx_msg style='display:none;margin-top:5px;margin-left:10px;margin-right:10px;'>
+</div>
+<div id=bookmarx style='display:none;margin-top:5px;margin-bottom:5px;margin-left:10px;margin-right:10px;'>
+</div>
+<span class=zmenu style='float:right;height:1.8em;padding-top:0.5em;vertical-align:middle'>
+<span class=zui >
+	<a href='http://www.fanfiction.net/support/' id=menu-extra class=menu-link>Help</a>
+</span>
+</span>
+
+<div  class=zmenu style='height:1.8em;padding-top:0.5em;vertical-align:middle'>
+<span class=zui >
+	<a href='http://www.fanfiction.net/' id=menu-home class=menu-link>Home</a>
+	<a href='http://www.fanfiction.net/j/0/0/0/' id=menu-justin class=menu-link>Just In</a>
+	<a href='http://www.fanfiction.net/communities/' id=menu-community class=menu-link>Communities</a>
+	<a href='http://www.fanfiction.net/forums/' id=menu-forum class=menu-link>Forums</a>
+	<a href='http://www.fanfiction.net/betareaders/' id=menu-beta class=menu-link>Beta Readers</a>
+	<!-- <a href='http://www.fanfiction.net/dictionary/' id=menu-dictionary class=menu-link>Dictionary</a> -->
+	<a href='http://www.fanfiction.net/search.php' id=menu-search class=menu-link>Search</a>
+
+</span>
+</div>
+
+
+
+<div id='menu-home-c'  class='menu-child zhide' >
+<span id='menu-home-c-i'>
+Browse &#187;
+<a href='http://www.fanfiction.net/anime/'>Anime</a> <a href='http://www.fanfiction.net/crossovers/anime/' title='anime crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/book/'>Books</a> <a href='http://www.fanfiction.net/crossovers/book/' title='book crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/cartoon/'>Cartoons</a> <a href='http://www.fanfiction.net/crossovers/cartoon/' title='cartoon crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/comic/'>Comics</a> <a href='http://www.fanfiction.net/crossovers/comic/' title='comic crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/game/'>Games</a> <a href='http://www.fanfiction.net/crossovers/game/' title='game crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/misc/'>Misc</a> <a href='http://www.fanfiction.net/crossovers/misc/' title='misc crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/movie/'>Movies</a> <a href='http://www.fanfiction.net/crossovers/movie/' title='movie crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/play/'>Plays</a> <a href='http://www.fanfiction.net/crossovers/play/' title='play crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a> .
+<a href='http://www.fanfiction.net/tv/'>TV</a> <a href='http://www.fanfiction.net/crossovers/tv/' title='tv crossovers' style='border:0px;'><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16 align=top border=0></a>
+</span>
+</div>
+
+<div id='menu-justin-c'  class='menu-child zhide'>
+<span id='menu-justin-c-i'>
+Just In &#187;
+<a href='http://www.fanfiction.net/j/0/0/0/'>All</a> . Stories: 
+<a href='http://www.fanfiction.net/j/0/1/0/'>New</a> . 
+<a href='http://www.fanfiction.net/j/0/2/0/'>Updated</a> . Crossovers:  
+<a href='http://www.fanfiction.net/j/0/3/0/'>New</a> .  
+<a href='http://www.fanfiction.net/j/0/4/0/'>Updated</a>
+</span>
+</div>
+
+
+<div id='menu-community-c' class='menu-child zhide'>
+<span id='menu-community-c-i'>
+Communities &#187;
+<a href='http://www.fanfiction.net/communities/general/0/'>General</a> .
+<a href='http://www.fanfiction.net/communities/anime/'>Anime</a> .
+<a href='http://www.fanfiction.net/communities/book/'>Books</a> .
+<a href='http://www.fanfiction.net/communities/cartoon/'>Cartoons</a> .
+<a href='http://www.fanfiction.net/communities/comic/'>Comics</a> .
+<a href='http://www.fanfiction.net/communities/game/'>Games</a> .
+<a href='http://www.fanfiction.net/communities/misc/'>Misc</a> .
+<a href='http://www.fanfiction.net/communities/movie/'>Movies</a> .
+<a href='http://www.fanfiction.net/communities/play/'>Plays</a> .
+<a href='http://www.fanfiction.net/communities/tv/'>TV</a>
+</span>
+</div>
+
+<div id='menu-forum-c' class='menu-child zhide'>
+<span id='menu-forum-c-i'>
+Forums &#187;
+<a href='http://www.fanfiction.net/forums/general/0/'>General</a> .
+<a href='http://www.fanfiction.net/forums/anime/'>Anime</a> .
+<a href='http://www.fanfiction.net/forums/book/'>Books</a> .
+<a href='http://www.fanfiction.net/forums/cartoon/'>Cartoons</a> .
+<a href='http://www.fanfiction.net/forums/comic/'>Comics</a> .
+<a href='http://www.fanfiction.net/forums/game/'>Games</a> .
+<a href='http://www.fanfiction.net/forums/misc/'>Misc</a> .
+<a href='http://www.fanfiction.net/forums/movie/'>Movies</a> .
+<a href='http://www.fanfiction.net/forums/play/'>Plays</a> .
+<a href='http://www.fanfiction.net/forums/tv/'>TV</a>
+</span>
+</div>
+
+<div id='menu-beta-c' class='menu-child zhide'>
+<span id='menu-beta-c-i'>
+Browse for <a href='http://www.fanfiction.net/betareaders/'>Beta Readers</a>
+</span>
+</div>
+
+
+<div id='menu-dictionary-c' class='menu-child zhide' style='padding-top:6px;padding-bottom:5px'>
+<form method=get onSubmit="var wv = this.word.value.replace(/^\s+|\s+$/g, '');wv = escape(wv.replace(' ','+'));if(wv.length) {document.location = 'http://www.fanfiction.net/dictionary/'+wv+'/';}return false;">
+<table cellpadding=0 cellspacing=0 id='menu-dictionary-c-i'><tr>
+	<td ><label for='word'>Dictionary &#187;&nbsp;</label></td>
+	<td>
+		<INPUT id='word' title='word input' TYPE=text value='word' placeholder='word'  name=word size=20 maxlength=75>
+		<INPUT TYPE=submit value=Search>
+	</td>
+</tr>
+</table>
+</form>
+</div>
+
+<div id='menu-search-c' class='menu-child zhide' style='padding-top:6px;padding-bottom:5px'>
+<FORM method=get name='topx_search' action='http://www.fanfiction.net/search.php'>
+<TABLE cellpadding=0 cellspacing=0 id='menu-search-c-i'>
+<TR>
+<td valign=middle><label for='keyword'>Search &#187;&nbsp;</label></td>
+	<TD valign=middle>
+	<SELECT title='Search types' Name=type>
+
+		<option value=story selected>Story
+		<option value=author >Author
+		<option value=forum>Forum
+		<option value=community>Community
+
+
+		</SELECT>&nbsp;
+	</TD>
+	<TD valign=middle >
+	<INPUT id=keyword style='padding:2px' placeholder='keywords' title='Search with these keywords/phrases' TYPE=text name='plus_keywords' size=20 maxlength=50>
+	</TD>
+	<TD valign=middle>
+	<INPUT TYPE=submit value=Search>
+	<INPUT TYPE=hidden name=ready value=1>
+	</TD>
+</TR>
+</TABLE>
+</FORM>
+</div>
+
+<div id='menu-extra-c'  class='menu-child zhide'>
+<span id='menu-extra-c-i'>
+Help &#187;
+<a href='http://www.fanfiction.net/support/'>Support</a> .
+<a href='http://www.fanfiction.net/privacy/'>Privacy</a> .
+<a href='http://www.fanfiction.net/tos/'>TOS</a> .
+<a href='http://login.fanfiction.net/adblocker.php'>Ad Blocker</a> .
+</span>
+</div>
+
+
+<script type='text/javascript'>
+xmenu_render();
+</script>
+		
+			<center>
+			<div style='border-bottom:1px solid #CDCDCD;background-image:url("http://b.fanfiction.net/static/images/adbg.gif");padding-top:2px;padding-bottom:2px;padding-left:10px;padding-right:10px;align=center;' align=center>
+			<script type='text/javascript'>
+			if(getCookie('adblocker') < 1) {GA_googleFillSlot('ff_safe_banner_728x90');}
+			</script>
+			</div>
+			</center>
+			
+
+		<div style='padding-left:1em;padding-right:1em;padding-top:0.5em;'>
+<table width=100% cellspacing=0 cellpadding=0 border=0>
+<tr><td><a name=top></a><img src='http://b.fanfiction.net/static/ficons/script.png' width=16 height=16  border=0  align=absmiddle> <a href='/book/'>Books</a> &#187;
+Harry Potter stories&nbsp;&nbsp;&nbsp;<a href='http://b.fanfiction.net/atom/l/224/10/0/0/2/1/0/0/0/0/'><img src='http://b.fanfiction.net/static/forum/feed.png' width=15 height=15 border=0 align=absmiddle></a> <a href='http://b.fanfiction.net/atom/l/224/10/0/0/2/1/0/0/0/0/'>Feed</a></td>
+<td align=right>&nbsp; <a href="/crossovers/Harry_Potter/224/"><img src='http://b.fanfiction.net/static/ficons/arrow_switch.png' width=16 height=16  border=0  align=absmiddle></a> <a href="/crossovers/Harry_Potter/224/">Harry Potter Crossovers (11,712)</a>&nbsp; <a href="/communities/book/Harry_Potter/"><img src='http://b.fanfiction.net/static/ficons/group.png' width=16 height=16  border=0  align=absmiddle></a> <a href="/communities/book/Harry_Potter/">Communities (6,568)</a>&nbsp; <a href="/forums/book/Harry_Potter/"><img src='http://b.fanfiction.net/static/ficons/comments.png' width=16 height=16  border=0  align=absmiddle></a> <a href="/forums/book/Harry_Potter/">Discussion Forums (718)</a>&nbsp;</td></tr></table>
+
+<hr size=1 ><FORM   Name='myform' id=myform>
+
+<TABLE width=100%><TR> <TD align=center><SELECT Name=sortid  title='sort options'>
+				<option value='1' >Sort: Update Date
+				<option value='2' Selected>Publish Date </SELECT> <SELECT Name=genreid title='genre filter'>	<option value='0'>Genre: All<option value='6'>Adventure<option value='10'>Angst<option value='18'>Crime<option value='4'>Drama<option value='19'>Family<option value='14'>Fantasy<option value='21'>Friendship<option value='1'>General<option value='8'>Horror<option value='3'>Humor<option value='20'>Hurt/Comfort<option value='7'>Mystery<option value='9'>Parody<option value='5'>Poetry<option value='2'>Romance<option value='13'>Sci-Fi<option value='15'>Spiritual<option value='11'>Supernatural<option value='12'>Suspense<option value='16'>Tragedy<option value='17'>Western</SELECT> <SELECT title='rating filter' Name='censorid'  onChange='if(this.selectedIndex == 1) self.location = "http://www.fictionratings.com/";'>
+					<option value='10'>Rating: All
+				   <option value='-1'>(? Ratings Guide)<option value='3' >Rated K -> T<option value='2' >Rated K -> K+<option value='1' >Rated K<option value='12' >Rated K+<option value='13' >Rated T<option value='14' >Rated M</SELECT> <SELECT title='language filter' Name='languageid' ><option value=0>Language<option value='1' >English<option value='2' >Spanish<option value='3' >French<option value='8' >Portuguese<option value='4' >German<option value='10' >Russian<option value='7' >Dutch<option value='11' >Italian<option value='17' >Swedish<option value='13' >Polish<option value='21' >Filipino<option value='14' >Hungarian<option value='32' >Indonesian<option value='20' >Finnish<option value='5' >Chinese<option value='6' >Japanese<option value='31' >Czech<option value='18' >Norwegian<option value='15' >Hebrew<option value='19' >Danish<option value='34' >Catalan<option value='33' >Croatian<option value='16' >Arabic<option value='27' >Romanian<option value='30' >Turkish<option value='9' >Scandinavian<option value='12' >Bulgarian<option value='29' >Serbian<option value='35' >Latin<option value='22' >Esperanto<option value='26' >Greek<option value='28' >Albanian<option value='36' >Korean<option value='37' >Vietnamese</SELECT> <SELECT title='length in words filter' name=len ><option value='0' >Length: All<option value='1'  selected>&gt 1000<option value='5' >&gt 5000<option value='10' >&gt 10,000<option value='20' >&gt 20,000<option value='40' >&gt 40,000<option value='60' >&gt 60,000<option value='100' >&gt 100,000</SELECT>  <SELECT title='primary character filter' Name='characterid' ><option value='0'>All Characters (A)<option value='5707' >Aberforth D.<option value='31373' >Abraxas M.<option value='8862' >Adrian P.<option value='551' >Alastor M.<option value='351' >Albus D.<option value='4566' >Albus S. P.<option value='5708' >Alecto C.<option value='3539' >Alice L.<option value='849' >Alicia S.<option value='3540' >Alphard B.<option value='5709' >Amelia B.<option value='52526' >Amy B.<option value='5710' >Amycus C.<option value='3629' >Andromeda T.<option value='561' >Angelina J.<option value='3541' >Anthony G.<option value='17099' >Antonin D.<option value='3542' >Arabella F.<option value='353' >Argus F.<option value='5459' >Ariana D.<option value='852' >Arthur W.<option value='5461' >Astoria G.<option value='7626' >Audrey W.<option value='5711' >Augusta L.<option value='17889' >Augustus R.<option value='30538' >Avery<option value='9911' >Bane<option value='3543' >Barty C. Jr.<option value='3544' >Barty C. Sr.<option value='5712' >Bathilda B.<option value='546' >Bellatrix L.<option value='32052' >Benjy F.<option value='5713' >Bertha J.<option value='756' >Bill W.<option value='777' >Blaise Z.<option value='14907' >Bloody Baron<option value='57158' >Bob H.<option value='30502' >Buckbeak<option value='20496' >C. Fudge<option value='857' >C. Warrington<option value='20733' >Caradoc D.<option value='57162' >Cedrella B.<option value='1776' >Cedric D.<option value='5714' >Charity B.<option value='851' >Charlie W.<option value='58221' >Charlus P.<option value='350' >Cho C.<option value='3545' >Colin C.<option value='3546' >Cormac M.<option value='30500' >Crookshanks<option value='16899' >Cygnus B.<option value='5549' >Daphne G.<option value='854' >Dean T.<option value='3547' >Dedalus D.<option value='3548' >Demelza R.<option value='52527' >Dennis B.<option value='3549' >Dennis C.<option value='5715' >Dirk C.<option value='4507' >Dobby<option value='712' >Dolores U.<option value='25275' >Dominique W.<option value='15315' >Dorcas M.<option value='55067' >Dr. Granger<option value='6' >Draco M.<option value='16900' >Druella B.<option value='2508' >Dudley D.<option value='3550' >Eileen P.<option value='44031' >Eldred W.<option value='57156' >Elladora B.<option value='3551' >Eloise M.<option value='5716' >Elphias D.<option value='3552' >Emmeline V.<option value='3165' >Ernie M.<option value='3525' >Evan R.<option value='3553' >F. Flitwick<option value='5464' >Fabian P.<option value='30501' >Fang<option value='56660' >Fat Friar<option value='15286' >Fawkes<option value='2510' >Fenrir G.<option value='3555' >Firenze<option value='349' >Fleur D.<option value='41831' >Flora C.<option value='3556' >Frank L.<option value='4452' >Fred W.<option value='3554' >Fridwulfa<option value='36093' >G. Jones<option value='52090' >G. Marchbanks<option value='2662' >Gabrielle D.<option value='5717' >Gellert G.<option value='10' >George W.<option value='42001' >Giant Squid<option value='5463' >Gideon P.<option value='544' >Gilderoy L.<option value='11' >Ginny W.<option value='2451' >Godric G.<option value='3557' >Grawp<option value='856' >Gregory G.<option value='2785' >Hannah A.<option value='1' >Harry P.<option value='20734' >Hedwig<option value='5718' >Helena R.<option value='2450' >Helga H.<option value='3' >Hermione G.<option value='50126' >Hesper G.<option value='52021' >Hestia C.<option value='3558' >Hestia J.<option value='3559' >Horace S.<option value='5523' >Hugo W.<option value='2808' >I. Karkaroff<option value='3560' >I. Pince<option value='57157' >Isla B.<option value='24133' >J. Dawlish<option value='26507' >J. Wronski<option value='7' >James P.<option value='14865' >James S. P.<option value='3561' >Jimmy P.<option value='2786' >Justin F.<option value='848' >Katie B.<option value='5719' >Kendra D.<option value='31698' >Kevin E.<option value='3562' >Kingsley S.<option value='12917' >Kreacher<option value='39164' >L. d'Eath<option value='26508' >L. Zamojski<option value='3563' >Lavender B.<option value='3564' >Leanne<option value='853' >Lee J.<option value='8' >Lily Evans P.<option value='7742' >Lily Luna P.<option value='34899' >Lisa T.<option value='9130' >Lorcan S.<option value='25276' >Louis W.<option value='347' >Lucius M.<option value='9129' >Lucy W.<option value='3565' >Ludo B.<option value='547' >Luna L.<option value='9131' >Lysander S.<option value='30649' >Magorian<option value='57121' >Marauders<option value='850' >Marcus F.<option value='3566' >Marge D.<option value='3567' >Marietta E.<option value='57160' >Marius B.<option value='2228' >Marlene M.<option value='3568' >Marvolo G.<option value='27561' >Mary M.<option value='3569' >Merope G.<option value='3570' >Michael C.<option value='3571' >Millicent B.<option value='545' >Minerva M.<option value='35352' >Mirror of Erised<option value='673' >Molly W.<option value='858' >Montague<option value='31696' >Morag M.<option value='3572' >Morfin G.<option value='38027' >Mrs. Lovegood<option value='16183' >Mrs. Norris<option value='43177' >Mrs. Zabini<option value='24885' >Mulciber<option value='3573' >Mundungus F.<option value='5720' >Muriel W.<option value='3574' >Myrtle<option value='549' >N. Tonks<option value='12918' >Nagini<option value='550' >Narcissa M.<option value='24939' >Nearly Headless Nick<option value='552' >Neville L.<option value='9912' >Nicolas F.<option value='59484' >Nott<option value='3221' >OC<option value='3575' >Olive H.<option value='560' >Oliver W.<option value='5721' >Ollivander<option value='3576' >Olympe M.<option value='5722' >Orion B.<option value='29710' >Owen C.<option value='2809' >Padma P.<option value='748' >Pansy P.<option value='2320' >Parvati P.<option value='16902' >Peeves<option value='3577' >Penelope C.<option value='5723' >Percival D.<option value='12' >Percy W.<option value='25582' >Perenelle F.<option value='2027' >Peter P.<option value='2115' >Petunia D.<option value='3583' >Phineas Nigellus<option value='31697' >Piers P.<option value='5724' >Pius T.<option value='3578' >Poppy P.<option value='3582' >Prof. Binns<option value='5725' >Prof. Dippet<option value='5726' >Prof. Kettleburn<option value='3580' >Prof. Sinistra<option value='3581' >Prof. Sprout<option value='3579' >Prof. Vector<option value='3584' >Q. Quirrell<option value='2704' >R. Hooch<option value='5727' >Rabastan L.<option value='2038' >Regulus B.<option value='5' >Remus L.<option value='3585' >Rita S.<option value='3586' >Ritchie C.<option value='2750' >Rodolphus L.<option value='3587' >Roger D.<option value='15173' >Rolf S.<option value='3588' >Romilda V.<option value='2' >Ron W.<option value='30650' >Ronan<option value='5462' >Rose W.<option value='47383' >Rose Zeller<option value='5728' >Rosmerta<option value='2452' >Rowena R.<option value='14035' >Roxanne W.<option value='352' >Rubeus H.<option value='3589' >Rufus S.<option value='2449' >Salazar S.<option value='50150' >Sally-Anne P.<option value='39163' >Sanguini<option value='57520' >Scabior<option value='4567' >Scorpius M.<option value='749' >Seamus F.<option value='57161' >Septimus W.<option value='9' >Severus S.<option value='4' >Sirius B.<option value='50125' >Sirius B. II<option value='31042' >Sorting Hat<option value='5729' >Stan S.<option value='3590' >Sturgis P.<option value='17490' >Su L.<option value='2784' >Susan B.<option value='3591' >Sybill T.<option value='3630' >Ted T.<option value='4565' >Teddy L.<option value='8861' >Terence H.<option value='3592' >Terry B.<option value='27543' >The Fat Lady<option value='2195' >Theodore N.<option value='3593' >Tobias S.<option value='1962' >Tom R. Jr.<option value='3594' >Tom R. Sr.<option value='6922' >Tracey D.<option value='57159' >Úrsula F.<option value='24284' >Verity<option value='2509' >Vernon D.<option value='5524' >Victoire W.<option value='1775' >Viktor K.<option value='855' >Vincent C.<option value='348' >Voldemort<option value='3595' >W. Grubbly-Plank<option value='5730' >Walburga B.<option value='26367' >Walden M.<option value='16901' >Winky<option value='5550' >Xenophilius L.<option value='5731' >Yaxley<option value='3596' >Zacharias S.</SELECT> <SELECT title='secondary character filter' Name='subcharacterid' ><option value='0'>All Characters (B)<option value='5707' >Aberforth D.<option value='31373' >Abraxas M.<option value='8862' >Adrian P.<option value='551' >Alastor M.<option value='351' >Albus D.<option value='4566' >Albus S. P.<option value='5708' >Alecto C.<option value='3539' >Alice L.<option value='849' >Alicia S.<option value='3540' >Alphard B.<option value='5709' >Amelia B.<option value='52526' >Amy B.<option value='5710' >Amycus C.<option value='3629' >Andromeda T.<option value='561' >Angelina J.<option value='3541' >Anthony G.<option value='17099' >Antonin D.<option value='3542' >Arabella F.<option value='353' >Argus F.<option value='5459' >Ariana D.<option value='852' >Arthur W.<option value='5461' >Astoria G.<option value='7626' >Audrey W.<option value='5711' >Augusta L.<option value='17889' >Augustus R.<option value='30538' >Avery<option value='9911' >Bane<option value='3543' >Barty C. Jr.<option value='3544' >Barty C. Sr.<option value='5712' >Bathilda B.<option value='546' >Bellatrix L.<option value='32052' >Benjy F.<option value='5713' >Bertha J.<option value='756' >Bill W.<option value='777' >Blaise Z.<option value='14907' >Bloody Baron<option value='57158' >Bob H.<option value='30502' >Buckbeak<option value='20496' >C. Fudge<option value='857' >C. Warrington<option value='20733' >Caradoc D.<option value='57162' >Cedrella B.<option value='1776' >Cedric D.<option value='5714' >Charity B.<option value='851' >Charlie W.<option value='58221' >Charlus P.<option value='350' >Cho C.<option value='3545' >Colin C.<option value='3546' >Cormac M.<option value='30500' >Crookshanks<option value='16899' >Cygnus B.<option value='5549' >Daphne G.<option value='854' >Dean T.<option value='3547' >Dedalus D.<option value='3548' >Demelza R.<option value='52527' >Dennis B.<option value='3549' >Dennis C.<option value='5715' >Dirk C.<option value='4507' >Dobby<option value='712' >Dolores U.<option value='25275' >Dominique W.<option value='15315' >Dorcas M.<option value='55067' >Dr. Granger<option value='6' >Draco M.<option value='16900' >Druella B.<option value='2508' >Dudley D.<option value='3550' >Eileen P.<option value='44031' >Eldred W.<option value='57156' >Elladora B.<option value='3551' >Eloise M.<option value='5716' >Elphias D.<option value='3552' >Emmeline V.<option value='3165' >Ernie M.<option value='3525' >Evan R.<option value='3553' >F. Flitwick<option value='5464' >Fabian P.<option value='30501' >Fang<option value='56660' >Fat Friar<option value='15286' >Fawkes<option value='2510' >Fenrir G.<option value='3555' >Firenze<option value='349' >Fleur D.<option value='41831' >Flora C.<option value='3556' >Frank L.<option value='4452' >Fred W.<option value='3554' >Fridwulfa<option value='36093' >G. Jones<option value='52090' >G. Marchbanks<option value='2662' >Gabrielle D.<option value='5717' >Gellert G.<option value='10' >George W.<option value='42001' >Giant Squid<option value='5463' >Gideon P.<option value='544' >Gilderoy L.<option value='11' >Ginny W.<option value='2451' >Godric G.<option value='3557' >Grawp<option value='856' >Gregory G.<option value='2785' >Hannah A.<option value='1' >Harry P.<option value='20734' >Hedwig<option value='5718' >Helena R.<option value='2450' >Helga H.<option value='3' >Hermione G.<option value='50126' >Hesper G.<option value='52021' >Hestia C.<option value='3558' >Hestia J.<option value='3559' >Horace S.<option value='5523' >Hugo W.<option value='2808' >I. Karkaroff<option value='3560' >I. Pince<option value='57157' >Isla B.<option value='24133' >J. Dawlish<option value='26507' >J. Wronski<option value='7' >James P.<option value='14865' >James S. P.<option value='3561' >Jimmy P.<option value='2786' >Justin F.<option value='848' >Katie B.<option value='5719' >Kendra D.<option value='31698' >Kevin E.<option value='3562' >Kingsley S.<option value='12917' >Kreacher<option value='39164' >L. d'Eath<option value='26508' >L. Zamojski<option value='3563' >Lavender B.<option value='3564' >Leanne<option value='853' >Lee J.<option value='8' >Lily Evans P.<option value='7742' >Lily Luna P.<option value='34899' >Lisa T.<option value='9130' >Lorcan S.<option value='25276' >Louis W.<option value='347' >Lucius M.<option value='9129' >Lucy W.<option value='3565' >Ludo B.<option value='547' >Luna L.<option value='9131' >Lysander S.<option value='30649' >Magorian<option value='57121' >Marauders<option value='850' >Marcus F.<option value='3566' >Marge D.<option value='3567' >Marietta E.<option value='57160' >Marius B.<option value='2228' >Marlene M.<option value='3568' >Marvolo G.<option value='27561' >Mary M.<option value='3569' >Merope G.<option value='3570' >Michael C.<option value='3571' >Millicent B.<option value='545' >Minerva M.<option value='35352' >Mirror of Erised<option value='673' >Molly W.<option value='858' >Montague<option value='31696' >Morag M.<option value='3572' >Morfin G.<option value='38027' >Mrs. Lovegood<option value='16183' >Mrs. Norris<option value='43177' >Mrs. Zabini<option value='24885' >Mulciber<option value='3573' >Mundungus F.<option value='5720' >Muriel W.<option value='3574' >Myrtle<option value='549' >N. Tonks<option value='12918' >Nagini<option value='550' >Narcissa M.<option value='24939' >Nearly Headless Nick<option value='552' >Neville L.<option value='9912' >Nicolas F.<option value='59484' >Nott<option value='3221' >OC<option value='3575' >Olive H.<option value='560' >Oliver W.<option value='5721' >Ollivander<option value='3576' >Olympe M.<option value='5722' >Orion B.<option value='29710' >Owen C.<option value='2809' >Padma P.<option value='748' >Pansy P.<option value='2320' >Parvati P.<option value='16902' >Peeves<option value='3577' >Penelope C.<option value='5723' >Percival D.<option value='12' >Percy W.<option value='25582' >Perenelle F.<option value='2027' >Peter P.<option value='2115' >Petunia D.<option value='3583' >Phineas Nigellus<option value='31697' >Piers P.<option value='5724' >Pius T.<option value='3578' >Poppy P.<option value='3582' >Prof. Binns<option value='5725' >Prof. Dippet<option value='5726' >Prof. Kettleburn<option value='3580' >Prof. Sinistra<option value='3581' >Prof. Sprout<option value='3579' >Prof. Vector<option value='3584' >Q. Quirrell<option value='2704' >R. Hooch<option value='5727' >Rabastan L.<option value='2038' >Regulus B.<option value='5' >Remus L.<option value='3585' >Rita S.<option value='3586' >Ritchie C.<option value='2750' >Rodolphus L.<option value='3587' >Roger D.<option value='15173' >Rolf S.<option value='3588' >Romilda V.<option value='2' >Ron W.<option value='30650' >Ronan<option value='5462' >Rose W.<option value='47383' >Rose Zeller<option value='5728' >Rosmerta<option value='2452' >Rowena R.<option value='14035' >Roxanne W.<option value='352' >Rubeus H.<option value='3589' >Rufus S.<option value='2449' >Salazar S.<option value='50150' >Sally-Anne P.<option value='39163' >Sanguini<option value='57520' >Scabior<option value='4567' >Scorpius M.<option value='749' >Seamus F.<option value='57161' >Septimus W.<option value='9' >Severus S.<option value='4' >Sirius B.<option value='50125' >Sirius B. II<option value='31042' >Sorting Hat<option value='5729' >Stan S.<option value='3590' >Sturgis P.<option value='17490' >Su L.<option value='2784' >Susan B.<option value='3591' >Sybill T.<option value='3630' >Ted T.<option value='4565' >Teddy L.<option value='8861' >Terence H.<option value='3592' >Terry B.<option value='27543' >The Fat Lady<option value='2195' >Theodore N.<option value='3593' >Tobias S.<option value='1962' >Tom R. Jr.<option value='3594' >Tom R. Sr.<option value='6922' >Tracey D.<option value='57159' >Úrsula F.<option value='24284' >Verity<option value='2509' >Vernon D.<option value='5524' >Victoire W.<option value='1775' >Viktor K.<option value='855' >Vincent C.<option value='348' >Voldemort<option value='3595' >W. Grubbly-Plank<option value='5730' >Walburga B.<option value='26367' >Walden M.<option value='16901' >Winky<option value='5550' >Xenophilius L.<option value='5731' >Yaxley<option value='3596' >Zacharias S.</SELECT> <SELECT title='story status' name=statusid ><option value='0'  selected>Status: All<option value='1' >In-Progress<option value='2' >Complete</SELECT>  <SELECT title='story world' name=verseid ><option value='0'  selected>World: All<option value='97' >Books<option value='98' >Movies</SELECT> <INPUT TYPE='button' Value='Go' onClick="var p = 1; if(document.myform.po && parseInt(document.myform.po.value) > 0) p = parseInt(document.myform.po.value); if(document.myform.pt && parseInt(document.myform.pt.value) > 0) p = parseInt(document.myform.pt.value);  if(p > 1 && p <= 14421) { location = '/book/Harry_Potter/10/0/0/2/1/0/0/0/0/'+ p + '/'; } else {var temp = document.myform; self.location = '/book/Harry_Potter/' + temp.censorid.options[temp.censorid.selectedIndex].value + '/' + temp.genreid.options[temp.genreid.selectedIndex].value + '/' + temp.languageid.options[temp.languageid.selectedIndex].value + '/' + temp.sortid.options[temp.sortid.selectedIndex].value + '/' + temp.len.options[temp.len.selectedIndex].value + '/' + temp.characterid.options[temp.characterid.selectedIndex].value + '/' + temp.subcharacterid.options[temp.subcharacterid.selectedIndex].value + '/' + temp.statusid.options[temp.statusid.selectedIndex].value + '/' + temp.verseid.options[temp.verseid.selectedIndex].value + '/1/';} return false;">
+	</TD></TR></TABLE><div class=sep></div><center style='margin-top:5px;margin-bottom:5px;'>360,508 found: <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8694/'>&#171; Prev</a> Page  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/1/'>1</a> ..  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8685/'>8,685</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8692/'>8,692</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8693/'>8,693</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8694/'>8,694</a>  <b>8695</b>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8696/'>8,696</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8697/'>8,697</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8698/'>8,698</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8705/'>8,705</a>  ..  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/14421/'>14,421</a> <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8696/'>Next &#187;</a></center><div class=sep></div><div style='margin-top:5px;float:right;width:160px;margin-left:5px;text-align:right;'><script type='text/javascript'>
+if(getCookie('adblocker') < 1) {
+ 	GA_googleFillSlot('ff_tower_160x600');
+ 	document.write("<div style='height:5px'></div>");
+ 	GA_googleFillSlot('ff_text_160x600');
+}
+</script></div>
+<div class='z-list'>217351. <a  href="/s/2789958/1/How_Things_Change">How Things Change</a>  by <a href="/u/655220/solamente_nini">solamente nini</a>  <a class=reviews href='/r/2789958/'>reviews</a>
+	<div class='z-indent z-padtop'>Due to some mutual friends from America, Hermione and Ginny end up spending a lot of time with Malfoy and Zabini. The thing is will they be able to keep themselves from falling hard for them along the way? Esp. when those friends of theirs keep interferin<div class='gray z-padtop2'>Rated: M - English - Humor - Chapters: 1 - Words: 1,405 - Reviews: 4 - Published: 2-7-06</div></div></div>
+<div class='z-list'>217352. <a  href="/s/2789956/1/Declaration_of_War">Declaration of War</a>  by <a href="/u/451238/nicole_purple">nicole-purple</a>  <a class=reviews href='/r/2789956/'>reviews</a>
+	<div class='z-indent z-padtop'>Harry is slowly going insane trying to figure out what book Snape is reading, inspired by kakashi<div class='gray z-padtop2'>Rated: T - English - Humor - Chapters: 1 - Words: 2,013 - Reviews: 8 - Published: 2-7-06 - Severus S. & Harry P.</div></div></div>
+<div class='z-list'>217353. <a  href="/s/2789948/1/My_Star">My Star</a> <a href="/s/2789948/3/My_Star">&#187;</a>  by <a href="/u/869759/IfIShouldStay">IfIShouldStay</a>  <a class=reviews href='/r/2789948/'>reviews</a>
+	<div class='z-indent z-padtop'>after Remus' wife, Emily, dies, He has to raise his Daughter, Kathrine, by himself. But after a fire, they are split up, till he goes to teach at Hogwarts, and he see her, bet one problem she thinks he's dead, I suck at summarys so just read.<div class='gray z-padtop2'>Rated: K+ - English - Angst - Chapters: 3 - Words: 2,615 - Reviews: 3 - Updated: 4-7-10 - Published: 2-7-06 - Remus L.</div></div></div>
+<div class='z-list'>217354. <a  href="/s/2789945/1/Miserable">Miserable</a>  by <a href="/u/881049/Emperor_Dan">Emperor Dan</a> 
+	<div class='z-indent z-padtop'>A Harry Potter Fic based off Les Miserables.<div class='gray z-padtop2'>Rated: K+ - English - Angst/Adventure - Chapters: 1 - Words: 1,101 - Published: 2-7-06</div></div></div>
+<div class='z-list'>217355. <a  href="/s/2789881/1/What_do_we_do_now">What do we do now</a> <a href="/s/2789881/25/What_do_we_do_now">&#187;</a>  by <a href="/u/984314/Flick_Flack">Flick-Flack</a>  <a class=reviews href='/r/2789881/'>reviews</a>
+	<div class='z-indent z-padtop'>TRADUCTION Quelle aurait été la vie de Harry si celuici avait quitté les Dursley à l'âge de 5 ans puis éduqué par son père aide de l'équipe enseignante de Poudlard. Quel choc attend Severus après qu'il ait ramené Harry chez lui ?<div class='gray z-padtop2'>Rated: T - French - Adventure - Chapters: 25 - Words: 35,543 - Reviews: 360 - Updated: 12-7-09 - Published: 2-7-06 - Harry P. & Severus S. - Complete</div></div></div>
+<div class='z-list'>217356. <a  href="/s/2789868/1/Confused_minds">Confused minds</a> <a href="/s/2789868/5/Confused_minds">&#187;</a>  by <a href="/u/981252/XraeXraeX">XraeXraeX</a>  <a class=reviews href='/r/2789868/'>reviews</a>
+	<div class='z-indent z-padtop'>Harry and Hermione are in love with each other. are they meant to be?<div class='gray z-padtop2'>Rated: T - English - Romance - Chapters: 5 - Words: 2,618 - Reviews: 7 - Updated: 2-18-06 - Published: 2-7-06 - Harry P. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217357. <a  href="/s/2789851/1/Viscosity_of_the_Weight_of_the_World">Viscosity of the Weight of the World</a>  by <a href="/u/570118/doowopbloopy">doowopbloopy</a>  <a class=reviews href='/r/2789851/'>reviews</a>
+	<div class='z-indent z-padtop'>She's a princess of the highest order… and he was the Lord that'd give her everything, and nothing. postHBP, spoilers. oneshot. RR please.<div class='gray z-padtop2'>Rated: M - English - Angst/Drama - Chapters: 1 - Words: 2,844 - Reviews: 9 - Published: 2-7-06 - Draco M. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217358. <a  href="/s/2789835/1/Suddenly_my_life_doesnt_seem_such_a_waste">Suddenly my life doesn't seem such a waste</a> <a href="/s/2789835/4/Suddenly_my_life_doesnt_seem_such_a_waste">&#187;</a>  by <a href="/u/983638/Trixle">Trixle</a>  <a class=reviews href='/r/2789835/'>reviews</a>
+	<div class='z-indent z-padtop'>Have you ever wondered how Lily and James first met and how they got together? This is my version of their story and believe me, it isn't boring.<div class='gray z-padtop2'>Rated: T - English - Romance/Drama - Chapters: 4 - Words: 3,078 - Reviews: 3 - Updated: 2-8-06 - Published: 2-7-06 - Lily Evans P. & James P.</div></div></div>
+<div class='z-list'>217359. <a  href="/s/2789816/1/Because_of_her">Because of her</a> <a href="/s/2789816/4/Because_of_her">&#187;</a>  by <a href="/u/838777/Caitlin_Delaney">Caitlin Delaney</a>  <a class=reviews href='/r/2789816/'>reviews</a>
+	<div class='z-indent z-padtop'>Harry Potter decided to come back to Hogwarts for his last year. Lord Voldemort still didn't attack and no one from the wizarding community believe that he will attack anytime soon. What will happen? Is the wizarding community right? And what about Harry?<div class='gray z-padtop2'>Rated: T - English - Romance/Drama - Chapters: 4 - Words: 4,756 - Reviews: 6 - Updated: 3-3-06 - Published: 2-7-06 - Harry P. & Hermione G.</div></div></div>
+<div class='z-list'>217360. <a  href="/s/2789796/1/Grandes_Expectativas">Grandes Expectativas</a> <a href="/s/2789796/9/Grandes_Expectativas">&#187;</a>  by <a href="/u/181582/Scila">Scila</a>  <a class=reviews href='/r/2789796/'>reviews</a>
+	<div class='z-indent z-padtop'>CONTINUAÇÃO DE LIGAÇÕES PERIGOSAS E FALSOS HERÓIS  Draco e Gina tentam lidar com dificuldades familiares... Mas talvez os problemas sejam outros.  DG   Completa<div class='gray z-padtop2'>Rated: K+ - Portuguese - Romance/Drama - Chapters: 9 - Words: 49,572 - Reviews: 156 - Updated: 7-9-07 - Published: 2-7-06 - Draco M. & Ginny W. - Complete</div></div></div>
+<div class='z-list'>217361. <a  href="/s/2789761/1/A_Hello_From_The_Fandom">A Hello From The Fandom</a>  by <a href="/u/983801/ehcanadian">ehcanadian</a>  <a class=reviews href='/r/2789761/'>reviews</a>
+	<div class='z-indent z-padtop'>A computer turns up in a Hogwarts classroom one day, only accessing Harry Potter related sites... Chaos ensues when the staff and students read them. Everything from pairs to theories to slash, a little something for every shipper and thinker.<div class='gray z-padtop2'>Rated: K+ - English - Humor/Parody - Chapters: 1 - Words: 1,269 - Reviews: 20 - Published: 2-7-06 - Harry P.</div></div></div>
+<div class='z-list'>217362. <a  href="/s/2789648/1/Destiny_on_the_31st">Destiny on the 31st</a>  by <a href="/u/617439/Fernanda_Evans">Fernanda Evans</a>  <a class=reviews href='/r/2789648/'>reviews</a>
+	<div class='z-indent z-padtop'>In life there are moments that change everything. This is the story of how four different Halloween days lead James and Lily to their destiny.<div class='gray z-padtop2'>Rated: M - English - Romance - Chapters: 1 - Words: 3,827 - Reviews: 10 - Published: 2-7-06 - James P. & Lily Evans P. - Complete</div></div></div>
+<div class='z-list'>217363. <a  href="/s/2789618/1/A_Maruaders_plot">A Maruaders plot</a> <a href="/s/2789618/2/A_Maruaders_plot">&#187;</a>  by <a href="/u/841231/NymphTonks2">NymphTonks2</a>  <a class=reviews href='/r/2789618/'>reviews</a>
+	<div class='z-indent z-padtop'>What will happen when the maruders discover a plot about a fellow student? little JamesLily romace. rated t for mild lang, not sexual content<div class='gray z-padtop2'>Rated: T - English - Humor/Adventure - Chapters: 2 - Words: 2,200 - Reviews: 4 - Updated: 2-22-06 - Published: 2-7-06 - James P. & Sirius B.</div></div></div>
+<div class='z-list'>217364. <a  href="/s/2789585/1/A_New_World">A New World</a> <a href="/s/2789585/4/A_New_World">&#187;</a>  by <a href="/u/748681/marauders4">marauders4</a>  <a class=reviews href='/r/2789585/'>reviews</a>
+	<div class='z-indent z-padtop'>Remus moves to London to get away from an abusive boyfriend and meets someone there. RLSB SLASH! Chapters 3 & 4 updated!<div class='gray z-padtop2'>Rated: T - English - Romance - Chapters: 4 - Words: 5,347 - Reviews: 43 - Updated: 8-31-06 - Published: 2-7-06 - Remus L. & Sirius B.</div></div></div>
+<div class='z-list'>217365. <a  href="/s/2789576/1/He_knows">He knows</a>  by <a href="/u/882090/Sara_Viktoria">Sara Viktoria</a>  <a class=reviews href='/r/2789576/'>reviews</a>
+	<div class='z-indent z-padtop'>Eleven years ago, Draco made his lifes msitake. He lost the love of his life, and he's paying the price.<div class='gray z-padtop2'>Rated: K+ - English - Romance/Angst - Chapters: 1 - Words: 2,168 - Reviews: 11 - Published: 2-7-06 - Draco M. & Harry P. - Complete</div></div></div>
+<div class='z-list'>217366. <a  href="/s/2789573/1/Denial">Denial</a>  by <a href="/u/423239/chemqueen">chemqueen</a>  <a class=reviews href='/r/2789573/'>reviews</a>
+	<div class='z-indent z-padtop'>Hermione Granger refuses to believe that she is in love with her best friend Harry Potter . . . not that it means Ginny Weasley can have him. But her entries in her journal say otherwise.  Oneshot   Complete   Revised<div class='gray z-padtop2'>Rated: T - English - Romance/Humor - Chapters: 1 - Words: 3,153 - Reviews: 32 - Updated: 9-2-07 - Published: 2-7-06 - Harry P. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217367. <a  href="/s/2789562/1/BALADA_DE_UMA_SAUDADE"> BALADA DE UMA SAUDADE </a>  by <a href="/u/982269/Sanyer_Malfoy">Sanyer Malfoy</a>  <a class=reviews href='/r/2789562/'>reviews</a>
+	<div class='z-indent z-padtop'>A linha entre o amor e o ódio é muito tênue e por vezes nós não sabemos de qual lado estamosAmanha iriam embora, para nunca mais voltar, não sabiam quais seriam seus destinos ao certo, mas não era bem nisso em que eles pensavam agora enquanto a chuva caia<div class='gray z-padtop2'>Rated: K - Portuguese - Romance/Drama - Chapters: 1 - Words: 1,503 - Reviews: 1 - Published: 2-7-06 - Draco M. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217368. <a  href="/s/2789545/1/The_Number">The Number</a> <a href="/s/2789545/4/The_Number">&#187;</a>  by <a href="/u/984011/Whole_Lotta_Sarah_Tribbiani">Whole Lotta Sarah Tribbiani</a>  <a class=reviews href='/r/2789545/'>reviews</a>
+	<div class='z-indent z-padtop'>COMPLETE! Ron's living with his parents when Ginny brings him some news  and a number. My first fic, please R&R. If I get one more review I'll do a sequel!<div class='gray z-padtop2'>Rated: T - English - Romance/Drama - Chapters: 4 - Words: 4,221 - Reviews: 19 - Updated: 2-13-06 - Published: 2-7-06 - Ron W. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217369. <a  href="/s/2789538/1/Diary_Of_Prisoner_0247_Azkaban_Prison">Diary Of Prisoner 0247 Azkaban Prison</a> <a href="/s/2789538/5/Diary_Of_Prisoner_0247_Azkaban_Prison">&#187;</a>  by <a href="/u/945136/rosedemon54">rosedemon54</a>  <a class=reviews href='/r/2789538/'>reviews</a>
+	<div class='z-indent z-padtop'>As a prisoner of Azkaban, Severus Snape's diary reveals his thoughts on a visit with old foe, Hermione Granger.<div class='gray z-padtop2'>Rated: K - English - Drama - Chapters: 5 - Words: 6,276 - Reviews: 35 - Updated: 5-27-06 - Published: 2-7-06 - Severus S. & Hermione G. - Complete</div></div></div>
+<div class='z-list'>217370. <a  href="/s/2789535/1/Tables_Turned">Tables Turned</a>  by <a href="/u/439532/SnakeEyesHannah">SnakeEyesHannah</a>  <a class=reviews href='/r/2789535/'>reviews</a>
+	<div class='z-indent z-padtop'>Seeing James fly outside, in the blistering cold, makes Lily storm off, intent on telling him off, endangering his health with a match coming up... The nerve of him!  A little winter ficlet about our favorite couple  Ranting and caring!James abound.<div class='gray z-padtop2'>Rated: K - English - Romance - Chapters: 1 - Words: 2,200 - Reviews: 15 - Published: 2-7-06 - Lily Evans P. & James P. - Complete</div></div></div>
+<div class='z-list'>217371. <a  href="/s/2789534/1/En_busca_de_amores">En busca de amores</a> <a href="/s/2789534/4/En_busca_de_amores">&#187;</a>  by <a href="/u/983503/kariiss">kariiss</a> 
+	<div class='z-indent z-padtop'>Ron y Harry dicuten por Hermione, pero ella les traerá una sorpresa al besarse con otro chico ò.ó Pansy Parkinson la relatora se enamora de Harry. ¿qué pasará? ENTREN Y DEJEN RR.<div class='gray z-padtop2'>Rated: K+ - Spanish - Romance - Chapters: 4 - Words: 1,714 - Published: 2-7-06</div></div></div>
+<div class='z-list'>217372. <a  href="/s/2789522/1/The_Marauding_Marauders">The Marauding Marauders</a>  by <a href="/u/984136/mcfly42">mcfly42</a>  <a class=reviews href='/r/2789522/'>reviews</a>
+	<div class='z-indent z-padtop'>The Maruaders have created something that will change their Hogwarts marauding days. With lots of laughs, lots of pranks, and a little bit of romance, this fic has it all!<div class='gray z-padtop2'>Rated: T - English - Humor - Chapters: 1 - Words: 1,208 - Reviews: 1 - Published: 2-7-06</div></div></div>
+<div class='z-list'>217373. <a  href="/s/2789490/1/Dark_Side_Stories">Dark Side Stories</a> <a href="/s/2789490/3/Dark_Side_Stories">&#187;</a>  by <a href="/u/841279/Evandar">Evandar</a>  <a class=reviews href='/r/2789490/'>reviews</a>
+	<div class='z-indent z-padtop'>The side stories to 'Red Sun Rising'. These short stories chart Harry's childhood as Aryn, and show how he developed into the character he is in the main Fic. Mentions of slash FGOC<div class='gray z-padtop2'>Rated: M - English - Romance - Chapters: 3 - Words: 3,028 - Reviews: 31 - Updated: 9-16-06 - Published: 2-7-06</div></div></div>
+<div class='z-list'>217374. <a  href="/s/2789462/1/The_Ministers_Newspaper">The Minister's Newspaper</a>  by <a href="/u/347380/Pyrebi">Pyrebi</a>  <a class=reviews href='/r/2789462/'>reviews</a>
+	<div class='z-indent z-padtop'>The Minister's coming for a visit! Quick, polish up the prisoners, dust the locks, tone down the dementors! Find a few inmates who can still talk in case he has questions!<div class='gray z-padtop2'>Rated: K+ - English - Humor - Chapters: 1 - Words: 2,217 - Reviews: 25 - Published: 2-7-06 - Sirius B. - Complete</div></div></div>
+<div class='z-list'>217375. <a  href="/s/2789452/1/Silence">Silence</a>  by <a href="/u/659647/Abella">Abella</a>  <a class=reviews href='/r/2789452/'>reviews</a>
+	<div class='z-indent z-padtop'>Je te regarde dormir et dieu, que tu es beau. Je caresse ta joue et ma main sur ton visage est comme une tache d'encre sur une feuille immaculée, et j'ai tellement honte, si tu savais. Tellement honte. OS, HPDM<div class='gray z-padtop2'>Rated: K+ - French - Drama/Poetry - Chapters: 1 - Words: 2,663 - Reviews: 19 - Published: 2-7-06 - Draco M. & Harry P. - Complete</div></div></div><div class=sep></div><center style='margin-top:5px;margin-bottom:5px;'>360,508 found: <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8694/'>&#171; Prev</a> Page  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/1/'>1</a> ..  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8685/'>8,685</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8692/'>8,692</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8693/'>8,693</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8694/'>8,694</a>  <b>8695</b>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8696/'>8,696</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8697/'>8,697</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8698/'>8,698</a>  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8705/'>8,705</a>  ..  <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/14421/'>14,421</a> <a href='/book/Harry_Potter/10/0/0/2/1/0/0/0/0/8696/'>Next &#187;</a></center></FORM><script type='text/javascript'>
+$(function(){
+	$('.z-list').hover(
+		function() {
+    		$(this).addClass('z-high');
+   		},
+   		function() {
+    		$(this).removeClass('z-high');
+   		}
+  	)
+});
+</script><div align=right style='height:10px;border-top:1px solid #cdcdcd;'><a href='#top'>Return to Top</a></div></div><div id='jstoreflash'></div>
+				<script type='text/javascript'>
+				$.xStore.load('/static/flash/jstore.swf');			
+				function flash_ready(){
+					$.xStore.flash_ready();
+				}
+				$.xStore.ready(function(){
+					xbookmark_load();
+					$().ready(function() {
+						//xb_story = 1;
+						xb_cdn = 'http://b.fanfiction.net';
+						xbload();
+					});
+				});
+				</script>
+				<script type='text/javascript'>
+
+				if(getCookie('adblocker') < 1 && getCookie('geo') != "CN")
+				{
+					document.write('<SCR'+'IPT type="text/javascript" ');
+					document.write('SRC="http://ads.adbrite.com/mb/text_group.php?sid=770438&br=1&dk=7469636b6574735f305f325f776562"></SCR'+'IPT>');
+				}
+				</script>
+		<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-4098224-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+		</body></html>

@@ -306,7 +306,7 @@ class Ngram
         if Time.now-start > 60
           start = Time.now
           speed = j-jstart
-          remaining = @atd2 - j
+          remaining = @atd2.size - j
           STDERR.puts "speed: #{speed} per minute, remaining time: #{remaining/speed} minutes"
           jstart = j
         end

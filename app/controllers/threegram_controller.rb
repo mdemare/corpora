@@ -6,9 +6,8 @@ class ThreegramController < ApplicationController
   def search
     source = SOURCES[params[:source]]
     q = params[:q].split
-    q = %w(harry wollte)
     ts = q.map{|w| w != ?* && source::Token.where(word: w).first }
-    g3s = source::G3.for_tokens(ts)
+    g3s = source::G3.for_tokens(ts).flatten
 
     h_fq = source::G3.frequency_for(g3s)
     h_words = source::G3.tokens_for(g3s)
