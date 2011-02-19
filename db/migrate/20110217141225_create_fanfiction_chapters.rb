@@ -1,6 +1,6 @@
 class CreateFanfictionChapters < ActiveRecord::Migration
   def self.up
-    create_table :fanfiction_chapters do |t|
+    create_table :fanfiction_chapters, :options => "ENGINE=MyISAM" do |t|
       t.integer :story
       t.integer :chapter
       t.string :githash

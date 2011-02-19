@@ -1,6 +1,6 @@
 class CreateWikipediaArticles < ActiveRecord::Migration
   def self.up
-    create_table :wikipedia_articles do |t|
+    create_table :wikipedia_articles, :options => "ENGINE=MyISAM" do |t|
       t.string :title
       t.string :language
       t.string :githash
