@@ -69,6 +69,7 @@ raise unless tail.size == 3
   else
     rating,language,genre,chapters,words,reviews,updated,published,characters,status = fields
     lang = LANGUAGE_CODES[language.downcase]
+    next unless lang
     if chapters !~ /Chapters: /
       STDERR.puts line
     elsif words !~ /Words: /

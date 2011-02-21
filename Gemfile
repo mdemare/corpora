@@ -9,6 +9,7 @@ gem 'haml'
 gem 'formtastic', '~> 1.2.0'
 gem 'mysql2'
 gem 'unicode_utils'
+gem 'bitset'
 
 # Use unicorn as the web server
 # gem 'unicorn'
