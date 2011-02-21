@@ -20,29 +20,29 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   add_index "fanfiction_chapters", ["story"], :name => "index_fanfiction_chapters_on_story"
 
-  create_table "fanfiction_stories", :force => true do |t|
-    t.string   "language"
-    t.string   "medium"
-    t.string   "work"
-    t.integer  "story_id"
-    t.string   "title"
-    t.integer  "author_id"
-    t.string   "author_name"
-    t.datetime "publish_date"
-    t.datetime "update_date"
-    t.string   "rating"
-    t.string   "genre"
-    t.string   "character_a"
-    t.string   "character_b"
-    t.boolean  "completed"
-    t.integer  "words"
-    t.integer  "chapters"
-    t.integer  "reviews"
+  create_table "fanfiction_stories", :id => false, :force => true do |t|
+    t.integer "id"
+    t.string  "language",     :limit => 2
+    t.string  "medium"
+    t.string  "work"
+    t.string  "title"
+    t.integer "author_id"
+    t.string  "author_name"
+    t.date    "publish_date"
+    t.date    "update_date"
+    t.string  "rating",       :limit => 2
+    t.string  "genre"
+    t.string  "character_a"
+    t.string  "character_b"
+    t.boolean "completed"
+    t.integer "words",        :limit => 3
+    t.integer "chapters",     :limit => 2
+    t.integer "reviews",      :limit => 3
   end
 
+  add_index "fanfiction_stories", ["id"], :name => "index_fanfiction_stories_on_id"
   add_index "fanfiction_stories", ["language"], :name => "index_fanfiction_stories_on_language"
   add_index "fanfiction_stories", ["reviews"], :name => "index_fanfiction_stories_on_reviews"
-  add_index "fanfiction_stories", ["story_id"], :name => "index_fanfiction_stories_on_story_id"
   add_index "fanfiction_stories", ["words"], :name => "index_fanfiction_stories_on_words"
 
   create_table "g3_01", :force => true do |t|

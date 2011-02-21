@@ -8,22 +8,19 @@ class PostCallbacks
   include XML::SaxParser::Callbacks
 
   def on_start_element(element, attributes)
-    STDERR.puts element
     case element
     when 'title'
-      $yes = true
+      $title = true
+      $current = ''
     when 'text'
       $compress = :create
     end
   end
   
   def on_characters(chars)
-    STDERR.puts "on_characters"
-    if $yes
-      $current = chars
-      $yes = false
+    if $title
+      $current << chars.force_encoding("utf-8")
     elsif $compress == :create
-      STDERR.puts "#{$current}."
       $compress = :append
       $article = chars
     elsif $compress == :append
@@ -32,8 +29,9 @@ class PostCallbacks
   end
   
   def on_end_element(element)
-    STDERR.puts "on_end_element"
     case element
+    when 'title'
+      $title = false
     when 'text'
       if $article.size > 500
         tf = Tempfile.new("ss")
@@ -45,14 +43,13 @@ class PostCallbacks
         IO.popen(git_cmd) do |output|
           $data << [$current,output.gets.chomp].join(?;)
         end
-      else
-        STDERR.puts "skipping #{$current}"
       end
       $compress = nil
     end
   end
 end
 
+DATABASE = 'corpora_development'
 start = Time.now
 jstart = 1
 glob = Dir.glob(ARGV[1])
@@ -66,9 +63,7 @@ glob.each_with_index do |filename,j|
   tf.open
   tf.chmod(0644)
   tf.puts $data
-  puts $data
   tf.close
-  puts "load into db"
   %x@ echo 'LOAD DATA INFILE "#{tf.path}" INTO TABLE wikipedia_articles FIELDS TERMINATED BY ";" (title,githash) set language = "#{ARGV[0]}"' | mysql -u root #{DATABASE} @
   tf.unlink
 
