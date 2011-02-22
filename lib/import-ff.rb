@@ -8,6 +8,9 @@ tf = Tempfile.new("ss")
 tf.open
 tf.chmod(0644)
 glob = Dir.glob(ARGV[0])
+puts glob.size
+sleep 10
+
 glob.each_with_index do |filename,j|
   git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{filename}"
   IO.popen(git_cmd) do |output|
