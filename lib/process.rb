@@ -11,16 +11,6 @@ raise "1.9 required" unless RUBY_VERSION =~ /1.9/
 # Make frequency list, 2-gram list, 3-gram list from clean sentences.
 
 class Ngram
-=begin
-trim, replace dashes, downcase, reject numbers, split, sort | uniq -c, cat, sort | uniq -c, sum count, reject fq <= 1, sort fq desc  
-tr -dc ' [:alnum:]\n'\'- | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . > tokenized
-split -l 200000 tokenized tokens-
-ls tokens-* | xargs -I xxx sort -o xxx xxx
-ls tokens-* | xargs -I xxx uniq -c xxx uxxx
-rm tokens-*
-ls utokens-* | xargs cat | sort -k 2 | awk 'c && s!=$2{print c,s;c=0} {s=$2;c+=$1} END {print c,s}' | grep -v '^1 ' | sort -nr > fqlist
-rm utokens-*
-=end
   # - tokens: id, word, frequency already known, occurrence_statistics handled afterwards
   # TODO also split after l'église
   # TODO still contains single '
@@ -31,21 +21,20 @@ rm utokens-*
   # - trigrams: stored in 100 files based on token1 % 100, merged afterwards
   # - sequences: stored in one file, new record after word count exceeds 200
 
-  def initialize(token_file, sentence_file, output, language)
+  def initialize(token_file, sentence_file, language)
     @token_map = {}
-    linenr = 0
     File.foreach(token_file) do |line| 
-      fq,word = line.chomp.split
-      @token_map[word] = [linenr,fq]
-      linenr += 1
+      id,fq,word = line.chomp.split
+      @token_map[word] = [id,fq]
     end
+    @token_map['#'] = [0,0]
     STDERR.puts "loaded #{@token_map.size} words"
     
     @sentence_file = sentence_file
-    @fbigram = (0..7).map {|d| File.open(File.join(output, "bigram-#{d}"),"w")}
-    @ftrigram = File.open(File.join(output, "trigram"),"w")
-    @fsentences = File.open(File.join(output, "sentences"),"w")
-    @fbloom = File.open(File.join(output, "bloom"), "w")
+    @fbigram = (0..7).map {|d| File.open("bigram-#{d}","w")}
+    @ftrigram = File.open("trigram","w")
+    @fsentences = File.open("sentences","w")
+    @fbloom = File.open("bloom", "w")
     @bloom = Bloom.new(16000)
     @words_in_batch = 0
     @line_batch = []
@@ -54,10 +43,7 @@ rm utokens-*
   def flush_block
     if @line_batch
       @fsentences.puts @line_batch.join(?/)
-      puts @line_batch.join(?/)
       @fbloom.write @bloom.to_s # TODO write bytes
-      puts @bloom.to_s # TODO write bytes
-      exit
     end
   end
   
@@ -90,9 +76,12 @@ rm utokens-*
     # words.size == 3
     bigram = -> d,w1,w2 do
       raise "#{index}, #{words.inspect}" if w2.to_s == ''
-      bi = [w1,w2].join(?,)
-      @fbigram[d].puts bi
-      bloom("#{d}:#{bi}", 2)
+      bi = [w1,w2].map{|x| @token_map[x][0]}
+      if bi.all?
+        bi = bi.join(?,)
+        @fbigram[d].puts bi
+        bloom("#{d}:#{bi}", 2)
+      end
     end
     (0..7).each do |distance|
       p1 = index - 1 - distance
@@ -110,31 +99,44 @@ rm utokens-*
     return if index < 1
     raise unless words[index-2,3].all?
     id = words[index-2,3]
-    id[0] = '#' if index == 1
+    if index == 1
+      id = ['#',*words[0,2]]
+    end
     id[2] = '#' if index == words.size
+    raise index.to_s+words.inspect unless id.size == 3
     raise index.to_s + words.inspect unless id.all? {|w| w.to_s.size > 0 }
-    bloom(id.join(?,), 3)
-    @ftrigram.puts id
+    g3 = id.map{|x| @token_map[x][0]}
+    if g3.all?
+      tri = g3.join(?,)
+      bloom(tri, 3)
+      @ftrigram.puts tri
+    end
   end
 
   def bloom(obj, kind)
-    puts "adding #{obj}"
     @bloom.add(obj)
-    raise unless @bloom.includes?(obj)
-    unless Bloom.from_s(@bloom.to_s).instance_eval{@bitfield}.to_s == @bloom.instance_eval{@bitfield}.to_s
-      STDERR.puts Bloom.from_s(@bloom.to_s).instance_eval{@bitfield}.to_s.size, @bloom.instance_eval{@bitfield}.to_s.size
-      raise
-    end
-    raise unless Bloom.from_s(@bloom.to_s).includes?(obj)
   end
   
   def process
+    start = Time.now
+    jstart = 1
+    j = 0
+    total = File.stat(@sentence_file).size
     File.foreach(@sentence_file) do |line|
+      j += line.size
+      if Time.now-start > 60
+        start = Time.now
+        speed = j-jstart
+        remaining = total - j
+        STDERR.puts "speed: #{speed/1024} kb per minute, remaining time: #{remaining/speed} minutes"
+        jstart = j
+      end
+      
       line.chomp!
       # all that's left in file after clean is this:
       # 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçß\n .?¿!¡;,()"&$%'\'-
       clean_line = line.delete('.?¿!¡;,()"&$%')
-      # now all that's left are :alnum, spaces, dashes and apostrophs.
+      # now all that's left are :alnum:, spaces, dashes and apostrophs.
       
       clean_line.gsub!(/^-/,'')
       clean_line.gsub!(/-$/,'')
@@ -143,6 +145,8 @@ rm utokens-*
       
       # TODO split l'église into l' and église
       words = clean_line.split
+      
+      next if words.size < 3
 
       # split into 200-word batches, update bloom filter
       seen_line(line, words.size) 
@@ -156,6 +160,7 @@ rm utokens-*
           add_trigrams(index, words) # backward looking, to file "trigrams-#{token1 % 100}", also add bloom filter
         else
           canonical_word = UnicodeUtils.downcase(word)
+          words[index-1] = canonical_word if index > 0 && index <= words.size
           token = (x = @token_map[canonical_word]) && x[0]
           # some words aren't tokens (only 1 occurrence), will return nil
           # still add to token list
@@ -168,12 +173,10 @@ rm utokens-*
             else 
               :capitalized
             end
-            if word
-              bloom(word, 1)
-              seen_occurrence(word, token, capitalization) # add details (capitalization) to occurrences file, unless stop word
-              add_bigrams(index, words) # backward looking, in memory, also add bloom filter
-              add_trigrams(index, words) # backward looking, to file "trigrams-#{token1 % 100}", also add bloom filter
-            end
+            bloom(canonical_word, 1)
+            seen_occurrence(word, token, capitalization) # add details (capitalization) to occurren
+            add_bigrams(index, words) # backward looking, in memory, also add bloom filter
+            add_trigrams(index, words) # backward looking, to file "trigrams-#{token1 % 100}", also
           end
         end
       end
@@ -185,8 +188,8 @@ rm utokens-*
 
 end
 
-if ARGV.size != 4
-  puts "format: ruby process.rb token_file sentence_file output_dir language_code"
+if ARGV.size != 3
+  puts "format: ruby process.rb token_file sentence_file language_code"
   exit
 end
 

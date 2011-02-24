@@ -1,9 +1,3 @@
-# :id, "mediumint unsigned", :null => false
-# :word, "varchar(255)"
-# :wtoken1_id, "integer unsigned", :null => false
-# :wtoken2_id, "integer unsigned", :null => false
-# :frequency, "integer unsigned", :null => false
-# :frequency_special, "tinyint unsigned", :null => false
 module MToken
   module ClassMethods; end
   
@@ -14,43 +8,7 @@ module MToken
     end
   end
    
-  module ClassMethods
-    def adjacent_words(token, kind, position)
-      list, token_list = adjacent_tokens(kind, position)
-      args = [list,[token.id],nil]
-      args.reverse! if position == :following
-      
-      g3_sum = token.g3_class.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
-      
-      # where both are part of 2-gram
-      column1 = position == :preceding ? :wtoken2_id : :wtoken1_id
-      column2 = position != :preceding ? :wtoken2_id : :wtoken1_id
-      where(column1 => token.id, column2 => token_list).inject(g3_sum) {|sum,x|sum+x.frequency}
-    end
-
-    # e.g. pronouns, preceding:
-    # ich /token/
-    # du /token/
-    # but also
-    # <*, ich> /token/
-    # and
-    # <ich /token/>
-    def adjacent_tokens(kind, position)
-      ia = (($token_cache ||= {})[kind] ||= {})
-      r = ia[position] and return r
-      
-      # word tokens for kind
-      token_list = where(word: send(kind)).map(&:id)
-      
-      column = position == :preceding ? :wtoken2_id : :wtoken1_id
-      # when word in list is part of 2-gram
-      rvalue = token_list + where(column => token_list).map(&:id)
-      
-      ia[position] = [rvalue,token_list]
-    end
-  end
-  
-  # two grams
+  module ClassMethods  # two grams
   def words
     [word, word_for(wtoken1_id), word_for(wtoken2_id)].compact
   end
@@ -97,6 +55,44 @@ module MToken
     title.to_f / 15
   end
 end
+
+
+  def adjacent_words(token, kind, position)
+    list, token_list = adjacent_tokens(kind, position)
+    args = [list,[token.id],nil]
+    args.reverse! if position == :following
+    
+    g3_sum = token.g3_class.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
+    
+    # where both are part of 2-gram
+    column1 = position == :preceding ? :wtoken2_id : :wtoken1_id
+    column2 = position != :preceding ? :wtoken2_id : :wtoken1_id
+    where(column1 => token.id, column2 => token_list).inject(g3_sum) {|sum,x|sum+x.frequency}
+  end
+
+  # e.g. pronouns, preceding:
+  # ich /token/
+  # du /token/
+  # but also
+  # <*, ich> /token/
+  # and
+  # <ich /token/>
+  def adjacent_tokens(kind, position)
+    ia = (($token_cache ||= {})[kind] ||= {})
+    r = ia[position] and return r
+    
+    # word tokens for kind
+    token_list = where(word: send(kind)).map(&:id)
+    
+    column = position == :preceding ? :wtoken2_id : :wtoken1_id
+    # when word in list is part of 2-gram
+    rvalue = token_list + where(column => token_list).map(&:id)
+    
+    ia[position] = [rvalue,token_list]
+  end
+end
+
+
 # puts "upper: #{(fqall >> 4)}"
 # puts "capitalized: #{(fqall & 15)}"
 # puts "expected: #{15 - (fqall & 15) - (fqall >> 4)}"

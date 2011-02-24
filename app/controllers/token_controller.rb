@@ -9,6 +9,7 @@ class TokenController < ApplicationController
       render :index
       return
     end
+=begin
     @twograms = @token.twograms
     
     @g3ss = source::G3.for_tokens([@token])
@@ -33,7 +34,6 @@ class TokenController < ApplicationController
     nx_2g = source::Token.where(id: next_2grams.keys).map{|t| [t.word || id2word[t.wtoken1_id], next_2grams[t.id]] }.sort_by(&:second).reverse
     @twograms[0] += pv_2g
     @twograms[1] += nx_2g
-    
+=end  
   end
-  
 end
