@@ -69,4 +69,24 @@ class TokenController < ApplicationController
     bg = source::Trigram.where(conditions).limit(100).order("frequency desc").offset(100*params[:page].to_i).all
     render :json => bg
   end
+
+  def json_examples
+    w = params[:word]
+    offsets = Bloom.offsets(w, 16000).sort
+    sentences = []
+    File.open("/home/mdemare/corpora/process/nl/bloom") do |f|
+      page = 0
+      loop do
+        r = offsets.all? do |i|
+          f.seek(4000*page + i/4)
+          c = f.getc or break
+          c.to_i(16) & (1 << (i % 4)) != 0
+        end
+        sentences << page if r
+        break if sentences.size == 10
+        page += 1
+      end
+    end
+    raise sentences.inspect
+  end
 end

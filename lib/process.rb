@@ -12,8 +12,6 @@ raise "1.9 required" unless RUBY_VERSION =~ /1.9/
 
 class Ngram
   # - tokens: id, word, frequency already known, occurrence_statistics handled afterwards
-  # TODO also split after l'église
-  # TODO still contains single '
   
   # files to write:
   # - occurrences: token, sequence, position, data, one sequential file
@@ -25,7 +23,7 @@ class Ngram
     @token_map = {}
     File.foreach(token_file) do |line| 
       id,fq,word = line.chomp.split
-      @token_map[word] = [id,fq]
+      @token_map[word] = [id.to_i,fq]
     end
     @token_map['#'] = [0,0]
     STDERR.puts "loaded #{@token_map.size} words"
@@ -76,7 +74,7 @@ class Ngram
     # words.size == 3
     bigram = -> d,w1,w2 do
       raise "#{index}, #{words.inspect}" if w2.to_s == ''
-      bi = [w1,w2].map{|x| @token_map[x][0]}
+      bi = [w1,w2].map{|x| (t = @token_map[x]) && t[0]}
       if bi.all?
         bi = bi.join(?,)
         @fbigram[d].puts bi
@@ -105,7 +103,7 @@ class Ngram
     id[2] = '#' if index == words.size
     raise index.to_s+words.inspect unless id.size == 3
     raise index.to_s + words.inspect unless id.all? {|w| w.to_s.size > 0 }
-    g3 = id.map{|x| @token_map[x][0]}
+    g3 = id.map{|x| (t = @token_map[x]) && t[0]}
     if g3.all?
       tri = g3.join(?,)
       bloom(tri, 3)
