@@ -34,7 +34,7 @@ class Ngram
     @fsentences = File.open("sentences","w")
     @fbloom = File.open("bloom", "w")
     @bloom_added = 0
-    @bloom = Bloom.new(16000)
+    @bloom = Bloom.new(20000)
     @words_in_batch = 0
     @line_batch = []
   end
@@ -42,9 +42,7 @@ class Ngram
   def flush_block
     if @line_batch
       @fsentences.puts @line_batch.join(?/)
-      raise "#{@bloom_added} items written to bloom" if @bloom_added > @bloom.size / 10
-      raise "suspicious bitcount" if @bloom.to_s.to_i(16).to_s(2).count("1") > 4*@bloom_added
-      @fbloom.write @bloom.to_s # TODO write bytes
+      @fbloom.write @bloom.to_s
     end
   end
   
@@ -61,7 +59,7 @@ class Ngram
       flush_block
       @words_in_batch = 0
       @bloom_added = 0
-      @bloom = Bloom.new(16000)
+      @bloom = Bloom.new(20000)
       @line_batch.clear
     end
     @line_batch << line
@@ -77,7 +75,6 @@ class Ngram
     # <start> w0 w1 w2 <end>
     # words.size == 3
     bigram = -> d,w1,w2 do
-      raise "#{index}, #{words.inspect}" if w2.to_s == ''
       bi = [w1,w2].map{|x| (t = @token_map[x]) && t[0]}
       if bi.all?
         bi = bi.join(?,)
@@ -90,7 +87,6 @@ class Ngram
       break if p1 < 0
       next if p1 == 0 && index == words.size
       next if (p1 == 0 and bigram[distance, "#", words[index]])
-      raise unless words[p1]
       lw = words.size == index ? "#" : words[index]
       bigram[distance, words[p1], lw]
     end
@@ -99,14 +95,11 @@ class Ngram
   def add_trigrams(index, words)
     index -= 1
     return if index < 1
-    raise unless words[index-2,3].all?
     id = words[index-2,3]
     if index == 1
       id = ['#',*words[0,2]]
     end
     id[2] = '#' if index == words.size
-    raise index.to_s+words.inspect unless id.size == 3
-    raise index.to_s + words.inspect unless id.all? {|w| w.to_s.size > 0 }
     g3 = id.map{|x| (t = @token_map[x]) && t[0]}
     if g3.all?
       tri = g3.join(?,)
