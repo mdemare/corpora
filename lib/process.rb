@@ -33,6 +33,7 @@ class Ngram
     @ftrigram = File.open("trigram","w")
     @fsentences = File.open("sentences","w")
     @fbloom = File.open("bloom", "w")
+    @bloom_added = 0
     @bloom = Bloom.new(16000)
     @words_in_batch = 0
     @line_batch = []
@@ -41,8 +42,8 @@ class Ngram
   def flush_block
     if @line_batch
       @fsentences.puts @line_batch.join(?/)
-      raise "#{@bloom_added.size} items written to bloom" if @bloom_added.size > @bloom.size / 10
-      raise "suspicious bitcount" if @bloom.to_s.to_i(16).to_s(2).count("1") > 4*@bloom_added.size
+      raise "#{@bloom_added} items written to bloom" if @bloom_added > @bloom.size / 10
+      raise "suspicious bitcount" if @bloom.to_s.to_i(16).to_s(2).count("1") > 4*@bloom_added
       @fbloom.write @bloom.to_s # TODO write bytes
     end
   end
@@ -115,6 +116,7 @@ class Ngram
   end
 
   def bloom(obj, kind)
+    @bloom_added += 1
     @bloom.add(obj)
   end
   
