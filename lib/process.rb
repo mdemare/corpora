@@ -3,7 +3,6 @@ $: << File.expand_path(File.dirname(__FILE__))
 STDERR.puts $:.last
 require 'tempfile'
 require 'bloom'
-require 'bitset'
 require "unicode_utils"
 
 raise "1.9 required" unless RUBY_VERSION =~ /1.9/

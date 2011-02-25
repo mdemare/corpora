@@ -29,7 +29,6 @@ GEM
       activesupport (= 3.0.4)
     activesupport (3.0.4)
     arel (2.0.8)
-    bitset (0.0.2)
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -76,7 +75,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bitset
   formtastic (~> 1.2.0)
   haml
   mysql2

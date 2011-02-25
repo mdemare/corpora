@@ -8,6 +8,7 @@ class Bloom
   def Bloom.from_s(s)
     b=Bloom.new(8*s.size)
     b.instance_eval {@data = s}
+    b
   end
   
   def Bloom.offsets(item, size)

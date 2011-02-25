@@ -84,7 +84,7 @@ class TokenController < ApplicationController
         r = offsets.all? do |i|
           f.seek(page*BLOOM_SIZE/8 + i/8)
           c = f.getc or raise "not found"
-          puts "seek page(#{page}), bit(#{i}), found byte(#{c.getbyte(0)}), value(#{c.getbyte(0) & (1 << (i % 8))})"
+          # puts "seek page(#{page+1}), bit(#{i}), found byte(#{c.getbyte(0)}), value(#{c.getbyte(0) & (1 << (i % 8))})"
           c.getbyte(0) & (1 << (i % 8)) != 0
         end
         sentences << (page+1) if r
