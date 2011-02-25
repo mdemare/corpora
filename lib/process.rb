@@ -11,6 +11,7 @@ raise "1.9 required" unless RUBY_VERSION =~ /1.9/
 # Make frequency list, 2-gram list, 3-gram list from clean sentences.
 
 class Ngram
+  BLOOM_SIZE = 24000
   # - tokens: id, word, frequency already known, occurrence_statistics handled afterwards
   
   # files to write:
@@ -34,7 +35,7 @@ class Ngram
     @fsentences = File.open("sentences","w")
     @fbloom = File.open("bloom", "w")
     @bloom_added = 0
-    @bloom = Bloom.new(20000)
+    @bloom = Bloom.new(BLOOM_SIZE)
     @words_in_batch = 0
     @line_batch = []
   end
@@ -59,7 +60,7 @@ class Ngram
       flush_block
       @words_in_batch = 0
       @bloom_added = 0
-      @bloom = Bloom.new(20000)
+      @bloom = Bloom.new(BLOOM_SIZE)
       @line_batch.clear
     end
     @line_batch << line

@@ -3,13 +3,15 @@ require 'digest/sha1'
 class Bloom
   attr_reader :bitfield,:size  
   
+  DIGEST = Digest::SHA2.new(256)
+  
   def Bloom.from_s(s)
     b=Bloom.new(8*s.size)
     b.instance_eval {@data = s}
   end
   
   def Bloom.offsets(item, size)
-    Digest::SHA1.digest(item).unpack("VVVV").map {|x| x % size }
+    DIGEST.digest(item).unpack("vvvvvvvvvv").map {|x| x % size }
   end
   
   def initialize(bitsize)

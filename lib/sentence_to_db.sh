@@ -49,6 +49,9 @@ ls utrigram-chunks-* | xargs cat | sed 's/^ *//;s/ *$//' | sort -k 2 | awk 'c &&
 rm utrigram-chunks-*
 
 cd process/$LANG
+
+mv sentences s; <s nl -s '|' -nrz > sentences ; rm s
+
 echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,@txt) set compressed_sentences = compress(@txt)'
 echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,@txt) set compressed_sentences = compress(@txt)' | mysql -u root $DATABASE
 echo 'LOAD DATA INFILE "'`pwd`'/fq-tokens" INTO TABLE tokens_'$SOURCE' FIELDS TERMINATED BY " " (id,frequency,word)'

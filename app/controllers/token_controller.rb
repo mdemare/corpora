@@ -2,6 +2,7 @@ require 'bloom'
 
 class TokenController < ApplicationController
   SOURCES = {"de" => S01, "en" => S02, "es" => S03, "fr" => S04, "it" => S05, "nl" => S06}
+  BLOOM_SIZE = 24000
   def token
     w = params[:id]
     source = SOURCES[params[:source]]
@@ -73,22 +74,25 @@ class TokenController < ApplicationController
   end
 
   def json_examples
+    source = SOURCES[params[:source]]
     w = params[:word]
-    offsets = Bloom.offsets(w, 16000).sort
+    offsets = Bloom.offsets(w, BLOOM_SIZE).sort
     sentences = []
     File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |f|
       page = 0
       loop do
         r = offsets.all? do |i|
-          f.seek(4000*page + i/4)
-          c = f.getc or break
-          c.to_i(16) & (1 << (i % 4)) != 0
+          f.seek(page*BLOOM_SIZE/8 + i/8)
+          c = f.getc or raise "not found"
+          puts "seek page(#{page}), bit(#{i}), found byte(#{c.getbyte(0)}), value(#{c.getbyte(0) & (1 << (i % 8))})"
+          c.getbyte(0) & (1 << (i % 8)) != 0
         end
-        sentences << page if r
+        sentences << (page+1) if r
         break if sentences.size == 10
         page += 1
       end
     end
-    raise sentences.inspect
+    puts "sentences for #{w}: #{sentences.inspect}"
+    render :json => sentences.map {|x| source::Seq.for_id(x).grep(%r{w}) }
   end
 end
