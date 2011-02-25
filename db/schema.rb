@@ -12,6 +12,66 @@
 
 ActiveRecord::Schema.define(:version => 20110217141329) do
 
+  create_table "bigrams_01", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_01", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_01", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
+  create_table "bigrams_02", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_02", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_02", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
+  create_table "bigrams_03", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_03", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_03", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
+  create_table "bigrams_04", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_04", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_04", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
+  create_table "bigrams_05", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_05", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_05", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
+  create_table "bigrams_06", :id => false, :force => true do |t|
+    t.integer "distance",  :limit => 1, :null => false
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "bigrams_06", ["distance", "token1_id", "token2_id"], :name => "bigrams_tokens12"
+  add_index "bigrams_06", ["distance", "token2_id", "token1_id"], :name => "bigrams_tokens21"
+
   create_table "fanfiction_chapters", :force => true do |t|
     t.integer "story"
     t.integer "chapter"
@@ -45,137 +105,59 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
   add_index "fanfiction_stories", ["reviews"], :name => "index_fanfiction_stories_on_reviews"
   add_index "fanfiction_stories", ["words"], :name => "index_fanfiction_stories_on_words"
 
-  create_table "g3_01", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_01", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_01", ["id"], :name => "index_g3_01_on_id", :unique => true
-  add_index "g3_01", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_01", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_01", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_01", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_01", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_01", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
+  add_index "occurrences_01", ["token_id"], :name => "index_occurrences_01_on_token_id"
 
-  create_table "g3_02", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_02", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_02", ["id"], :name => "index_g3_02_on_id", :unique => true
-  add_index "g3_02", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_02", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_02", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_02", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_02", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_02", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
+  add_index "occurrences_02", ["token_id"], :name => "index_occurrences_02_on_token_id"
 
-  create_table "g3_03", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_03", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_03", ["id"], :name => "index_g3_03_on_id", :unique => true
-  add_index "g3_03", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_03", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_03", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_03", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_03", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_03", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
+  add_index "occurrences_03", ["token_id"], :name => "index_occurrences_03_on_token_id"
 
-  create_table "g3_04", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_04", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_04", ["id"], :name => "index_g3_04_on_id", :unique => true
-  add_index "g3_04", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_04", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_04", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_04", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_04", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_04", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
+  add_index "occurrences_04", ["token_id"], :name => "index_occurrences_04_on_token_id"
 
-  create_table "g3_05", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_05", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_05", ["id"], :name => "index_g3_05_on_id", :unique => true
-  add_index "g3_05", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_05", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_05", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_05", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_05", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_05", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
+  add_index "occurrences_05", ["token_id"], :name => "index_occurrences_05_on_token_id"
 
-  create_table "g3_06", :force => true do |t|
-    t.integer "wtoken1_id", :limit => 3, :null => false
-    t.integer "wtoken2_id", :limit => 3, :null => false
-    t.integer "wtoken3_id", :limit => 3, :null => false
-    t.integer "frequency",  :limit => 2, :null => false
+  create_table "occurrences_06", :id => false, :force => true do |t|
+    t.integer "token_id", :limit => 3, :null => false
+    t.integer "sequence", :limit => 3, :null => false
+    t.integer "position", :limit => 1, :null => false
+    t.integer "data",     :limit => 8, :null => false
   end
 
-  add_index "g3_06", ["id"], :name => "index_g3_06_on_id", :unique => true
-  add_index "g3_06", ["wtoken1_id", "wtoken2_id", "wtoken3_id"], :name => "g3_tokens123"
-  add_index "g3_06", ["wtoken1_id", "wtoken3_id", "wtoken2_id"], :name => "g3_tokens132"
-  add_index "g3_06", ["wtoken2_id", "wtoken1_id", "wtoken3_id"], :name => "g3_tokens213"
-  add_index "g3_06", ["wtoken2_id", "wtoken3_id", "wtoken1_id"], :name => "g3_tokens231"
-  add_index "g3_06", ["wtoken3_id", "wtoken1_id", "wtoken2_id"], :name => "g3_tokens312"
-  add_index "g3_06", ["wtoken3_id", "wtoken2_id", "wtoken1_id"], :name => "g3_tokens321"
-
-  create_table "s3g_01", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_01", ["three_gram_id"], :name => "index_s3g_01_on_three_gram_id"
-
-  create_table "s3g_02", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_02", ["three_gram_id"], :name => "index_s3g_02_on_three_gram_id"
-
-  create_table "s3g_03", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_03", ["three_gram_id"], :name => "index_s3g_03_on_three_gram_id"
-
-  create_table "s3g_04", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_04", ["three_gram_id"], :name => "index_s3g_04_on_three_gram_id"
-
-  create_table "s3g_05", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_05", ["three_gram_id"], :name => "index_s3g_05_on_three_gram_id"
-
-  create_table "s3g_06", :id => false, :force => true do |t|
-    t.integer "three_gram_id", :null => false
-    t.integer "sequence",      :null => false
-  end
-
-  add_index "s3g_06", ["three_gram_id"], :name => "index_s3g_06_on_three_gram_id"
+  add_index "occurrences_06", ["token_id"], :name => "index_occurrences_06_on_token_id"
 
   create_table "seq_01", :force => true do |t|
     t.binary "compressed_sentences", :null => false
@@ -218,95 +200,137 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
     t.string "corpus", :null => false
   end
 
-  create_table "tokens_01", :force => true do |t|
+  create_table "tokens_01", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_01", ["frequency"], :name => "index_tokens_01_on_frequency"
-  add_index "tokens_01", ["id"], :name => "index_tokens_01_on_id", :unique => true
   add_index "tokens_01", ["word"], :name => "index_tokens_01_on_word"
-  add_index "tokens_01", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_01_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_01", ["wtoken1_id"], :name => "index_tokens_01_on_wtoken1_id"
-  add_index "tokens_01", ["wtoken2_id"], :name => "index_tokens_01_on_wtoken2_id"
 
-  create_table "tokens_02", :force => true do |t|
+  create_table "tokens_02", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_02", ["frequency"], :name => "index_tokens_02_on_frequency"
-  add_index "tokens_02", ["id"], :name => "index_tokens_02_on_id", :unique => true
   add_index "tokens_02", ["word"], :name => "index_tokens_02_on_word"
-  add_index "tokens_02", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_02_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_02", ["wtoken1_id"], :name => "index_tokens_02_on_wtoken1_id"
-  add_index "tokens_02", ["wtoken2_id"], :name => "index_tokens_02_on_wtoken2_id"
 
-  create_table "tokens_03", :force => true do |t|
+  create_table "tokens_03", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_03", ["frequency"], :name => "index_tokens_03_on_frequency"
-  add_index "tokens_03", ["id"], :name => "index_tokens_03_on_id", :unique => true
   add_index "tokens_03", ["word"], :name => "index_tokens_03_on_word"
-  add_index "tokens_03", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_03_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_03", ["wtoken1_id"], :name => "index_tokens_03_on_wtoken1_id"
-  add_index "tokens_03", ["wtoken2_id"], :name => "index_tokens_03_on_wtoken2_id"
 
-  create_table "tokens_04", :force => true do |t|
+  create_table "tokens_04", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_04", ["frequency"], :name => "index_tokens_04_on_frequency"
-  add_index "tokens_04", ["id"], :name => "index_tokens_04_on_id", :unique => true
   add_index "tokens_04", ["word"], :name => "index_tokens_04_on_word"
-  add_index "tokens_04", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_04_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_04", ["wtoken1_id"], :name => "index_tokens_04_on_wtoken1_id"
-  add_index "tokens_04", ["wtoken2_id"], :name => "index_tokens_04_on_wtoken2_id"
 
-  create_table "tokens_05", :force => true do |t|
+  create_table "tokens_05", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_05", ["frequency"], :name => "index_tokens_05_on_frequency"
-  add_index "tokens_05", ["id"], :name => "index_tokens_05_on_id", :unique => true
   add_index "tokens_05", ["word"], :name => "index_tokens_05_on_word"
-  add_index "tokens_05", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_05_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_05", ["wtoken1_id"], :name => "index_tokens_05_on_wtoken1_id"
-  add_index "tokens_05", ["wtoken2_id"], :name => "index_tokens_05_on_wtoken2_id"
 
-  create_table "tokens_06", :force => true do |t|
+  create_table "tokens_06", :id => false, :force => true do |t|
+    t.integer "id",                    :limit => 3, :null => false
     t.string  "word"
-    t.integer "wtoken1_id",                     :null => false
-    t.integer "wtoken2_id",                     :null => false
-    t.integer "frequency",                      :null => false
-    t.integer "frequency_special", :limit => 1, :null => false
+    t.integer "frequency",                          :null => false
+    t.binary  "occurrence_statistics",              :null => false
   end
 
   add_index "tokens_06", ["frequency"], :name => "index_tokens_06_on_frequency"
-  add_index "tokens_06", ["id"], :name => "index_tokens_06_on_id", :unique => true
   add_index "tokens_06", ["word"], :name => "index_tokens_06_on_word"
-  add_index "tokens_06", ["wtoken1_id", "wtoken2_id"], :name => "index_tokens_06_on_wtoken1_id_and_wtoken2_id"
-  add_index "tokens_06", ["wtoken1_id"], :name => "index_tokens_06_on_wtoken1_id"
-  add_index "tokens_06", ["wtoken2_id"], :name => "index_tokens_06_on_wtoken2_id"
+
+  create_table "trigrams_01", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_01", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_01", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_01", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_01", ["token3_id"], :name => "trigrams_tokens3"
+
+  create_table "trigrams_02", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_02", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_02", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_02", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_02", ["token3_id"], :name => "trigrams_tokens3"
+
+  create_table "trigrams_03", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_03", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_03", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_03", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_03", ["token3_id"], :name => "trigrams_tokens3"
+
+  create_table "trigrams_04", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_04", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_04", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_04", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_04", ["token3_id"], :name => "trigrams_tokens3"
+
+  create_table "trigrams_05", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_05", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_05", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_05", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_05", ["token3_id"], :name => "trigrams_tokens3"
+
+  create_table "trigrams_06", :id => false, :force => true do |t|
+    t.integer "token1_id", :limit => 3, :null => false
+    t.integer "token2_id", :limit => 3, :null => false
+    t.integer "token3_id", :limit => 3, :null => false
+    t.integer "frequency", :limit => 3, :null => false
+  end
+
+  add_index "trigrams_06", ["token1_id", "token2_id", "token3_id"], :name => "trigrams_tokens123"
+  add_index "trigrams_06", ["token1_id", "token3_id"], :name => "trigrams_tokens13"
+  add_index "trigrams_06", ["token2_id", "token3_id"], :name => "trigrams_tokens23"
+  add_index "trigrams_06", ["token3_id"], :name => "trigrams_tokens3"
 
   create_table "wikipedia_articles", :force => true do |t|
     t.string "title"

@@ -14,7 +14,7 @@ echo 'Using language '$LANG'('$LANG'), source '$SOURCE
 sleep 5
 
 # trim, replace dashes, downcase, reject numbers, split, sort | uniq -c, cat, sort | uniq -c, sum count, reject fq <= 1, sort fq desc  
-< $SENTENCES tr -dc ' [:alnum:]\n'\'- | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 process/$LANG/tokens-
+< $SENTENCES tr -dc ' [:alnum:]\n'\'- | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 -- process/$LANG/tokens-
 
 cd process/$LANG
 

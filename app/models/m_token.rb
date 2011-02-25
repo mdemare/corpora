@@ -1,3 +1,8 @@
+# create new files:
+# for i in {1..6}; do echo $'module S0'$i$'\n  class Bigram < Base\n    include MBigram\n  end\nend\n' > s0$i/bigram.rb; done
+# for i in {1..6}; do echo $'module S0'$i$'\n  class Trigram < Base\n    include MTrigram\n  end\nend\n' > s0$i/trigram.rb; done
+
+
 module MToken
   module ClassMethods; end
   

@@ -1,5 +1,5 @@
 class TokenController < ApplicationController
-  SOURCES = {"de" => S01, "fr" => S02, "es" => S03, "nl" => S04, "it" => S05, "en" => S06}
+  SOURCES = {"de" => S01, "en" => S02, "es" => S03, "fr" => S04, "it" => S05, "nl" => S06}
   def token
     w = params[:id]
     source = SOURCES[params[:source]]
@@ -35,5 +35,38 @@ class TokenController < ApplicationController
     @twograms[0] += pv_2g
     @twograms[1] += nx_2g
 =end  
+  end
+  
+  def json_token
+    w = params[:id]
+    return render(:json => {"token" => {"frequency" => 0,"id" => 0,"occurrence_statistics" => "","word" => "#"}}) if w.to_i.zero?
+    source = SOURCES[params[:source]]
+    token = source::Token.where(word: w).first
+    render :json => token
+  end
+  
+  def json_bigram
+    d = params[:distance]
+    conditions = {}
+    t = params[:t1] and conditions[:token1_id] = t
+    t = params[:t2] and conditions[:token2_id] = t
+    return(head 500) if conditions.empty?
+    conditions[:distance] = d
+    
+    source = SOURCES[params[:source]]
+    bg = source::Bigram.where(conditions).limit(100).order("frequency desc").offset(100*params[:page].to_i).all
+    render :json => bg
+  end
+  
+  def json_trigram
+    conditions = {}
+    t = params[:t1] and conditions[:token1_id] = t
+    t = params[:t2] and conditions[:token2_id] = t
+    t = params[:t3] and conditions[:token3_id] = t
+    return(head 500) if conditions.empty?
+    
+    source = SOURCES[params[:source]]
+    bg = source::Trigram.where(conditions).limit(100).order("frequency desc").offset(100*params[:page].to_i).all
+    render :json => bg
   end
 end

@@ -6,7 +6,7 @@ class Bloom
   
   def Bloom.from_s(hex)
     (b=Bloom.new(0)).instance_eval{ @bitfield = Bitset.from_s(hex.to_i(16).to_s(2).rjust(4*hex.size,"0")) }
-    b
+    c
   end
   
   def initialize(bitsize)

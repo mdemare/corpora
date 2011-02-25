@@ -1,14 +1,15 @@
-module MThreeGram
+module MTrigram
   module ClassMethods; end
   
   def self.included(klass)
     klass.extend(ClassMethods)
     klass.instance_eval do
-      set_table_name "g3_#{source}"
+      set_table_name "trigrams_#{source}"
     end
   end
    
   module ClassMethods
+=begin
     def for_tokens(tokens)
       (1..3).each_cons(tokens.size).with_object([]) do |token_index_range,acc|
         conditions = token_index_range.each.with_object({}).with_index do |(token_index,conditions),j|
@@ -39,17 +40,6 @@ module MThreeGram
       sql = "SELECT id,word FROM `tokens_#{source}` WHERE id IN (#{token_ids.join(?,)})"
       find_by_sql(sql).each_with_object({}) {|t,memo| memo[t.id] = t.word}
     end
-  end
-  
-  def seqs
-    sequence_class.for_3gram(id)
-  end
-  
-  def wtokens
-    [wtoken1_id,wtoken2_id,wtoken3_id,]
-  end
-  
-  def words(tmap = {})
-    [wtoken1_id,wtoken2_id,wtoken3_id].map { |t| tmap[t] || token_class.find(t).words }.flatten.compact
+=end
   end
 end

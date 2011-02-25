@@ -1,7 +1,6 @@
 # encoding: utf-8
 module S01
   class Token < Base
-    set_table_name "tokens_01"
     include MToken
   
     def self.definite_articles
