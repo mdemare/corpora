@@ -1,12 +1,11 @@
-require 'bitset'
 require 'digest/sha1'
 
 class Bloom
-  attr_reader :bitfield
+  attr_reader :bitfield,:size  
   
-  def Bloom.from_s(hex)
-    (b=Bloom.new(0)).instance_eval{ @bitfield = Bitset.from_s(hex.to_i(16).to_s(2).rjust(4*hex.size,"0")) }
-    c
+  def Bloom.from_s(s)
+    b=Bloom.new(8*s.size)
+    b.instance_eval {@data = s}
   end
   
   def Bloom.offsets(item, size)
@@ -14,23 +13,41 @@ class Bloom
   end
   
   def initialize(bitsize)
-    @bitfield = Bitset.new(bitsize)
+    @size = bitsize
+    @data = "\x00" * (@size/8)
+  end
+  
+  BITCOUNT = (0..255).map {|x| x.to_s(2).count("1") }
+  def cardinality
+    @data.each_byte.inject(0){|sum,x| sum+BITCOUNT[x]}
   end
   
   def offsets(item)
-    Bloom.offsets(item, @bitfield.size)
+    Bloom.offsets(item, @size)
+  end
+  
+  def set_bit(i)
+    x = @data.getbyte(i/8)
+    @data.setbyte(i/8, x | (1 << (i % 8)))
+  end
+  
+  def get_bit(i)
+    (@data.getbyte(i/8) | (1 << (i % 8))) != 0
   end
   
   def add(item)
-    offsets(item).each { |i| @bitfield[i] = true }
+    offsets(item).each { |i| set_bit(i) }
   end
   
   def includes?(item)
-    offsets(item).all? { |i| @bitfield[i] }
+    offsets(item).all? { |i| get_bit(i) }
   end
   
   def to_s
-    bfs = @bitfield.to_s
-    bfs.to_i(2).to_s(16).rjust(bfs.size / 4, '0')
+    @data
+  end
+  
+  def inspect
+    "Bloom filter of size #{@size} and cardinality #{cardinality}"
   end
 end
