@@ -1,3 +1,5 @@
+require 'bloom'
+
 class TokenController < ApplicationController
   SOURCES = {"de" => S01, "en" => S02, "es" => S03, "fr" => S04, "it" => S05, "nl" => S06}
   def token
@@ -74,7 +76,7 @@ class TokenController < ApplicationController
     w = params[:word]
     offsets = Bloom.offsets(w, 16000).sort
     sentences = []
-    File.open("/home/mdemare/corpora/process/nl/bloom") do |f|
+    File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |f|
       page = 0
       loop do
         r = offsets.all? do |i|

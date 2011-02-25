@@ -41,6 +41,8 @@ class Ngram
   def flush_block
     if @line_batch
       @fsentences.puts @line_batch.join(?/)
+      raise "#{@bloom_added.size} items written to bloom" if @bloom_added.size > @bloom.size / 10
+      raise "suspicious bitcount" if @bloom.to_s.to_i(16).to_s(2).count("1") > 4*@bloom_added.size
       @fbloom.write @bloom.to_s # TODO write bytes
     end
   end
@@ -57,6 +59,7 @@ class Ngram
     if @words_in_batch > 200
       flush_block
       @words_in_batch = 0
+      @bloom_added = 0
       @bloom = Bloom.new(16000)
       @line_batch.clear
     end

@@ -22,9 +22,9 @@ module MSequence
       end
     end
     
-    def for_id(seq_id,offset)
-      sql = "SELECT id,UNCOMPRESS(compressed_sentences) sentence FROM `seq_#{source}` WHERE id = ?"
-      find_by_sql([sql, seq_id]).first.sentence.split('/')[offset % 100].force_encoding("UTF-8")
+    def for_id(seq_id)
+      sql = "SELECT id,UNCOMPRESS(compressed_sentences) sentence FROM `seq_#{source}` WHERE id = ? LIMIT 1"
+      find_by_sql([sql, seq_id]).first.sentence.force_encoding("UTF-8").split('/')
     end
   end
 end

@@ -9,16 +9,24 @@ class Bloom
     c
   end
   
+  def Bloom.offsets(item, size)
+    Digest::SHA1.digest(item).unpack("VVVV").map {|x| x % size }
+  end
+  
   def initialize(bitsize)
     @bitfield = Bitset.new(bitsize)
   end
   
+  def offsets(item)
+    Bloom.offsets(item, @bitfield.size)
+  end
+  
   def add(item)
-    Digest::SHA1.digest(item).unpack("VVVV").each { |hi| @bitfield[hi % @bitfield.size] = true }
+    offsets(item).each { |i| @bitfield[i] = true }
   end
   
   def includes?(item)
-    Digest::SHA1.digest(item).unpack("VVVV").all? { |hi| @bitfield[hi % @bitfield.size] }
+    offsets(item).all? { |i| @bitfield[i] }
   end
   
   def to_s
