@@ -1,3 +1,4 @@
+prefix = ARGV[0] || ""
 count = 0
 while x=gets
   count += 1
@@ -12,7 +13,7 @@ while x=gets
     x.split("\n").each do |line|
       line.strip!
       if line.size > 0 and line.count(" ") >= 2 # and line =~ /^[-'A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇ0-9]/
-        puts line
+        print prefix, line, "\n"
       end
     end
   end

@@ -33,7 +33,6 @@ class Ngram
     @ftrigram = File.open("trigram","w")
     @fsentences = File.open("sentences","w")
     @fbloom = File.open("bloom", "w")
-    @bloom_added = 0
     @bloom = Bloom.new(BLOOM_SIZE)
     @words_in_batch = 0
     @line_batch = []
@@ -55,10 +54,9 @@ class Ngram
   end
   
   def seen_line(line, wordcount)
-    if @words_in_batch > 200
+    if @words_in_batch + wordcount > 220
       flush_block
       @words_in_batch = 0
-      @bloom_added = 0
       @bloom = Bloom.new(BLOOM_SIZE)
       @line_batch.clear
     end
@@ -109,7 +107,6 @@ class Ngram
   end
 
   def bloom(obj, kind)
-    @bloom_added += 1
     @bloom.add(obj)
   end
   

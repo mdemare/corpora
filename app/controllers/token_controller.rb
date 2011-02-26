@@ -74,9 +74,33 @@ class TokenController < ApplicationController
   end
 
   def json_examples
-    source = SOURCES[params[:source]]
     w = params[:word]
-    offsets = Bloom.offsets(w, BLOOM_SIZE).sort
+    find_sentences_for_item(w)
+  end
+  
+  private
+  
+  def find_sentences_for_item(phrase)
+    source = SOURCES[params[:source]]
+    words = phrase.split
+    item = if words.size == 1
+      words[0]
+    elsif words.size == 2
+      ts = words.map {|x| x == '*' ? nil : x == '#' ? 0 : token_id_for_word(x) }.compact
+      if ts.size == 1
+        words.delete ?*
+        words.first
+      else
+        bg = source::Bigram.where(distance: 0, token1_id: ts[0], token2_id: ts[1]).first
+        bg and puts "frequency is #{bg.frequency}"
+        "0:" + ts.join(?,)
+      end
+    else
+      ts = words.map {|x| x == '*' ? nil : x == '#' ? 0 : token_id_for_word(x) }
+      raise 'not implemented'
+    end
+    puts "looking for \"#{item}\""
+    offsets = Bloom.offsets(item, BLOOM_SIZE).sort
     sentences = []
     File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |f|
       page = 0
@@ -92,7 +116,15 @@ class TokenController < ApplicationController
         page += 1
       end
     end
-    puts "sentences for #{w}: #{sentences.inspect}"
-    render :json => sentences.map {|x| source::Seq.for_id(x).grep(%r{w}) }
+    puts sentences.inspect
+    # TODO normalize completely (check pipeline)
+    render :json => sentences.map {|x| source::Seq.for_id(x) }.flatten.inspect
+  end
+  
+  def token_id_for_word(x)
+    source = SOURCES[params[:source]]
+    r = source::Token.where(word: x).first
+    r and return r.id
+    raise x
   end
 end
