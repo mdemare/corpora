@@ -36,11 +36,13 @@ class Ngram
     @bloom = Bloom.new(BLOOM_SIZE)
     @words_in_batch = 0
     @line_batch = []
+    @story,@chapter = nil
+    @line_nr = 1
   end
   
   def flush_block
     if @line_batch
-      @fsentences.puts @line_batch.join(?/)
+      @fsentences.print @line_nr, ?|, @story, ?-, @chapter, ?|, @line_batch.join(?/),"\n"
       @fbloom.write @bloom.to_s
     end
   end
@@ -53,9 +55,16 @@ class Ngram
     @ftrigram.close
   end
   
-  def seen_line(line, wordcount)
-    if @words_in_batch + wordcount > 220
+  def seen_line(line, wordcount, story, chapter)
+    @story || = story
+    @chapter || = chapter
+    # TODO new batch if new chapter
+    # TODO write line_nr,story,chapter here
+    # TODO remove nl call in sentence_to_db
+    if @words_in_batch + wordcount > 220 or story != @story or chapter != @chapter
       flush_block
+      @story,@chapter = story,chapter
+      @line_nr += 1
       @words_in_batch = 0
       @bloom = Bloom.new(BLOOM_SIZE)
       @line_batch.clear
@@ -126,8 +135,10 @@ class Ngram
       end
       
       line.chomp!
+      story,chapter,line = line.split(?,3)
+      
       # all that's left in file after clean is this:
-      # 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçß\n .?¿!¡;,()"&$%'\'-
+      # 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßæ\n .?¿!¡;,()"&$%'\'-
       clean_line = line.delete('.?¿!¡;,()"&$%')
       # now all that's left are :alnum:, spaces, dashes and apostrophs.
       
@@ -142,7 +153,7 @@ class Ngram
       next if words.size < 3
 
       # split into 200-word batches, update bloom filter
-      seen_line(line, words.size) 
+      seen_line(line, words.size, story, chapter) 
       tokens = []
       [0,*words,1].each_with_index do |word,index|
         if word == 0

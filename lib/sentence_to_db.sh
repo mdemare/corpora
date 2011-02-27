@@ -16,9 +16,9 @@ echo 'Using language '$LANG'('$LANG'), source '$SOURCE
 if [ $LANG == "fr" ] || [ $LANG == "it" ]
 then
   # TODO still contains single '
-  < $SENTENCES tr -dc ' [:alnum:]\n'\'- | sed 's:'\'':'\'' :g;s:^-::g;s:-$::g;s: -::g;s:- ::g' | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
+  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ [:alnum:]\n'\''-//cd' | sed 's:'\'':'\'' :g;s:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
 else
-  < $SENTENCES tr -dc ' [:alnum:]\n'\'- | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | tr '[:upper:]' '[:lower:]' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
+  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ [:alnum:]\n'\''-//cd' | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
 fi
 
 cd process/$LANG
@@ -48,12 +48,8 @@ rm trigram-chunks-*
 ls utrigram-chunks-* | xargs cat | sed 's/^ *//;s/ *$//' | sort -k 2 | awk 'c && s!=$2{print c,s;c=0} {s=$2;c+=$1} END {print c,s}' | grep -v '^[1-2] ' | sort -nr | tr ' ' ',' > fq-trigram
 rm utrigram-chunks-*
 
-cd process/$LANG
-
-mv sentences s; <s nl -s '|' -nrz > sentences ; rm s
-
-echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,@txt) set compressed_sentences = compress(@txt)'
-echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,@txt) set compressed_sentences = compress(@txt)' | mysql -u root $DATABASE
+echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,source,@txt) set compressed_sentences = compress(@txt)'
+echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,source,@txt) set compressed_sentences = compress(@txt)' | mysql -u root $DATABASE
 echo 'LOAD DATA INFILE "'`pwd`'/fq-tokens" INTO TABLE tokens_'$SOURCE' FIELDS TERMINATED BY " " (id,frequency,word)'
 echo 'LOAD DATA INFILE "'`pwd`'/fq-tokens" INTO TABLE tokens_'$SOURCE' FIELDS TERMINATED BY " " (id,frequency,word)' | mysql -u root $DATABASE
 for i in {0..7}
