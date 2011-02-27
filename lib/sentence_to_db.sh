@@ -10,15 +10,15 @@ DATABASE="corpora_development"
 # SOURCE=$(eval $CMD)
 
 echo "Run with arguments: language-code source input-sentences-filename"
-echo 'Using language '$LANG'('$LANG'), source '$SOURCE
+echo 'Using language '$LANG', source '$SOURCE
 
 # trim, replace dashes, downcase, reject numbers, split, sort | uniq -c, cat, sort | uniq -c, sum count, reject fq <= 1, sort fq desc  
 if [ $LANG == "fr" ] || [ $LANG == "it" ]
 then
-  # TODO still contains single '
-  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ [:alnum:]\n'\''-//cd' | sed 's:'\'':'\'' :g;s:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
+# # TODO still contains single '
+  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßœ\n'\''-//cd' | sed 's:'\'':'\'' :g;s:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
 else
-  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ [:alnum:]\n'\''-//cd' | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
+  < $SENTENCES cut -d, -f 3- | perl -CSD -p -Mutf8 -e 'tr/ 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßœ\n'\''-//cd' | sed 's:^-::g;s:-$::g;s: -::g;s:- ::g' | perl -CSD -n -Mutf8 -e 'print lc' | tr ' ' '\n' | grep -v '[0-9]' | grep -P . | split -l 200000 - process/$LANG/tokens-
 fi
 
 cd process/$LANG

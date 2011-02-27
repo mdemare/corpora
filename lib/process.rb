@@ -41,14 +41,14 @@ class Ngram
   end
   
   def flush_block
-    if @line_batch
-      @fsentences.print @line_nr, ?|, @story, ?-, @chapter, ?|, @line_batch.join(?/),"\n"
-      @fbloom.write @bloom.to_s
-    end
+    @fsentences.puts "#{@line_nr}|#{@story}-#{@chapter}|#{@line_batch.join(?/)}"
+    @fbloom.write @bloom.to_s
   end
   
   def close_resources
-    flush_block
+    if @line_batch
+      flush_block
+    end
     @fsentences.close
     @fbloom.close
     @fbigram.each {|f|f.close}
@@ -56,8 +56,8 @@ class Ngram
   end
   
   def seen_line(line, wordcount, story, chapter)
-    @story || = story
-    @chapter || = chapter
+    @story ||= story
+    @chapter ||= chapter
     # TODO new batch if new chapter
     # TODO write line_nr,story,chapter here
     # TODO remove nl call in sentence_to_db
@@ -135,7 +135,7 @@ class Ngram
       end
       
       line.chomp!
-      story,chapter,line = line.split(?,3)
+      story,chapter,line = line.split(',' , 3)
       
       # all that's left in file after clean is this:
       # 0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßæ\n .?¿!¡;,()"&$%'\'-
@@ -186,7 +186,6 @@ class Ngram
       end
     end
     
-    flush_block
     close_resources
   end
 
