@@ -2,8 +2,10 @@ require 'tempfile'
 require 'net/http'
 require 'fileutils'
 
+STDERR.puts ARGV[0]
+
 if ARGV.size != 2
-  puts "usage: ruby fanfiction.rb story-id-file language"
+  STDERR.puts "usage: ruby fanfiction.rb story-id-file language"
   exit
 end
 
@@ -12,7 +14,7 @@ GITREPOS="/home/mdemare/corpora/raw-data"
 $tf = Tempfile.new("ff")
 $tf.chmod(0644)
 
-$outputfile = File.open("/home/mdemare/corpora/fanfiction-chapters-#{ARGV[1]}.txt",'w')
+$outputfile = File.open("/home/mdemare/corpora/stories/fanfiction-chapters-#{ARGV[1]}.txt",'w')
 
 stories = if ARGV[0] =~ /\d+\.\.\d+/
   s,e = ARGV[0].split("..")
@@ -28,7 +30,7 @@ def save(html, story, chapter)
   begin
     lang = $'[0,50].split('-')[1].strip.downcase
   rescue
-    puts html.inspect
+    STDERR.puts html.inspect
     exit
   end
   html =~ /storytext>/
@@ -62,22 +64,26 @@ stories.each_with_index do |story,j|
     u = "/s/#{story}/#{chapter}"
     begin
       h = http.get(u).body
+      if h =~ /408 Request Timeout/
+        sleep 60
+        next
+      end
     rescue Exception
       begin
         http.close
       rescue Exception
       end
-      puts "network error, resuming in 5 minutes"
+      STDERR.puts "network error, resuming in 5 minutes"
       sleep 300
       http = Net::HTTP.start "www.fanfiction.net"
-      retry
+      next
     end
     if h.empty?
-      puts "story #{story} is blank, skipping"
+      # puts "story #{story} is blank, skipping"
       break
     elsif h =~ /Story Not Found/
       # illegal id
-      puts "story #{story} is illegal, skipping"
+      # puts "story #{story} is illegal, skipping"
       break
     elsif h =~ /chapter navigation/
       # has chapters, save chapter, go to next
@@ -85,17 +91,17 @@ stories.each_with_index do |story,j|
       chapter += 1
     elsif chapter > 1
       # last chapter
-      puts "last chapter found"
+      # puts "last chapter found"
       chapter = 1
       break
     elsif h =~ /Message Type 1/
       # illegal id
-      puts "story #{story} is illegal, skipping"
+      # puts "story #{story} is illegal, skipping"
       chapter = 1
       break
     else
       # single chapter, save chapter, next story
-      puts "single chapter story"
+      # puts "single chapter story"
       save(h,story,chapter)
       break
     end
