@@ -41,8 +41,8 @@ class TokenController < ApplicationController
   end
   
   def json_token
-    w = params[:id]
-    return render(:json => {"token" => {"frequency" => 0,"id" => 0,"occurrence_statistics" => "","word" => "#"}}) if w.to_i.zero?
+    w = params[:word]
+    # return render(:json => {"token" => {"frequency" => 0,"id" => 0,"occurrence_statistics" => "","word" => "#"}}) if w.to_i.zero?
     source = SOURCES[params[:source]]
     token = source::Token.where(word: w).first
     render :json => token

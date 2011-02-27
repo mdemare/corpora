@@ -1,2 +1,2 @@
 # remove empty lines, convert unicode quotes, whitelist utf8 chars, trim
-grep -P '\S' | sed 'y:’«»‹›“”„‘‚‒–—―⁓:'\''"""""""""-----:' | sed 's:…:...:g;s:,,:":g' | perl -CSD -p -Mutf8 -e 'tr/0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßœ\n.?¿!¡;,()"&$%'\''-/ /cs' | sed 's/^ *//;s/ *$//'
+grep -P '\S' | sed 'y:’«»‹›“”„‘‚‒–—―⁓:'\''"""""""""-----:;s:…:...:g;s:,,:":g' | perl -CSD -p -Mutf8 -e 'tr/0-9A-ZÁÉÍÓÚÀÈÌÒÙÄËÏÖÜÂÊÎÔÛÇa-zäëïöüáéíóúàèìòùâèìòùñçßœ\n.?¿!¡;,()"&$%'\''-/ /cs' | sed 's/^ *//;s/ *$//'

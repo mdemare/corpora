@@ -52,6 +52,7 @@ module MMigration
       # max 16M rows with 200 words each.
       create_table "seq_#{source}".to_sym, :options => "ENGINE=MyISAM", :id => false do |t|
         t.column :id, "mediumint unsigned", :null => false
+        t.string :source, :null => false
         t.binary :compressed_sentences, :null => false
       end
       add_index "seq_#{source}".to_sym, [:id], :unique => true
