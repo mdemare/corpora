@@ -1,7 +1,7 @@
 #encoding: utf-8
 #call with: chapters sentences-out
 #select c.story,c.chapter,c.githash into outfile "/tmp/f" FIELDS TERMINATED BY ',' from fanfiction_chapters c,fanfiction_stories s where s.id=c.story and s.language='nl';
-texts = File.read(ARGV[0]).split("\n").map {|x| x.split ?, }
+texts = File.read(ARGV[0]).split("\n").map {|x| x.split ?; }
 
 GITREPOS="/home/mdemare/corpora/raw-data"
 

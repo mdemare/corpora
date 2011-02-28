@@ -19,7 +19,7 @@ if ARGV.size != 2
 end
 
 GITREPOS="/home/mdemare/corpora/raw-data"
-$outputfile = File.open("/home/mdemare/corpora/stories/fanfiction-chapters-#{ARGV[1]}.txt",'w')
+$outputfile = File.open("/home/mdemare/corpora/ff-chapters-#{ARGV[1]}",'w')
 
 $j = 0
 
