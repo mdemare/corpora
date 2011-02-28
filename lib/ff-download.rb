@@ -25,18 +25,14 @@ $j = 0
 
 def save(html, story, chapter)
   $j += 1
-  html =~ /<div id=storytext class=storytext>/
-  body = $'
-  body =~ /<a class='positive' onClick='select_drop."review".;' href='#'>Review this/
-  body = $`
   st = story.to_s.rjust(7,'0')
   dir = "/home/mdemare/corpora/ingredients/fanfiction/#{ARGV[1]}/#{st[0,3]}"
   FileUtils.mkdir_p(dir)
   fname = File.join(dir, "#{story.to_s.rjust(7,'0')}-#{chapter}")
   File.open(fname, "w") {|f| f.write(html) }
   git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{fname}"
-  IO.popen(git_cmd) do |output|
-    $outputfile.puts [story,chapter,output.gets.chomp].join(?;)
+  IO.popen(git_cmd) do |io|
+    $outputfile.puts [story,chapter,io.gets.chomp].join(?;)
   end
 end
 
