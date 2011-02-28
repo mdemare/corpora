@@ -21,18 +21,22 @@ end
 GITREPOS="/home/mdemare/corpora/raw-data"
 $outputfile = File.open("/home/mdemare/corpora/stories/fanfiction-chapters-#{ARGV[1]}.txt",'w')
 
+$j = 0
+
 def save(html, story, chapter)
-  html =~ /storytext>/
-  html = $'
-  html =~ /Review this/
+  $j += 1
+  html =~ /<div id=storytext class=storytext>/
+  body = $'
+  body =~ /<a class='positive' onClick='select_drop."review".;' href='#'>Review this/
+  body = $`
   st = story.to_s.rjust(7,'0')
   dir = "/home/mdemare/corpora/ingredients/fanfiction/#{ARGV[1]}/#{st[0,3]}"
-  FileUtils.mkdir("/home/mdemare/corpora/ingredients/fanfiction/#{ARGV[1]}/#{st[0,3]}")
-  File.open(File.join(dir, "#{story.to_s.rjust(7,'0')}-#{chapter}"), "w") do |f|
-    git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{f.path}"
-    IO.popen(git_cmd) do |output|
-      $outputfile.puts [story,chapter,output.gets.chomp].join(?;)
-    end
+  FileUtils.mkdir_p(dir)
+  fname = File.join(dir, "#{story.to_s.rjust(7,'0')}-#{chapter}")
+  File.open(fname, "w") {|f| f.write(html) }
+  git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{fname}"
+  IO.popen(git_cmd) do |output|
+    $outputfile.puts [story,chapter,output.gets.chomp].join(?;)
   end
 end
 
@@ -40,14 +44,13 @@ stories = File.read(ARGV[0]).split("\n")
 
 start = Time.now
 jstart = 0
-http = Net::HTTP.start "www.fanfiction.net"
-stories.each_with_index do |story,j|
+stories.each_with_index do |story,i|
   if Time.now-start > 60
     start = Time.now
-    speed = j-jstart
-    remaining = stories.size - j
-    STDERR.puts "speed: #{speed} per minute, remaining time: #{remaining/speed} minutes"
-    jstart = j
+    speed = $j-jstart
+    remaining = stories.size - i
+    STDERR.puts "speed: #{speed} chapters per minute, remaining stories #{remaining}"
+    jstart = $j
   end
   
   chapter = 1
