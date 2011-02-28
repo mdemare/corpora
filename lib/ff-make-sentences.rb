@@ -19,8 +19,13 @@ File.open("/home/mdemare/corpora/nl-sentences", "w") do |f|
     body.gsub! %r:<[/]?[bBiIuU]?>: , ''
     body.gsub! %r:<[^>]*>: , ''
     IO.popen("~/proj/corpora/lib/cleanup | ~/proj/corpora/lib/groom '#{story},#{chapter},'") do |io|
+      puts "Story(#{story},#{chapter}). Writing html(#{body.size}) to pipe"
       io.write(body)
-      f.write(io.read)
+      puts "done"
+      
+      input = io.read
+      puts "writing output from pipe(#{input.size}) to file"
+      f.write(input)
     end
   end
 end
