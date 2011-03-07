@@ -1,7 +1,7 @@
 #encoding: utf-8
 #call with: lang sentences-out
 #select c.story,c.chapter,c.githash into outfile "/home/mysql/#{ARGV[0]}-chapters" FIELDS TERMINATED BY ',' from fanfiction_chapters c,fanfiction_stories s where s.id=c.story and s.language='nl';
-texts = File.read("/home/mysql/#{ARGV[0]}-chapters").split("\n").map {|x| x.split ?; }
+texts = File.read("/home/mysql/ff-chapters-#{ARGV[0]}").split("\n").map {|x| x.split ?; }
 
 GITREPOS="/home/mdemare/corpora/raw-data"
 
@@ -18,13 +18,11 @@ File.open("/home/mdemare/corpora/nl-sentences", "w") do |f|
     body.gsub! %r:<[bB][rR]>: , ' '
     body.gsub! %r:<[/]?[bBiIuU]?>: , ''
     body.gsub! %r:<[^>]*>: , ''
-    IO.popen("~/proj/corpora/lib/cleanup | ~/proj/corpora/lib/groom '#{story},#{chapter},'") do |io|
-      puts "Story(#{story},#{chapter}). Writing html(#{body.size}) to pipe"
+    IO.popen("~/proj/corpora/lib/cleanup | ~/proj/corpora/lib/groom '#{story},#{chapter},'", "r+") do |io|
       io.write(body)
-      puts "done"
+      io.close_write
       
       input = io.read
-      puts "writing output from pipe(#{input.size}) to file"
       f.write(input)
     end
   end
