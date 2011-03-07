@@ -5,7 +5,7 @@ texts = File.read("/home/mysql/ff-chapters-#{ARGV[0]}").split("\n").map {|x| x.s
 
 GITREPOS="/home/mdemare/corpora/raw-data"
 
-File.open("/home/mdemare/corpora/nl-sentences", "w") do |f|
+File.open("/home/mdemare/corpora/process/#{ARGV[1]}/sentences", "w") do |f|
   texts.each do |story,chapter,githash|
     html = %x@ git --git-dir #{GITREPOS} cat-file blob #{githash} @
     html =~ /<div id=storytext class=storytext>/

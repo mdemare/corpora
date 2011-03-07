@@ -111,14 +111,15 @@ class TokenController < ApplicationController
           # puts "seek page(#{page+1}), bit(#{i}), found byte(#{c.getbyte(0)}), value(#{c.getbyte(0) & (1 << (i % 8))})"
           c.getbyte(0) & (1 << (i % 8)) != 0
         end
-        sentences << (page+1) if r
+        if r
+          source::Seq.for_id(page+1).grep(/#{phrase}/i).each {|s| sentences << s }
+        end
         break if sentences.size == 10
         page += 1
       end
     end
-    puts sentences.inspect
     # TODO normalize completely (check pipeline)
-    render :json => sentences.map {|x| source::Seq.for_id(x) }.flatten.inspect
+    render :json => sentences.inspect + "\n"
   end
   
   def token_id_for_word(x)
