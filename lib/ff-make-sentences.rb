@@ -1,7 +1,7 @@
 #encoding: utf-8
 #call with: lang
 #select c.story,c.chapter,c.githash into outfile "/home/mysql/ff-chapters-#{ARGV[0]}" FIELDS TERMINATED BY ',' from fanfiction_chapters c,fanfiction_stories s where s.id=c.story and s.language='#{ARGV[0]}';
-texts = File.read("/home/mysql/ff-chapters-#{ARGV[0]}").split("\n").map {|x| x.split ?; }
+texts = File.read("/home/mysql/ff-chapters-#{ARGV[0]}").split("\n").map {|x| x.split ?, }
 
 GITREPOS="/home/mdemare/corpora/raw-data"
 
