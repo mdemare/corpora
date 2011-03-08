@@ -12,6 +12,10 @@ File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
     body = $'
     body =~ %r{</div><div style='height:10px'></div>}
     body = $`
+    unless body
+      STDERR.puts "no match found for #{githash}"
+      next
+    end
     body.tr! "`" , "'"
     body.gsub! %r:</[pP]>: , ''
     body.gsub! %r:<[pP][^>]*>: , ' '
