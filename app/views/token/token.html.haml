@@ -1,3 +1,20 @@
 %h1== "#{@token.word}"
 %div(style="float: left") Frequency
 %div(style="clear: none; margin-left: 150px; width: 300px")= @token.frequency
+%p== It is probably #{@noun ? "" : "not "}a noun.
+%p== It is probably #{@verb ? "" : "not "}a verb.
+%p== It is probably #{@adjective ? "" : "not "}an adjective.
+%p== It is probably #{@name ? "" : "not "}a name.
+
+%ul
+  - @bigram_prec.each do |w,f|
+    %li= link_to "#{f}: #{w || '#'} #{@token.word}", examples_url(phrase: "#{w || '#'} #{@token.word}")
+    
+%ul
+  - @bigram_succ.each do |w,f|
+    %li= link_to "#{f}: #{@token.word} #{w || '#'}", examples_url(phrase: "#{@token.word} #{w || '#'}")
+    
+%ul
+  - @g3_1.each do |w, f|
+    %li= link_to "#{f}: #{@token.word} #{w}", examples_url(phrase: "#{@token.word} #{w}")
+    

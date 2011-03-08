@@ -1,0 +1,16 @@
+- params[:phrase].split.each do |word|
+  = link_to word, token_url(id: word, source: params[:source]) unless word == '#'
+
+- if @sentences.empty?
+  %div= "No examples found"
+%pre
+  &nbsp;
+  - @sentences.uniq.each do |sentence|
+    - pos = sentence =~ %r(#{params[:phrase]})i
+    - pos ||= 50
+    - if pos > 50
+      - short_sentence = sentence[pos-50 .. -1]
+      - pos = 50
+    - else
+      - short_sentence = sentence
+    %span(title=sentence)~ short_sentence.rjust(50 + short_sentence.size - pos, " ")[0,150]
