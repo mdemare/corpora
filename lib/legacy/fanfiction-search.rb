@@ -59,13 +59,13 @@ skipping = true
 %w(anime book cartoon comic game misc movie play tv).map do |genre|
   get_html("http://www.fanfiction.net/#{genre}/").scan(/href="\/(#{genre})\/([^"]+)\/"/)
 end.flatten(1).each do |medium,title|
-  if skipping
-    if medium == "movie" && title == "Zoom"
-      skipping = false
-    end
-  else
-    STDERR.puts "#{medium} - #{title.inspect}"
-    u = "http://www.fanfiction.net/#{medium}/#{title}/10/0/0/2/1/0/0/0/0/%d/"
-    handle_work(medium,title,u)
-  end
+  # if skipping
+  #   if medium == "movie" && title == "Zoom"
+  #     skipping = false
+  #   end
+  #   next
+  # end
+  STDERR.puts "#{medium} - #{title.inspect}"
+  u = "http://www.fanfiction.net/#{medium}/#{title}/10/0/0/2/1/0/0/0/0/%d/"
+  handle_work(medium,title,u)
 end
