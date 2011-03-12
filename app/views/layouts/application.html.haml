@@ -10,5 +10,13 @@
     = csrf_meta_tag
 
   %body
+    #header
+      %ul.sources
+        - %w(de en es fr it nl).each do |l|
+          %li.source= link_to l, token_url(source: l)
     .container(style="margin-left: 1em;")
+      %h2 Search words
+      %form{action: token_url(source: params[:source]), method: "GET"}
+        %input(type="text" name="id")
+        %input(type="submit" value="search")
       = yield

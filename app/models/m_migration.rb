@@ -7,7 +7,7 @@ module MMigration
       # has_many occurrences, therefore, needs (short) id.
       create_table("tokens_#{source}".to_sym, :options => "ENGINE=MyISAM", :id => false) do |t|
         t.column :id, "mediumint unsigned", :null => false
-        t.string :word
+        t.string :word, :null => false
         t.column :frequency, "integer unsigned", :null => false
         t.binary :occurrence_statistics, :null => false
       end

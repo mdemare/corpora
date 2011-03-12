@@ -34,6 +34,7 @@ do
   rm bigram-$i-chunks-*
   ls ubigram-$i-chunks-* | xargs cat | sed 's/^ *//;s/ *$//' | sort -k 2 | awk 'c && s!=$2{print c,s;c=0} {s=$2;c+=$1} END {print c,s}' | grep -v '^[1-2] ' | sort -nr | tr ' ' ',' > fq-bigram-$i
   rm ubigram-$i-chunks-*
+  rm bigram-$i
 done
 
 split -l 200000 trigram trigram-chunks-
@@ -42,6 +43,7 @@ ls trigram-chunks-* | xargs -I xxx uniq -c xxx uxxx
 rm trigram-chunks-*
 ls utrigram-chunks-* | xargs cat | sed 's/^ *//;s/ *$//' | sort -k 2 | awk 'c && s!=$2{print c,s;c=0} {s=$2;c+=$1} END {print c,s}' | grep -v '^[1-2] ' | sort -nr | tr ' ' ',' > fq-trigram
 rm utrigram-chunks-*
+rm trigrams
 
 echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,source,@txt) set compressed_sentences = compress(@txt)'
 echo 'LOAD DATA INFILE "'`pwd`'/sentences" INTO TABLE seq_'$SOURCE' FIELDS TERMINATED BY "|" (id,source,@txt) set compressed_sentences = compress(@txt)' | mysql -u root $DATABASE

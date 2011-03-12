@@ -1,10 +1,16 @@
 %h1== "#{@token.word}"
 %div(style="float: left") Frequency
 %div(style="clear: none; margin-left: 150px; width: 300px")= @token.frequency
-%p== It is probably #{@noun ? "" : "not "}a noun.
-%p== It is probably #{@verb ? "" : "not "}a verb.
-%p== It is probably #{@adjective ? "" : "not "}an adjective.
-%p== It is probably #{@name ? "" : "not "}a name.
+    
+%h3== Common words immediately to the left of #{@token.word}
+%ul
+  - @common_dist_0.each do |kind,(f,w)|
+    %li= "#{kind}#{sprintf("(%.3f)",f)} - most popular: #{w}"
+
+%h3== Common words two words to the left of #{@token.word}
+%ul
+  - @common_dist_1.each do |kind,(f,w)|
+    %li= "#{kind}#{sprintf("(%.3f)",f)} - most popular: #{w}"
 
 %ul
   - @bigram_prec.each do |w,f|
@@ -16,5 +22,9 @@
     
 %ul
   - @g3_1.each do |w, f|
-    %li= link_to "#{f}: #{@token.word} #{w}", examples_url(phrase: "#{@token.word} #{w}")
+    %li= link_to "#{f}: #{w}", examples_url(phrase: w)
+  - @g3_2.each do |w, f|
+    %li= link_to "#{f}: #{w}", examples_url(phrase: w)
+  - @g3_3.each do |w, f|
+    %li= link_to "#{f}: #{w}", examples_url(phrase: w)
     

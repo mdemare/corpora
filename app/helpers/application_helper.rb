@@ -15,4 +15,23 @@ module ApplicationHelper
       "It is extremely likely to be #{kind}."
     end
   end
+  
+  def regexp_for_phrase(phrase)
+    words = phrase.split
+    ends_with_period = false
+    pieces = words.map.with_index do |w,i|
+      case w
+      when "#"
+        ends_with_period = true if i > 0
+        nil
+      when "*"
+        "\\w+"
+      else
+        w
+      end
+    end
+    r = pieces.compact.join("\\W+") + (ends_with_period ? "[.]" : "")
+    puts r
+    %r(#{r})i
+  end
 end

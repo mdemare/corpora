@@ -5,12 +5,13 @@
   %div= "No examples found"
 %pre
   &nbsp;
-  - @sentences.uniq.each do |sentence|
-    - pos = sentence =~ %r(#{params[:phrase]})i
+  - @sentences.uniq.each do |url,sentence|
+    - pos = sentence =~ regexp_for_phrase(params[:phrase])
     - pos ||= 50
     - if pos > 50
       - short_sentence = sentence[pos-50 .. -1]
       - pos = 50
     - else
       - short_sentence = sentence
-    %span(title=sentence)~ short_sentence.rjust(50 + short_sentence.size - pos, " ")[0,150]
+    %br></
+    %span(title=sentence)>= link_to("source",url) + "  " + link_to("inspect",inspect_url(source: params[:source], phrase: sentence)) + "     " + short_sentence.rjust(50 + short_sentence.size - pos, " ")[0,100]

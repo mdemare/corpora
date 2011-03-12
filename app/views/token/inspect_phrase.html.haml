@@ -1,0 +1,14 @@
+%br/
+%h3= params[:phrase]
+%table.inspect
+  %col(width=150)
+  %col(width=150)
+  %col(width=300)
+  - @data.each do |w,b,t|
+    %tr
+      %td= link_to_token(w)
+      %td= link_to_example(b)
+      %td= link_to_example(t)
+
+/# phrase to url param (reliable downcase, conversion start-end to #)
+/# phrase to bi/trigram (reliable downcase, conversion start-end to #)

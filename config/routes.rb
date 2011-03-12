@@ -1,5 +1,6 @@
 Corpora::Application.routes.draw do
   match 'lex/:source/examples/:phrase', controller: 'token', action: 'examples', as: 'examples'
+  match 'lex/:source/inspect', controller: 'token', action: 'inspect_phrase', as: 'inspect'
   match 'lex/:source/3gram-search/:q', controller: 'threegram', action: 'search', as: 'g3search'
   match 'lex/:source/json/token/:word', controller: 'token', action: 'json_token'
   match 'lex/:source/json/bigram/:distance', controller: 'token', action: 'json_bigram'

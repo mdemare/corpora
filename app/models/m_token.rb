@@ -2,6 +2,7 @@
 # for i in {1..6}; do echo $'module S0'$i$'\n  class Bigram < Base\n    include MBigram\n  end\nend\n' > s0$i/bigram.rb; done
 # for i in {1..6}; do echo $'module S0'$i$'\n  class Trigram < Base\n    include MTrigram\n  end\nend\n' > s0$i/trigram.rb; done
 
+$token_cache = {}
 
 module MToken
   module ClassMethods; end
@@ -12,116 +13,43 @@ module MToken
       set_table_name "tokens_#{source}"
     end
   end
-   
-  module ClassMethods  # two grams
-  def words
-    [word, word_for(wtoken1_id), word_for(wtoken2_id)].compact
+  
+  def adjacent_words(kind, position = :preceding, dist = 0)
+    token_hash = adjacent_tokens(kind) or raise
+  
+    # where both are part of 2-gram
+    column1 = position == :preceding ? :token2_id : :token1_id
+    column2 = position != :preceding ? :token2_id : :token1_id
+    g2s = self.g2_class.where(column1 => self.id, column2 => token_hash.map(&:first), :distance => dist).all
+    p_kind_token = g2s.inject(0.0) {|sum,x|sum+x.frequency} / self.frequency
+    if g2s.empty?
+      return nil
+    end
+    
+    most_common_of_kind = g2s.map do |g2|
+      raise unless g2
+      gid = g2.send(column2)
+      th = token_hash[gid] or raise gid 
+      [g2.frequency / th[1].to_f, th[0]]
+    end.sort_by(&:first).last[1]
+    raise unless p_kind_token
+    raise unless most_common_of_kind
+    [p_kind_token, most_common_of_kind]
+  end
+  
+  def adjacent_tokens(kind)
+    ia = ($token_cache[source] ||= {})[kind] and return ia
+  
+    # word tokens for kind
+    token_hash = self.class.where(word: self.class.send(kind)).each_with_object({}) {|x,h| h[x.id] = [x.word,x.frequency] }
+    $token_cache[source][kind] = token_hash
   end
   
   def word
     w = attributes["word"]
     w ? w.force_encoding("utf-8") : nil
   end
-  
-  def word_for(wt)
-    # Apfel: 250 calls
-    return nil
-    wt > 0 ? self.class.find(wt).word : nil
-  end
-  
-  def twograms
-    list,wt1map,wt2map = (($twograms ||= {})[source] ||= [])
-    unless list
-      sql = "select wtoken1_id,wtoken2_id,frequency from `tokens_#{source}`"
-      list,idmap,wt1map,wt2map = [],{},{},{}
-      self.class.find_by_sql(sql).each do |t|
-        (wt1map[t.wtoken1_id] ||= []) << list.size
-        (wt2map[t.wtoken2_id] ||= []) << list.size
-        list << [t.wtoken1_id,t.wtoken2_id,t.frequency]
-      end
-      $twograms[source] = [list,wt1map,wt2map]
-    end
-    [(wt1map[id] || []).map{|x| [list[x][1], list[x][2]] },(wt2map[id] || []).map{|x| [list[x][0], list[x][2]] } ]
-  end
-  
-  def upper_expected_ratio
-    fq = frequency_special
-    upper = fq >> 4
-    title = fq & 15
-    expected = 15 - title - upper
-    upper.to_f / 15
-  end
-  
-  def title_expected_ratio
-    fq = frequency_special
-    upper = fq >> 4
-    title = fq & 15
-    expected = 15 - title - upper
-    title.to_f / 15
+   
+  module ClassMethods
   end
 end
-
-
-  def adjacent_words(token, kind, position)
-    list, token_list = adjacent_tokens(kind, position)
-    args = [list,[token.id],nil]
-    args.reverse! if position == :following
-    
-    g3_sum = token.g3_class.tokens(*args).inject(0) {|sum,x| sum+x.frequency}
-    
-    # where both are part of 2-gram
-    column1 = position == :preceding ? :wtoken2_id : :wtoken1_id
-    column2 = position != :preceding ? :wtoken2_id : :wtoken1_id
-    where(column1 => token.id, column2 => token_list).inject(g3_sum) {|sum,x|sum+x.frequency}
-  end
-
-  # e.g. pronouns, preceding:
-  # ich /token/
-  # du /token/
-  # but also
-  # <*, ich> /token/
-  # and
-  # <ich /token/>
-  def adjacent_tokens(kind, position)
-    ia = (($token_cache ||= {})[kind] ||= {})
-    r = ia[position] and return r
-    
-    # word tokens for kind
-    token_list = where(word: send(kind)).map(&:id)
-    
-    column = position == :preceding ? :wtoken2_id : :wtoken1_id
-    # when word in list is part of 2-gram
-    rvalue = token_list + where(column => token_list).map(&:id)
-    
-    ia[position] = [rvalue,token_list]
-  end
-end
-
-
-# puts "upper: #{(fqall >> 4)}"
-# puts "capitalized: #{(fqall & 15)}"
-# puts "expected: #{15 - (fqall & 15) - (fqall >> 4)}"
-
-
-=begin
-B1 = 4
-B2 = (1 << B1) - 1
-BTOT = (2 << 8) - 1
-def est(x) a = x >> B1;a == 0 ? x & B2 : ((x & B2)+16) * 2**(a-1);end
-def inc(x)
-  return x if x == BTOT
-  a = x >> B1
-  
-  if a < 2 or rand(2**(a-1)) == 0
-    if x & B2 == B2
-      (a + 1) << B1
-    else
-      x + 1
-    end 
-  else
-    x
-  end
-end
-(1..10).map{x=0;(0..999).map{x=inc(x)};x}.sort
-x=[0,0,0];while x[2]<64;inc(x);end;x[2];a,b,c = *x;puts "real: #{c}","estimated: #{a == 0 ? b : (b+16) * 2**(a-1)}"
-=end
