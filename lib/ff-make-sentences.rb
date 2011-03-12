@@ -6,6 +6,7 @@ texts = File.read("/home/mysql/ff-chapters-#{ARGV[0]}").split("\n").map {|x| x.s
 GITREPOS="/home/mdemare/corpora/raw-data"
 
 File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
+File.open("/home/mdemare/corpora/raw-#{ARGV[0]}-sentences", "w") do |rf|
   texts.each do |story,chapter,githash|
     html = %x@ git --git-dir #{GITREPOS} cat-file blob #{githash} @
     html =~ /<div id=storytext class=storytext>/
@@ -22,6 +23,7 @@ File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
     body.gsub! %r:<[bB][rR]>: , ' '
     body.gsub! %r:<[/]?[bBiIuU]?>: , ''
     body.gsub! %r:<[^>]*>: , ''
+    rf.puts(body)
     IO.popen("~/proj/corpora/lib/cleanup | ~/proj/corpora/lib/groom '#{story},#{chapter},'", "r+") do |io|
       io.write(body)
       io.close_write
@@ -30,4 +32,5 @@ File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
       f.write(input)
     end
   end
+end
 end
