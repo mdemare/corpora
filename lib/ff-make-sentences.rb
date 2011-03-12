@@ -17,7 +17,7 @@ File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
       next
     end
     body.tr! "`" , "'"
-    body.gsub! %r:</[pP]>: , ''
+    body.gsub! %r:</[pP]>: , '.'
     body.gsub! %r:<[pP][^>]*>: , ' '
     body.gsub! %r:<[bB][rR]>: , ' '
     body.gsub! %r:<[/]?[bBiIuU]?>: , ''
