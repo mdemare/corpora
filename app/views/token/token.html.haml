@@ -1,16 +1,20 @@
 %h1== "#{@token.word}"
 %div(style="float: left") Frequency
 %div(style="clear: none; margin-left: 150px; width: 300px")= @token.frequency
+%div(style="float: left") Ranking
+%div(style="clear: none; margin-left: 150px; width: 300px")= @token.id
     
-%h3== Common words immediately to the left of #{@token.word}
-%ul
-  - @common_dist_0.each do |kind,(f,w)|
-    %li= "#{kind}#{sprintf("(%.3f)",f)} - most popular: #{w}"
+- unless @common_dist_0.empty?
+  %h3== Common words immediately to the left of #{@token.word}
+  %ul
+    - @common_dist_0.each do |kind,(f,w)|
+      %li= "#{kind}#{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
 
-%h3== Common words two words to the left of #{@token.word}
-%ul
-  - @common_dist_1.each do |kind,(f,w)|
-    %li= "#{kind}#{sprintf("(%.3f)",f)} - most popular: #{w}"
+- unless @common_dist_1.empty?
+  %h3== Common words two words to the left of #{@token.word}
+  %ul
+    - @common_dist_1.each do |kind,(f,w)|
+      %li= "#{kind}#{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
 
 %ul
   - @bigram_prec.each do |w,f|

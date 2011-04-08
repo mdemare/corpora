@@ -11,12 +11,13 @@
 
   %body
     = link_to image_tag("parrot_small.png", :style => "position: absolute"), "/"
+    %style #tabs a:hover {text-decoration: none;}
     #tabs
       %h1{:style => "left: 70px; top: 0; position: absolute; "}
         = image_tag "/images/logos/inglua2.gif"
       - %w(de en es fr it nl).each do |l|
         = link_to l, token_url(source: l)
-      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right"}
+      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right; right: 10px"}
         %input(type="text" name="id" placeholder="Search")
-    .container(style="margin-left: 1em;")
+    .container(style="margin: 1em 0 0 1em;")
       = yield
