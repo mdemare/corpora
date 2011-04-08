@@ -55,10 +55,16 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
     @g3_3 = g3_3.map {|b| ["#{hwords[b.token1_id] || '#'} #{hwords[b.token2_id] || '#'} #{w}", b.frequency] }
     
     @common_dist_0 = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind) and hash[kind] = x
+      x = @token.adjacent_words(kind) and hash[kind.tr("_"," ")] = x
     end
     @common_dist_1 = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind, :preceding, 1) and hash[kind] = x
+      x = @token.adjacent_words(kind, :preceding, 1) and hash[kind.tr("_"," ")] = x
+    end
+    @common_dist_0_follow = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
+      x = @token.adjacent_words(kind, :following) and hash[kind.tr("_"," ")] = x
+    end
+    @common_dist_1_follow = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
+      x = @token.adjacent_words(kind, :following, 1) and hash[kind.tr("_"," ")] = x
     end
   end
   

@@ -4,19 +4,23 @@ module S02
     include MToken
   
     def self.definite_articles
-      %w(le la l' les)
+      %w(the)
     end
   
     def self.indefinite_articles
-      %w(un une du des)
+      %w(a an)
     end
   
     def self.nominative_pronouns
-      %w(je j' tu il elle nous vous ils elles)
+      %w(i you he she it we they)
     end
   
     def self.prepositions
-      %w(sur jusqu'à' pour contre hinter à en dans avec après sans par de entre)
+      %w(about above across after against along among around at before behind below beneath beside between beyond by despite down during except for from in inside into like minus near of off on onto opposite outside over past per plus regarding round since than through to toward under underneath unlike until up upon versus via with within without)
+    end
+  
+    def self.negations
+      %w(not)
     end
   end
 end

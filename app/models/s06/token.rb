@@ -18,5 +18,9 @@ module S06
     def self.prepositions
       %w(aan achter behalve beneden bij binnen boven buiten circa contra dankzij door gedurende in langs met middels na naar naast nabij namens om omstreeks omtrent ondanks onder op over per rond rondom sedert sinds te tegen tegenover ten ter tijdens tot tussen uit van vanaf vanuit vanwege versus via volgens voor voorbij wegens zonder)
     end
+
+    def self.negations
+      %w(niet)
+    end
   end
 end

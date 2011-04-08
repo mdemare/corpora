@@ -18,5 +18,9 @@ module S05
     def self.prepositions
       %w(a accanto ad adosso appo assieme attorno attraverso avanti collo contra contro da dal dalli davanti dentro di dietro dopo durante eccetto entro extra fino fra fuori in innanzi insieme insino intorno invece malgrado meco mediante oltra oltre per più presso pro rasente salvo seco secondo senz' senza sino sopra sott' sotto sovra stante su teco tolto tra tramite tranne verso versus)
     end
+
+    def self.negations
+      %w(non)
+    end
   end
 end

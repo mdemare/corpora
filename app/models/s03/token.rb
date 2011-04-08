@@ -18,5 +18,9 @@ module S03
     def self.prepositions
       %w(a al bajo como con contra de del desde durante en entre hacia hasta para por según sin sobre tras)
     end
+  
+    def self.negations
+      %w(no)
+    end
   end
 end

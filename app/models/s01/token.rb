@@ -18,5 +18,9 @@ module S01
     def self.prepositions
       %w(an auf aus außer bei bis durch entlang für gegen hinter in mit nach neben ohne seit trotz unter über um von vor während wegen zu zwischen)
     end
+
+    def self.negations
+      %w(nicht)
+    end
   end
 end
