@@ -16,19 +16,22 @@
     - @common_dist_1.each do |kind,(f,w)|
       %li= "#{kind} #{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
 
-%ul
+%h3== n-grams
+
+%ul(style="float: left")
   - @bigram_prec.each do |w,f|
-    %li= link_to "#{f}: #{w || '#'} #{@token.word}", examples_url(phrase: "#{w || '#'} #{@token.word}")
-    
-%ul
+    %li= link_to "#{f}: #{w || '#'} #{@token.word}", examples_url(phrase: "#{w || '#'} #{@token.word}")    
+%ul(style="float: left")
   - @bigram_succ.each do |w,f|
     %li= link_to "#{f}: #{@token.word} #{w || '#'}", examples_url(phrase: "#{@token.word} #{w || '#'}")
     
-%ul
+%ul(style="float: left")
   - @g3_1.each do |w, f|
     %li= link_to "#{f}: #{w}", examples_url(phrase: w)
+%ul(style="float: left")
   - @g3_2.each do |w, f|
     %li= link_to "#{f}: #{w}", examples_url(phrase: w)
+%ul(style="float: left")
   - @g3_3.each do |w, f|
     %li= link_to "#{f}: #{w}", examples_url(phrase: w)
     
