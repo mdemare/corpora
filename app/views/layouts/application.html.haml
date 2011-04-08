@@ -16,9 +16,7 @@
         = image_tag "/images/logos/inglua2.gif"
       - %w(de en es fr it nl).each do |l|
         = link_to l, token_url(source: l)
+      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right"}
+        %input(type="text" name="id" placeholder="Search")
     .container(style="margin-left: 1em;")
-      %h2 Search words
-      %form{action: token_url(source: params[:source]), method: "GET"}
-        %input(type="text" name="id")
-        %input(type="submit" value="search")
       = yield
