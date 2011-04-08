@@ -17,7 +17,8 @@
         = image_tag "/images/logos/inglua2.gif"
       - %w(de en es fr it nl).each do |l|
         = link_to l, token_url(source: l)
-      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right; right: 10px"}
+      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right; margin-right: 10px"}
         %input(type="text" name="id" placeholder="Search")
-    .container(style="margin: 1em 0 0 1em;")
+    .container(style="margin: 1em 0 5em 1em;")
       = yield
+    #footer(style="height: 20px; background-color: #C2ECFC")
