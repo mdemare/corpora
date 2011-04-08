@@ -13,7 +13,7 @@ File.open("/home/mdemare/corpora/#{ARGV[0]}-sentences", "w") do |f|
     body =~ %r{</div><div style='height:10px'></div>}
     body = $`
     unless body
-      STDERR.puts "no match found for #{githash}"
+      STDERR.puts "no match found for #{githash} in story #{story} chapter #{chapter}"
       next
     end
     body.tr! "`" , "'"

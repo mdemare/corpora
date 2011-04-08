@@ -28,11 +28,11 @@ def save(html, story, chapter)
   st = story.to_s.rjust(7,'0')
   dir = "/home/mdemare/corpora/ingredients/fanfiction/#{ARGV[1]}/#{st[0,3]}"
   FileUtils.mkdir_p(dir)
-  fname = File.join(dir, "#{story.to_s.rjust(7,'0')}-#{chapter}")
+  fname = File.join(dir, "#{st}-#{chapter}")
   File.open(fname, "w") {|f| f.write(html) }
   git_cmd = "git --git-dir #{GITREPOS} hash-object -w #{fname}"
   IO.popen(git_cmd) do |io|
-    $outputfile.puts [story,chapter,io.gets.chomp].join(?;)
+    $outputfile.puts [story,chapter,io.gets.chomp].join(?,)
   end
 end
 
@@ -79,4 +79,4 @@ end
 
 $outputfile.close
 
-%x@ echo 'LOAD DATA INFILE "#{$outputfile.path}" INTO TABLE fanfiction_chapters FIELDS TERMINATED BY ";" (story,chapter,githash)' | mysql -u root corpora_development @
+%x@ echo 'LOAD DATA INFILE "#{$outputfile.path}" INTO TABLE fanfiction_chapters FIELDS TERMINATED BY "," (story,chapter,githash)' | mysql -u root corpora_development @

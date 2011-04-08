@@ -10,10 +10,12 @@
     = csrf_meta_tag
 
   %body
-    #header
-      %ul.sources
-        - %w(de en es fr it nl).each do |l|
-          %li.source= link_to l, token_url(source: l)
+    = link_to image_tag("parrot_small.png", :style => "position: absolute"), "/"
+    #tabs
+      %h1{:style => "left: 70px; top: 0; position: absolute; "}
+        = image_tag "/images/logos/inglua2.gif"
+      - %w(de en es fr it nl).each do |l|
+        = link_to l, token_url(source: l)
     .container(style="margin-left: 1em;")
       %h2 Search words
       %form{action: token_url(source: params[:source]), method: "GET"}
