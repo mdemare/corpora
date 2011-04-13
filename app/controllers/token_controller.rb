@@ -199,7 +199,7 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
     bloom_loop(offsets)[0,10]
   end
 
-  def bloom_loop(file, offsets)
+  def bloom_loop(offsets)
     File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |file|
       page = 0
       sentences = []

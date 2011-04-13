@@ -160,36 +160,42 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
   add_index "occurrences_06", ["token_id"], :name => "index_occurrences_06_on_token_id"
 
   create_table "seq_01", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
   add_index "seq_01", ["id"], :name => "index_seq_01_on_id", :unique => true
 
   create_table "seq_02", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
   add_index "seq_02", ["id"], :name => "index_seq_02_on_id", :unique => true
 
   create_table "seq_03", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
   add_index "seq_03", ["id"], :name => "index_seq_03_on_id", :unique => true
 
   create_table "seq_04", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
   add_index "seq_04", ["id"], :name => "index_seq_04_on_id", :unique => true
 
   create_table "seq_05", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
   add_index "seq_05", ["id"], :name => "index_seq_05_on_id", :unique => true
 
   create_table "seq_06", :force => true do |t|
+    t.string "source",               :null => false
     t.binary "compressed_sentences", :null => false
   end
 
@@ -202,7 +208,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_01", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
@@ -212,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_02", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
@@ -222,7 +228,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_03", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
@@ -232,7 +238,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_04", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
@@ -242,7 +248,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_05", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
@@ -252,7 +258,7 @@ ActiveRecord::Schema.define(:version => 20110217141329) do
 
   create_table "tokens_06", :id => false, :force => true do |t|
     t.integer "id",                    :limit => 3, :null => false
-    t.string  "word"
+    t.string  "word",                               :null => false
     t.integer "frequency",                          :null => false
     t.binary  "occurrence_statistics",              :null => false
   end
