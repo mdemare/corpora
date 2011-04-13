@@ -176,7 +176,6 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
   end
   
   def find_sentences_for_item(phrase)
-    source = SOURCES[params[:source]]
     words = phrase.split
     item = if words.size == 1
       words[0]
@@ -200,6 +199,7 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
   end
 
   def bloom_loop(offsets)
+    source = SOURCES[params[:source]]
     File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |file|
       page = 0
       sentences = []
