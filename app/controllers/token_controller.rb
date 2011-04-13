@@ -56,7 +56,8 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
     
     @common_dist_0,@common_dist_1,@common_dist_0_follow, @common_dist_1_follow = [[:preceding,0],[:preceding,1],[:following,0],[:following,1]].map do |pos,dist|
       %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-        if f,w = @token.adjacent_words(kind, pos, dist)
+        f,w = @token.adjacent_words(kind, pos, dist)
+        if f
           hash[kind.tr("_"," ")] = [f,w] if f > 0.007
         end
       end
