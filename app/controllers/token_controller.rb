@@ -54,17 +54,12 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
     hwords = source::Token.where(id: g3_3.map(&:token2_id) + g3_3.map(&:token1_id)).each_with_object({}) {|t,h| h[t.id] = t.word}
     @g3_3 = g3_3.map {|b| ["#{hwords[b.token1_id] || '#'} #{hwords[b.token2_id] || '#'} #{w}", b.frequency] }
     
-    @common_dist_0 = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind) and hash[kind.tr("_"," ")] = x
-    end
-    @common_dist_1 = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind, :preceding, 1) and hash[kind.tr("_"," ")] = x
-    end
-    @common_dist_0_follow = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind, :following) and hash[kind.tr("_"," ")] = x
-    end
-    @common_dist_1_follow = %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
-      x = @token.adjacent_words(kind, :following, 1) and hash[kind.tr("_"," ")] = x
+    @common_dist_0,@common_dist_1,@common_dist_0_follow, @common_dist_1_follow = [[:preceding,0],[:preceding,1],[:following,0],[:following,1]].map do |pos,dist|
+      %w(definite_articles indefinite_articles nominative_pronouns prepositions).each_with_object({}) do |kind,hash|
+        if f,w = @token.adjacent_words(kind, pos, dist)
+          hash[kind.tr("_"," ")] = [f,w] if f > 0.007
+        end
+      end
     end
   end
   
@@ -200,29 +195,28 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
       raise 'not implemented'
     end
     offsets = Bloom.offsets(item, BLOOM_SIZE).sort
-    sentences = []
-    File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |f|
+    bloom_loop(offsets)[0,10]
+  end
+
+  def bloom_loop(file, offsets)
+    File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |file|
       page = 0
-      stop_loop = false
+      sentences = []
       loop do
         r = offsets.all? do |i|
-          f.seek(page*BLOOM_SIZE/8 + i/8)
-          unless c = f.getc
-            stop_loop = true
-            break
-          end
+          file.seek(page*BLOOM_SIZE/8 + i/8)
+          c = file.getc
+          return sentences if c.nil?
           c.getbyte(0) & (1 << (i % 8)) != 0
         end
-        break if stop_loop
         if r
-          seq = source::Seq.for_id(page+1)
-          seq.last.grep(regexp_for_phrase(phrase)).each {|s| sentences << [seq.first,s] }
+          source_url,sentences = source::Seq.for_id(page+1)
+          sentences.grep(regexp_for_phrase(phrase)).each {|s| sentences << [source_url,s] }
         end
-        break if sentences.size >= 10
+        return sentences if sentences.size >= 10
         page += 1
       end
     end
-    sentences[0,10]
   end
   
   def token_id_for_word(x)

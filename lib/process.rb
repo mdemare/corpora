@@ -1,7 +1,6 @@
 # encoding: utf-8
 $: << File.expand_path(File.dirname(__FILE__))
 STDERR.puts $:.last
-require 'tempfile'
 require 'bloom'
 require "unicode_utils"
 

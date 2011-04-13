@@ -17,13 +17,13 @@
       %li= "#{kind} #{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
 
 - unless @common_dist_0_follow.empty?
-  %h3== Common words immediately to the left of #{@token.word}
+  %h3== Common words immediately to the right of #{@token.word}
   %ul
     - @common_dist_0_follow.each do |kind,(f,w)|
       %li= "#{kind} #{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
 
 - unless @common_dist_1_follow.empty?
-  %h3== Common words two words to the left of #{@token.word}
+  %h3== Common words two words to the right of #{@token.word}
   %ul
     - @common_dist_1_follow.each do |kind,(f,w)|
       %li= "#{kind} #{sprintf("(%.1f%%)",100*f)} - most popular: #{w}"
@@ -39,21 +39,21 @@
   - @bigram_succ.each do |w,f|
     %li
       == #{f}:
-      = link_to "#{f}: #{@token.word} #{w || '#'}", examples_url(phrase: "#{@token.word} #{w || '#'}")
+      = link_to "#{@token.word} #{w || '#'}", examples_url(phrase: "#{@token.word} #{w || '#'}")
     
 %ul(style="float: left; margin-bottom: 1em")
   - @g3_1.each do |w, f|
     %li
       == #{f}:
-      = link_to "#{f}: #{w}", examples_url(phrase: w)
+      = link_to "#{w}", examples_url(phrase: w)
 %ul(style="float: left; margin-bottom: 1em")
   - @g3_2.each do |w, f|
     %li
       == #{f}:
-      = link_to "#{f}: #{w}", examples_url(phrase: w)
+      = link_to "#{w}", examples_url(phrase: w)
 %ul(style="float: left; margin-bottom: 1em")
   - @g3_3.each do |w, f|
     %li
       == #{f}:
-      = link_to "#{f}: #{w}", examples_url(phrase: w)
+      = link_to "#{w}", examples_url(phrase: w)
     
