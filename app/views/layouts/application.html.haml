@@ -17,7 +17,7 @@
         = image_tag "/images/logos/inglua2.gif"
       - %w(de en es fr it nl).each do |l|
         = link_to l, token_url(source: l)
-      %form{action: token_url(source: params[:source]), method: "GET", style: "float: right; margin-right: 10px"}
-        %input(type="text" name="id" placeholder="Search")
+      %div{style: "float: right; margin-right: 10px"}
+        %input(type="text" name="id" placeholder="Search" onchange="document.location='/lex/#{params[:source]/' + encodeURIComponent(this.value)}")
     .container(style="margin: 1em 0 5em 1em;")
       = yield
