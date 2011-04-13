@@ -194,11 +194,11 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
       ts = words.map {|x| x == '*' ? nil : x == '#' ? 0 : token_id_for_word(x) }
       raise 'not implemented'
     end
-    offsets = Bloom.offsets(item, BLOOM_SIZE).sort
-    bloom_loop(offsets)[0,10]
+    bloom_loop(phrase)[0,10]
   end
 
-  def bloom_loop(offsets)
+  def bloom_loop(phrase)
+    offsets = Bloom.offsets(item, BLOOM_SIZE).sort
     source = SOURCES[params[:source]]
     File.open("#{ENV['HOME']}/corpora/process/#{params[:source]}/bloom") do |file|
       page = 0
