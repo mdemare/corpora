@@ -211,8 +211,8 @@ If "fact 70 (maar gnief)" is frequent and "fact 60 (gnief te)" is infrequent and
           c.getbyte(0) & (1 << (i % 8)) != 0
         end
         if r
-          source_url,sentences = source::Seq.for_id(page+1)
-          sentences.grep(regexp_for_phrase(phrase)).each {|s| sentences << [source_url,s] }
+          source_url,seqs = source::Seq.for_id(page+1)
+          seqs.grep(regexp_for_phrase(phrase)).each {|s| sentences << [source_url,s] }
         end
         return sentences if sentences.size >= 10
         page += 1
