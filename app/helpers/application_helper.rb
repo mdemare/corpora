@@ -31,7 +31,6 @@ module ApplicationHelper
       end
     end
     r = pieces.compact.join("\\W+") + (ends_with_period ? "[.]" : "")
-    puts r
     %r(#{r})i
   end
 end

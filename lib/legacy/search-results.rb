@@ -22,25 +22,31 @@ tf = File.open("/home/mdemare/corpora/search-results.sql","w")
 tf.chmod(0644)
 
 while line=gets
-  medium,work,url,rest = line.chomp.gsub("&amp;","&").gsub("&gt;",">").gsub("&lt;","<").split(?;,4)
-  if not rest
+  # medium: anime
+  # work: Return_to_Labyrinth
+  # urls: /s/6950236/1/lo_prohibido_es_lo_mas_deseado /u/2666094/Dianithaxsasusaku
+  # title: lo prohibido es lo mas deseado:::
+  # fields: M - Spanish - Romance/Drama - Chapters: 1 - Words: 2,874 - Published: 4-29-11
+  
+  medium,work,url,title,fields = line.chomp.gsub("&amp;","&").gsub("&gt;",">").gsub("&lt;","<").split(?;,5)
+  if not fields
     STDERR.puts line
     next
   end
-  pos = rest =~ %r{;[;/]}
-  title = $`
-  rest2 = $'
+  
   if title.nil?
     STDERR.puts line
     next
   end
-  title.gsub!(?;, ?,)
-  if rest[pos+1] == ?/
-    url2,fields = rest2.split(?;)
-  else
-    url2 = ""
-    fields = rest2
+  
+  if url.nil?
+    STDERR.puts line
+    next
   end
+  
+  url2 = url.split.first
+  
+  title.gsub!(?;, ?,)
     
   fields = fields.split(" - ")
   
