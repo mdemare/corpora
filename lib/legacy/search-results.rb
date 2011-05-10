@@ -26,18 +26,17 @@ while line=gets
   # work: Return_to_Labyrinth
   # urls: /s/6950236/1/lo_prohibido_es_lo_mas_deseado /u/2666094/Dianithaxsasusaku
   # title: lo prohibido es lo mas deseado:::
-  # fields: M - Spanish - Romance/Drama - Chapters: 1 - Words: 2,874 - Published: 4-29-11
+  # fields: M - Spanish - Romance/Drama - Chapters: 1 - Words: 2,874 - Published: 4-29-11  
   
-  medium,work,url,title,fields = line.chomp.gsub("&amp;","&").gsub("&gt;",">").gsub("&lt;","<").split(?;,5)
-  if not fields
+  medium,work,url,rest = line.chomp.gsub("&amp;","&").gsub("&gt;",">").gsub("&lt;","<").split(?;,4)
+  
+  if not rest
     STDERR.puts line
     next
   end
   
-  if title.nil?
-    STDERR.puts line
-    next
-  end
+  fields = rest.split(?;).last
+  title = rest.split(?;)[0...-1].join(?:)
   
   if url.nil?
     STDERR.puts line
