@@ -58,7 +58,13 @@ while line=gets
   if head[2] =~ /Chapters: /
     head = [*head[0,2],"",*head[2,2]]
   end
-raise line unless head.size == 5
+
+  unless head.size == 5
+    STDERR.puts line
+    next 
+  end
+  /home/mdemare/proj/corpora/lib/legacy/search-results.rb:61:in `<main>': cartoon;X-Men_Evolution;/s/2415613/1/Losing_her_grip5966693313316186ntDisposition_formdata_namecensorid3 /u/370708/RogueFan23 /r (RuntimeError)g her grip
+  
   if fields[-2] =~ /Published/
     tail = [fields[-2],"",fields[-1]]
   else
